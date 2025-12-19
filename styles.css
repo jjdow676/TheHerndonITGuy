@@ -456,6 +456,11 @@ body {
     text-align: center;
 }
 
+/* iOS loading logo - hidden on desktop */
+.ios-loading-logo {
+    display: none;
+}
+
 /* ===== DESKTOP ===== */
 .desktop {
     height: 100vh;
@@ -1671,30 +1676,16 @@ body {
         display: none;
     }
 
-    /* Show Apple logo instead */
-    .loading-logo::before {
-        content: '';
-        font-size: 80px;
-        display: block;
+    /* Show HITG logo on mobile */
+    .ios-loading-logo {
+        display: block !important;
+        width: 120px;
+        height: 120px;
         margin-bottom: 20px;
     }
 
     .loading-logo .windows-text {
-        text-align: center;
-    }
-
-    .loading-logo .windows-text .microsoft {
-        font-size: 14px;
-        color: #fff;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 300;
-    }
-
-    .loading-logo .windows-text .windows-xp {
-        font-size: 28px;
-        font-style: normal;
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        font-weight: 300;
+        display: none;
     }
 
     /* Hide loading bar on mobile - Apple didn't have one */
