@@ -1558,7 +1558,7 @@ body {
         display: flex !important;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
         height: 100%;
         width: 100%;
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -1569,7 +1569,7 @@ body {
         font-weight: 200;
         color: #fff;
         text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        margin-top: 20px;
+        margin-top: 0;
     }
 
     .ios-lock-date {
@@ -1581,7 +1581,7 @@ body {
 
     .ios-lock-branding {
         text-align: center;
-        margin-top: 40px;
+        margin-top: 30px;
     }
 
     .ios-branding-name {
@@ -1599,8 +1599,7 @@ body {
     .ios-slide-unlock {
         width: 100%;
         max-width: 300px;
-        margin-top: 60px;
-        margin-bottom: auto;
+        margin-top: 50px;
     }
 
     .ios-slide-track {
@@ -1663,13 +1662,21 @@ body {
         100% { background-position: -100% 0; }
     }
 
-    /* ===== iOS LOADING SCREEN ===== */
+    /* ===== iOS LOADING SCREEN - Apple style (just logo, no loading bar) ===== */
     .loading-screen {
         background: #000 !important;
     }
 
     .loading-logo .windows-flag-img {
         display: none;
+    }
+
+    /* Show Apple logo instead */
+    .loading-logo::before {
+        content: '';
+        font-size: 80px;
+        display: block;
+        margin-bottom: 20px;
     }
 
     .loading-logo .windows-text {
@@ -1688,6 +1695,15 @@ body {
         font-style: normal;
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-weight: 300;
+    }
+
+    /* Hide loading bar on mobile - Apple didn't have one */
+    .loading-bar-container {
+        display: none !important;
+    }
+
+    .loading-text {
+        display: none !important;
     }
 
     .loading-bar {
