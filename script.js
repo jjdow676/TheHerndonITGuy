@@ -19,7 +19,18 @@ let openWindows = new Set();
 // Windows XP startup sound for desktop
 const startupSound = new Audio('assets/xp-startup.mp3');
 // iOS unlock sound for mobile
-const iosUnlockSound = new Audio('assets/ios-unlock.m4a');
+const iosUnlockSound = new Audio('assets/ios-unlock.mp3');
+// iOS tap sound for mobile interactions
+const iosTapSound = new Audio('assets/ios-tap.mp3');
+
+// Function to play iOS tap sound
+function playTapSound() {
+    if (window.innerWidth <= 768) {
+        iosTapSound.currentTime = 0;
+        iosTapSound.volume = 0.3;
+        iosTapSound.play().catch(e => console.log('Audio playback failed:', e));
+    }
+}
 
 // ===== LOGIN SCREEN =====
 userLogin.addEventListener('click', () => {
@@ -537,6 +548,7 @@ if (slideThumb && slideTrack && isMobile) {
 // iOS Dock Icons - Open windows on tap
 document.querySelectorAll('.ios-dock-icon').forEach(icon => {
     icon.addEventListener('click', () => {
+        playTapSound();
         const windowId = icon.dataset.window;
         if (windowId) {
             openWindow(windowId);
@@ -548,6 +560,7 @@ document.querySelectorAll('.ios-dock-icon').forEach(icon => {
 if (isMobile) {
     document.querySelectorAll('.desktop-icon').forEach(icon => {
         icon.addEventListener('click', () => {
+            playTapSound();
             const windowId = icon.dataset.window;
             if (windowId) {
                 openWindow(windowId);
