@@ -197,6 +197,10 @@
                 <div class="icon-image ios-icon-gray">ℹ️</div>
                 <span class="icon-label">Welcome</span>
             </div>
+            <div class="desktop-icon" data-window="chat">
+                <div class="icon-image ios-icon-teal">💬</div>
+                <span class="icon-label">Live Chat</span>
+            </div>
         </div>
 
         <!-- iOS Dock (hidden on desktop) -->
@@ -669,6 +673,43 @@ chat with the grandkids - I'm here to help!
             </div>
         </div>
 
+        <!-- Live Chat Window -->
+        <div class="xp-window hidden" id="window-chat" style="width: 400px; top: 100px; left: 300px;">
+            <div class="window-titlebar">
+                <div class="titlebar-icon">💬</div>
+                <div class="titlebar-title">Live Chat - IT Support</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span>File</span>
+                <span>Edit</span>
+                <span>Help</span>
+            </div>
+            <div class="window-content chat-content">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="chat-message bot">
+                        <span class="chat-avatar">🖥️</span>
+                        <div class="chat-bubble-msg">
+                            <strong>Justin</strong>
+                            <p>Hi! 👋 I'm Justin from The Herndon IT Guy. How can I help you today?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" class="xp-input chat-input" id="chat-input" placeholder="Type your message...">
+                    <button class="xp-button primary" id="chat-send">Send</button>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span id="chat-status">Online</span>
+                <span>Powered by Tawk.to</span>
+            </div>
+        </div>
+
         <!-- Taskbar -->
         <div class="taskbar">
             <button class="start-button" id="start-btn">
@@ -748,14 +789,6 @@ chat with the grandkids - I'm here to help!
                     <span>Shut Down</span>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Custom Themed Chat Button (triggers Tawk.to) -->
-    <div class="chat-widget" id="chat-widget">
-        <div class="chat-bubble" id="chat-bubble">
-            <span class="chat-icon">💬</span>
-            <span class="chat-label">Chat</span>
         </div>
     </div>
 

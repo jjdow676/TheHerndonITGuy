@@ -625,48 +625,62 @@ if (isMobile) {
     });
 }
 
-// ===== CHAT WIDGET - Tawk.to Integration =====
-const chatBubble = document.getElementById('chat-bubble');
+// ===== CUSTOM CHAT WINDOW - Tawk.to Integration =====
+const chatInput = document.getElementById('chat-input');
+const chatSend = document.getElementById('chat-send');
+const chatMessages = document.getElementById('chat-messages');
 
-if (chatBubble) {
-    // Open Tawk.to chat when custom button is clicked
-    chatBubble.addEventListener('click', () => {
-        if (isMobile) playTapSound();
+// Send message function
+function sendChatMessage() {
+    if (!chatInput) return;
+    const message = chatInput.value.trim();
+    if (!message) return;
 
-        // Check if Tawk.to is loaded and maximize the chat
-        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
-            Tawk_API.maximize();
-        } else {
-            // If Tawk.to isn't loaded yet, wait and try again
-            setTimeout(() => {
-                if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
-                    Tawk_API.maximize();
-                }
-            }, 1000);
+    // Add user message to chat UI
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-message user';
+    userMsg.innerHTML = `
+        <span class="chat-avatar">👤</span>
+        <div class="chat-bubble-msg">
+            <strong>You</strong>
+            <p>${message}</p>
+        </div>
+    `;
+    chatMessages.appendChild(userMsg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Clear input
+    chatInput.value = '';
+
+    // Send to Tawk.to if available
+    if (typeof Tawk_API !== 'undefined' && Tawk_API.sendMessage) {
+        Tawk_API.sendMessage(message);
+    }
+
+    // Show auto-reply after a moment (Tawk.to will handle real responses)
+    setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'chat-message bot';
+        botMsg.innerHTML = `
+            <span class="chat-avatar">🖥️</span>
+            <div class="chat-bubble-msg">
+                <strong>Justin</strong>
+                <p>Thanks for your message! I'll respond shortly. For faster help, you can also text me at <strong>(703) 424-9684</strong>.</p>
+            </div>
+        `;
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 1000);
+}
+
+if (chatSend) {
+    chatSend.addEventListener('click', sendChatMessage);
+}
+
+if (chatInput) {
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendChatMessage();
         }
     });
 }
-
-// Set up Tawk.to event handlers after it loads
-function setupTawkEvents() {
-    if (typeof Tawk_API !== 'undefined' && Tawk_API.onChatMaximized !== undefined) {
-        // Hide custom button when Tawk.to chat is open, show when closed
-        Tawk_API.onChatMaximized = function() {
-            if (chatBubble) chatBubble.style.display = 'none';
-        };
-        Tawk_API.onChatMinimized = function() {
-            if (chatBubble) chatBubble.style.display = 'flex';
-            // Re-hide the default widget when chat is minimized
-            if (Tawk_API.hideWidget) Tawk_API.hideWidget();
-        };
-        Tawk_API.onChatHidden = function() {
-            if (chatBubble) chatBubble.style.display = 'flex';
-        };
-    } else {
-        // Tawk.to not ready yet, try again
-        setTimeout(setupTawkEvents, 500);
-    }
-}
-
-// Start checking for Tawk.to
-setTimeout(setupTawkEvents, 1000);
