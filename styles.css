@@ -41,35 +41,46 @@ body {
 /* ===== LOGIN SCREEN ===== */
 .login-screen {
     height: 100vh;
-    background: linear-gradient(180deg, #5A7EDC 0%, #2158D0 15%, #1747B8 50%, #1747B8 85%, #3A6DD9 100%);
+    background: linear-gradient(135deg, #0B3D91 0%, #1E5BC6 25%, #2D7DD2 50%, #1E5BC6 75%, #0B3D91 100%);
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
 }
 
-.login-screen::before {
-    content: '';
+/* Aurora/glow effect like real XP */
+.login-aurora {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(100, 180, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 70% 30%, rgba(150, 200, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 90% 60% at 50% 90%, rgba(0, 50, 150, 0.3) 0%, transparent 50%);
     pointer-events: none;
+    animation: auroraShift 15s ease-in-out infinite alternate;
+}
+
+@keyframes auroraShift {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
 }
 
 .login-top-bar {
-    background: linear-gradient(180deg, #0F3A89 0%, #1046A0 50%, #0F3A89 100%);
-    padding: 8px 20px;
-    border-bottom: 2px solid #0A2D6B;
+    background: linear-gradient(180deg, #0D47A1 0%, #1565C0 50%, #0D47A1 100%);
+    padding: 6px 20px;
+    border-bottom: 1px solid #0A3D8F;
+    position: relative;
+    z-index: 10;
 }
 
 .login-instruction {
     color: #fff;
     font-size: 11px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    font-weight: normal;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 }
 
 .login-content {
@@ -78,159 +89,411 @@ body {
     align-items: center;
     justify-content: center;
     padding: 40px;
+    position: relative;
+    z-index: 5;
 }
 
 .login-left {
     flex: 1;
     display: flex;
     justify-content: flex-end;
-    padding-right: 60px;
+    padding-right: 50px;
 }
 
 .windows-logo {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
 .windows-flag {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 4px;
-    transform: rotate(-5deg) perspective(200px) rotateY(-10deg);
+    transform: perspective(200px) rotateY(-8deg) rotateX(2deg);
+    filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4));
 }
 
-.flag-red { background: linear-gradient(135deg, #FF3C00 0%, #F15623 100%); border-radius: 2px 8px 2px 2px; }
-.flag-green { background: linear-gradient(135deg, #00B82B 0%, #69BD45 100%); border-radius: 8px 2px 2px 2px; }
-.flag-blue { background: linear-gradient(135deg, #009DFF 0%, #00ADEF 100%); border-radius: 2px 2px 2px 8px; }
-.flag-yellow { background: linear-gradient(135deg, #FFB900 0%, #FFC400 100%); border-radius: 2px 2px 8px 2px; }
+.flag-red { background: linear-gradient(135deg, #F65314 0%, #FF6B3D 100%); border-radius: 2px 10px 2px 2px; }
+.flag-green { background: linear-gradient(135deg, #7CBB00 0%, #8ED100 100%); border-radius: 10px 2px 2px 2px; }
+.flag-blue { background: linear-gradient(135deg, #00A1F1 0%, #00B8FF 100%); border-radius: 2px 2px 2px 10px; }
+.flag-yellow { background: linear-gradient(135deg, #FFBB00 0%, #FFD000 100%); border-radius: 2px 2px 10px 2px; }
 
 .windows-text {
     display: flex;
     flex-direction: column;
+    gap: 0;
 }
 
 .microsoft {
     color: #fff;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: normal;
-    letter-spacing: 3px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
     font-style: italic;
+    margin-bottom: -5px;
 }
 
 .windows-xp {
     color: #fff;
-    font-size: 56px;
+    font-size: 62px;
     font-weight: bold;
-    letter-spacing: -1px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: -2px;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
     font-style: italic;
+    line-height: 1;
 }
 
 .windows-xp .xp {
-    color: #FF8C00;
-    font-size: 42px;
+    color: #FFB900;
+    font-size: 40px;
     vertical-align: super;
+    margin-left: 2px;
 }
 
 .login-divider {
-    width: 2px;
-    height: 200px;
-    background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.3) 20%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.3) 80%, transparent 100%);
+    width: 1px;
+    height: 280px;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(255,255,255,0.2) 15%,
+        rgba(255,255,255,0.4) 50%,
+        rgba(255,255,255,0.2) 85%,
+        transparent 100%
+    );
+    margin: 0 10px;
 }
 
 .login-right {
     flex: 1;
-    padding-left: 60px;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 350px;
 }
 
+/* User accounts */
 .user-account {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 15px 20px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
+    gap: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    max-width: 300px;
+    transition: all 0.15s ease;
+    position: relative;
 }
 
-.user-account:hover {
-    background: rgba(255,255,255,0.2);
-    transform: scale(1.02);
+/* Main account - highlighted and clickable */
+.user-account.main-account {
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+    border: 2px solid rgba(255,255,255,0.3);
+    box-shadow: 0 0 20px rgba(100, 180, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+    animation: pulseGlow 2s ease-in-out infinite;
 }
 
-.user-avatar {
-    width: 64px;
-    height: 64px;
-    background: linear-gradient(180deg, #fff 0%, #E0E0E0 100%);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid #fff;
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(100, 180, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.2); }
+    50% { box-shadow: 0 0 30px rgba(100, 180, 255, 0.5), inset 0 1px 0 rgba(255,255,255,0.3); }
+}
+
+.user-account.main-account:hover {
+    background: linear-gradient(180deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.15) 100%);
+    border-color: rgba(255,255,255,0.5);
+    transform: translateX(5px);
+}
+
+/* Disabled accounts - grayed out */
+.user-account.disabled-account {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+}
+
+/* User avatar frame */
+.user-avatar-frame {
+    padding: 3px;
+    background: linear-gradient(180deg, #fff 0%, #ccc 100%);
+    border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
+.user-avatar-frame.disabled {
+    background: linear-gradient(180deg, #aaa 0%, #888 100%);
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(180deg, #E8F4FC 0%, #B8D4E8 100%);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-avatar-frame.disabled .user-avatar {
+    background: linear-gradient(180deg, #ccc 0%, #999 100%);
+}
+
 .avatar-icon {
-    font-size: 36px;
+    font-size: 28px;
 }
 
 .user-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
 }
 
 .user-name {
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-.user-hint {
-    color: rgba(255,255,255,0.7);
-    font-size: 11px;
+.user-name.disabled {
+    color: rgba(255,255,255,0.6);
 }
 
-.login-bottom {
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
-
-.login-options {
-    display: flex;
-    gap: 20px;
-}
-
-.turn-off {
-    color: #fff;
-    font-size: 11px;
-    cursor: pointer;
-    opacity: 0.8;
+.user-status {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
 }
 
-.turn-off:hover {
-    opacity: 1;
-    text-decoration: underline;
+.status-arrow {
+    color: #90EE90;
+    font-size: 10px;
+    animation: bounceArrow 1s ease-in-out infinite;
+}
+
+@keyframes bounceArrow {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+}
+
+.status-text {
+    color: rgba(255,255,255,0.9);
+    font-size: 11px;
+    font-weight: bold;
+}
+
+/* Bottom bar */
+.login-bottom {
+    background: linear-gradient(180deg, #0D47A1 0%, #1565C0 50%, #0D47A1 100%);
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #0A3D8F;
+    position: relative;
+    z-index: 10;
+}
+
+.login-bottom-left {
+    display: flex;
+    align-items: center;
+}
+
+.turn-off-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.turn-off-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.power-icon {
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(180deg, #D32F2F 0%, #B71C1C 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.power-circle {
+    width: 12px;
+    height: 12px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: relative;
+}
+
+.power-circle::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 8px;
+    background: #fff;
+}
+
+.turn-off-btn span {
+    color: #fff;
+    font-size: 11px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.login-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.windows-logo-small {
+    opacity: 0.6;
+}
+
+.windows-flag-small {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1px;
+    transform: perspective(100px) rotateY(-5deg);
+}
+
+.windows-flag-small .flag-red,
+.windows-flag-small .flag-green,
+.windows-flag-small .flag-blue,
+.windows-flag-small .flag-yellow {
+    border-radius: 1px;
 }
 
 .login-tagline {
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.5);
     font-size: 10px;
     text-align: right;
     line-height: 1.4;
+}
+
+/* ===== LOADING SCREEN ===== */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.loading-logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.loading-flag {
+    width: 60px;
+    height: 60px;
+    animation: flagWave 2s ease-in-out infinite;
+}
+
+@keyframes flagWave {
+    0%, 100% { transform: perspective(200px) rotateY(-8deg); }
+    50% { transform: perspective(200px) rotateY(-12deg); }
+}
+
+.loading-logo .windows-text .microsoft {
+    font-size: 18px;
+}
+
+.loading-logo .windows-text .windows-xp {
+    font-size: 48px;
+}
+
+.loading-logo .windows-text .windows-xp .xp {
+    font-size: 32px;
+}
+
+.loading-bar-container {
+    width: 200px;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 20px;
+    background: #000;
+    border: 1px solid #333;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar-fill {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    width: 0%;
+    display: flex;
+    gap: 3px;
+    animation: loadingProgress 2s ease-in-out forwards;
+}
+
+.loading-bar-fill::before,
+.loading-bar-fill::after {
+    content: '';
+    display: block;
+}
+
+@keyframes loadingProgress {
+    0% { width: 0%; }
+    100% { width: calc(100% - 4px); }
+}
+
+.loading-bar-fill {
+    background: repeating-linear-gradient(
+        90deg,
+        #0078D7 0px,
+        #0078D7 8px,
+        #00A8E8 8px,
+        #00A8E8 12px,
+        #0078D7 12px,
+        #0078D7 20px
+    );
+    animation: loadingProgress 2s ease-out forwards, loadingShine 0.5s linear infinite;
+}
+
+@keyframes loadingShine {
+    0% { background-position: 0 0; }
+    100% { background-position: 20px 0; }
+}
+
+.loading-text {
+    color: #fff;
+    font-size: 11px;
+    text-align: center;
 }
 
 /* ===== DESKTOP ===== */
@@ -1327,25 +1590,26 @@ body {
     .login-content {
         flex-direction: column;
         padding: 20px;
+        gap: 20px;
     }
 
     .login-left {
         padding-right: 0;
-        padding-bottom: 30px;
+        padding-bottom: 0;
         justify-content: center;
     }
 
     .login-divider {
         width: 200px;
-        height: 2px;
+        height: 1px;
         background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 20%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.3) 80%, transparent 100%);
     }
 
     .login-right {
         padding-left: 0;
-        padding-top: 30px;
-        display: flex;
-        justify-content: center;
+        padding-top: 0;
+        align-items: center;
+        max-width: 100%;
     }
 
     .windows-flag {
@@ -1354,15 +1618,50 @@ body {
     }
 
     .microsoft {
-        font-size: 18px;
+        font-size: 14px;
     }
 
     .windows-xp {
-        font-size: 36px;
+        font-size: 32px;
     }
 
     .windows-xp .xp {
-        font-size: 28px;
+        font-size: 22px;
+    }
+
+    .user-account.main-account {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .disabled-account {
+        display: none;
+    }
+
+    .login-bottom {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .login-bottom-right {
+        order: -1;
+    }
+
+    .login-tagline {
+        text-align: center;
+    }
+
+    .loading-logo .windows-text .microsoft {
+        font-size: 14px;
+    }
+
+    .loading-logo .windows-text .windows-xp {
+        font-size: 36px;
+    }
+
+    .loading-logo .windows-text .windows-xp .xp {
+        font-size: 24px;
     }
 
     .desktop-icons {

@@ -2,6 +2,7 @@
 
 // DOM Elements
 const loginScreen = document.getElementById('login-screen');
+const loadingScreen = document.getElementById('loading-screen');
 const desktop = document.getElementById('desktop');
 const userLogin = document.getElementById('user-login');
 const startBtn = document.getElementById('start-btn');
@@ -29,12 +30,20 @@ userLogin.addEventListener('click', () => {
 
     setTimeout(() => {
         loginScreen.classList.add('hidden');
-        desktop.classList.remove('hidden');
 
-        // Auto-open welcome window after login
+        // Show loading screen
+        loadingScreen.classList.remove('hidden');
+
+        // After loading animation completes, show desktop
         setTimeout(() => {
-            openWindow('welcome');
-        }, 300);
+            loadingScreen.classList.add('hidden');
+            desktop.classList.remove('hidden');
+
+            // Auto-open welcome window after login
+            setTimeout(() => {
+                openWindow('welcome');
+            }, 300);
+        }, 2500); // Loading screen duration
     }, 500);
 });
 

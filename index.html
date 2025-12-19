@@ -13,10 +13,17 @@
 <body>
     <!-- Windows XP Login Screen -->
     <div id="login-screen" class="login-screen">
+        <!-- Aurora background effect -->
+        <div class="login-aurora"></div>
+
+        <!-- Top instruction bar -->
         <div class="login-top-bar">
             <div class="login-instruction">To begin, click your user name</div>
         </div>
+
+        <!-- Main content area -->
         <div class="login-content">
+            <!-- Left side - Windows branding -->
             <div class="login-left">
                 <div class="windows-logo">
                     <div class="windows-flag">
@@ -31,24 +38,101 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Divider line -->
             <div class="login-divider"></div>
+
+            <!-- Right side - User accounts -->
             <div class="login-right">
-                <div class="user-account" id="user-login">
-                    <div class="user-avatar">
-                        <div class="avatar-icon">🖥️</div>
+                <!-- Main user account - THE HERNDON IT GUY (highlighted) -->
+                <div class="user-account main-account" id="user-login">
+                    <div class="user-avatar-frame">
+                        <div class="user-avatar">
+                            <div class="avatar-icon">🖥️</div>
+                        </div>
                     </div>
                     <div class="user-info">
                         <div class="user-name">The Herndon IT Guy</div>
-                        <div class="user-hint">Click to enter</div>
+                        <div class="user-status">
+                            <span class="status-arrow">▶</span>
+                            <span class="status-text">Click here to enter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fake disabled accounts (grayed out) -->
+                <div class="user-account disabled-account">
+                    <div class="user-avatar-frame disabled">
+                        <div class="user-avatar">
+                            <div class="avatar-icon">👤</div>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name disabled">Guest</div>
+                    </div>
+                </div>
+
+                <div class="user-account disabled-account">
+                    <div class="user-avatar-frame disabled">
+                        <div class="user-avatar">
+                            <div class="avatar-icon">🔧</div>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name disabled">Administrator</div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Bottom bar -->
         <div class="login-bottom">
-            <div class="login-options">
-                <span class="turn-off">Turn off computer</span>
+            <div class="login-bottom-left">
+                <div class="turn-off-btn">
+                    <div class="power-icon">
+                        <div class="power-circle"></div>
+                    </div>
+                    <span>Turn off computer</span>
+                </div>
             </div>
-            <div class="login-tagline">After you log on, you can add or change accounts.<br>Just go to Control Panel and click User Accounts.</div>
+            <div class="login-bottom-right">
+                <div class="windows-logo-small">
+                    <div class="windows-flag-small">
+                        <div class="flag-red"></div>
+                        <div class="flag-green"></div>
+                        <div class="flag-blue"></div>
+                        <div class="flag-yellow"></div>
+                    </div>
+                </div>
+                <div class="login-tagline">
+                    After you log on, you can add or change accounts.<br>
+                    Just go to Control Panel and click User Accounts.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen (shows after clicking user) -->
+    <div id="loading-screen" class="loading-screen hidden">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="windows-flag loading-flag">
+                    <div class="flag-red"></div>
+                    <div class="flag-green"></div>
+                    <div class="flag-blue"></div>
+                    <div class="flag-yellow"></div>
+                </div>
+                <div class="windows-text">
+                    <span class="microsoft">Microsoft</span>
+                    <span class="windows-xp">Windows<span class="xp">XP</span></span>
+                </div>
+            </div>
+            <div class="loading-bar-container">
+                <div class="loading-bar">
+                    <div class="loading-bar-fill"></div>
+                </div>
+            </div>
+            <div class="loading-text">Loading your personal settings...</div>
         </div>
     </div>
 
