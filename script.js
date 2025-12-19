@@ -15,9 +15,11 @@ let activeWindow = null;
 let zIndexCounter = 100;
 let openWindows = new Set();
 
-// ===== WINDOWS XP STARTUP SOUND =====
-// Local audio file for reliable playback
+// ===== STARTUP SOUNDS =====
+// Windows XP startup sound for desktop
 const startupSound = new Audio('assets/xp-startup.mp3');
+// iOS unlock sound for mobile
+const iosUnlockSound = new Audio('assets/ios-unlock.m4a');
 
 // ===== LOGIN SCREEN =====
 userLogin.addEventListener('click', () => {
@@ -499,9 +501,9 @@ if (slideThumb && slideTrack && isMobile) {
     }
 
     function unlockiOS() {
-        // Play startup sound
-        startupSound.volume = 0.5;
-        startupSound.play().catch(e => console.log('Audio playback failed:', e));
+        // Play iOS unlock sound
+        iosUnlockSound.volume = 0.5;
+        iosUnlockSound.play().catch(e => console.log('Audio playback failed:', e));
 
         // Fade out login screen
         loginScreen.classList.add('fade-out');
