@@ -1848,51 +1848,58 @@ body {
     .icon-image {
         width: 57px;
         height: 57px;
-        font-size: 32px;
-        border-radius: 12px;
+        font-size: 28px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+        box-shadow:
+            0 1px 3px rgba(0,0,0,0.4),
+            0 4px 8px rgba(0,0,0,0.3),
+            inset 0 1px 0 rgba(255,255,255,0.3);
         filter: none;
         position: relative;
         overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.2);
     }
 
-    /* 2007 iPhone glossy reflection overlay */
+    /* 2007 iPhone glossy reflection overlay - classic gel button look */
     .icon-image::before {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 50%;
-        background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.1) 100%);
-        border-radius: 12px 12px 0 0;
+        height: 45%;
+        background: linear-gradient(180deg,
+            rgba(255,255,255,0.6) 0%,
+            rgba(255,255,255,0.3) 50%,
+            rgba(255,255,255,0.05) 100%);
+        border-radius: 9px 9px 50% 50%;
         pointer-events: none;
     }
 
-    /* Distinct icon colors - 2007 iPhone style */
+    /* Distinct icon colors - 2007 iPhone style with deeper gradients */
     .ios-icon-orange {
-        background: linear-gradient(180deg, #FF9500 0%, #FF5E00 100%);
+        background: linear-gradient(180deg, #FF9F0A 0%, #FF6B00 50%, #E55800 100%);
     }
     .ios-icon-blue {
-        background: linear-gradient(180deg, #5AC8FA 0%, #007AFF 100%);
+        background: linear-gradient(180deg, #6CB5FF 0%, #0A84FF 50%, #0066CC 100%);
     }
     .ios-icon-green {
-        background: linear-gradient(180deg, #4CD964 0%, #34C759 100%);
+        background: linear-gradient(180deg, #65D36E 0%, #30D158 50%, #1FAD3E 100%);
     }
     .ios-icon-purple {
-        background: linear-gradient(180deg, #C86EDF 0%, #9B59B6 100%);
+        background: linear-gradient(180deg, #DA8FFF 0%, #BF5AF2 50%, #9340C7 100%);
     }
     .ios-icon-yellow {
-        background: linear-gradient(180deg, #FFCC00 0%, #FF9500 100%);
+        background: linear-gradient(180deg, #FFD426 0%, #FFCC00 50%, #E5A800 100%);
     }
     .ios-icon-gray {
-        background: linear-gradient(180deg, #8E8E93 0%, #636366 100%);
+        background: linear-gradient(180deg, #A8A8AD 0%, #8E8E93 50%, #6C6C70 100%);
     }
     .ios-icon-teal {
-        background: linear-gradient(180deg, #5AC8FA 0%, #34AADC 100%);
+        background: linear-gradient(180deg, #70D7FF 0%, #5AC8FA 50%, #32B5E5 100%);
     }
 
     .icon-label {
