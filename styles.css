@@ -96,15 +96,15 @@ body {
 .login-left {
     flex: 1;
     display: flex;
-    justify-content: flex-end;
-    padding-right: 50px;
+    justify-content: center;
+    padding-right: 30px;
 }
 
 .windows-logo {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    align-items: flex-start;
+    gap: 10px;
 }
 
 /* Real Windows logo image */
@@ -166,36 +166,33 @@ body {
 .windows-text {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 0;
 }
 
+/* "Herndon's Favorite" - small text like "Microsoft" */
 .microsoft {
-    color: #fff;
-    font-size: 16px;
+    color: #000;
+    font-size: 18px;
     font-weight: normal;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+    margin-bottom: -2px;
+    margin-left: 2px;
 }
 
+/* "IT Experts" - large text like "Windows" */
 .windows-xp {
     color: #000;
-    font-size: 42px;
+    font-size: 52px;
     font-weight: bold;
     letter-spacing: -1px;
-    text-shadow: 2px 2px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
     font-style: italic;
     line-height: 1;
 }
 
+/* Hide the XP span since we're not using it anymore */
 .windows-xp .xp {
-    color: #FF8C00;
-    font-size: 28px;
-    font-weight: bold;
-    vertical-align: super;
-    margin-left: 0;
-    text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff;
+    display: none;
 }
 
 .login-divider {
@@ -213,9 +210,10 @@ body {
 
 .login-right {
     flex: 1;
-    padding-left: 50px;
+    padding-left: 30px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 8px;
     max-width: 350px;
 }
@@ -462,31 +460,24 @@ body {
 
 .loading-logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
-.loading-flag {
-    width: 60px;
-    height: 60px;
-    animation: flagWave 2s ease-in-out infinite;
-}
-
-@keyframes flagWave {
-    0%, 100% { transform: perspective(200px) rotateY(-8deg); }
-    50% { transform: perspective(200px) rotateY(-12deg); }
+.loading-logo .windows-text {
+    align-items: center;
 }
 
 .loading-logo .windows-text .microsoft {
-    font-size: 18px;
+    font-size: 14px;
+    color: #fff;
 }
 
 .loading-logo .windows-text .windows-xp {
-    font-size: 48px;
-}
-
-.loading-logo .windows-text .windows-xp .xp {
-    font-size: 32px;
+    font-size: 36px;
+    color: #fff;
+    text-shadow: none;
 }
 
 .loading-bar-container {
@@ -1648,6 +1639,14 @@ body {
         justify-content: center;
     }
 
+    .windows-logo {
+        align-items: center;
+    }
+
+    .windows-text {
+        align-items: center;
+    }
+
     .login-divider {
         width: 200px;
         height: 1px;
@@ -1680,10 +1679,6 @@ body {
 
     .windows-xp {
         font-size: 28px;
-    }
-
-    .windows-xp .xp {
-        font-size: 18px;
     }
 
     .user-account.main-account {
