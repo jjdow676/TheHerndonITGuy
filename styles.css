@@ -112,15 +112,37 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 4px;
-    transform: perspective(200px) rotateY(-8deg) rotateX(2deg);
-    filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.4));
+    gap: 3px;
+    transform: perspective(300px) rotateY(-15deg) rotateX(5deg) skewY(-2deg);
+    filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.5));
+    position: relative;
 }
 
-.flag-red { background: linear-gradient(135deg, #F65314 0%, #FF6B3D 100%); border-radius: 2px 10px 2px 2px; }
-.flag-green { background: linear-gradient(135deg, #7CBB00 0%, #8ED100 100%); border-radius: 10px 2px 2px 2px; }
-.flag-blue { background: linear-gradient(135deg, #00A1F1 0%, #00B8FF 100%); border-radius: 2px 2px 2px 10px; }
-.flag-yellow { background: linear-gradient(135deg, #FFBB00 0%, #FFD000 100%); border-radius: 2px 2px 10px 2px; }
+/* Waving flag effect - each pane has unique wave shape */
+.flag-red {
+    background: linear-gradient(145deg, #FF4500 0%, #FF6B3D 30%, #F65314 60%, #E84400 100%);
+    border-radius: 8px 45% 8px 8px;
+    transform: skewX(-3deg) skewY(2deg);
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.3);
+}
+.flag-green {
+    background: linear-gradient(145deg, #8BC400 0%, #7CBB00 30%, #5FA600 60%, #4D9000 100%);
+    border-radius: 45% 8px 8px 8px;
+    transform: skewX(3deg) skewY(-2deg);
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.3);
+}
+.flag-blue {
+    background: linear-gradient(145deg, #00B4FF 0%, #00A1F1 30%, #0082D4 60%, #006CB7 100%);
+    border-radius: 8px 8px 8px 45%;
+    transform: skewX(-3deg) skewY(-2deg);
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.3);
+}
+.flag-yellow {
+    background: linear-gradient(145deg, #FFD000 0%, #FFBB00 30%, #F5A700 60%, #E69500 100%);
+    border-radius: 8px 8px 45% 8px;
+    transform: skewX(3deg) skewY(2deg);
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.3);
+}
 
 .windows-text {
     display: flex;
@@ -130,29 +152,32 @@ body {
 
 .microsoft {
     color: #fff;
-    font-size: 22px;
-    font-weight: normal;
-    letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     font-style: italic;
-    margin-bottom: -5px;
+    margin-bottom: -8px;
+    opacity: 0.95;
 }
 
 .windows-xp {
     color: #fff;
-    font-size: 62px;
+    font-size: 58px;
     font-weight: bold;
-    letter-spacing: -2px;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+    letter-spacing: -1px;
+    text-shadow: 3px 3px 8px rgba(0,0,0,0.5), 1px 1px 2px rgba(0,0,0,0.3);
     font-style: italic;
     line-height: 1;
 }
 
 .windows-xp .xp {
-    color: #FFB900;
-    font-size: 40px;
+    color: #FFCC00;
+    font-size: 36px;
+    font-weight: bold;
     vertical-align: super;
-    margin-left: 2px;
+    margin-left: 3px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 10px rgba(255,200,0,0.3);
 }
 
 .login-divider {
@@ -369,14 +394,24 @@ body {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 1px;
-    transform: perspective(100px) rotateY(-5deg);
+    transform: perspective(150px) rotateY(-10deg) skewY(-1deg);
 }
 
-.windows-flag-small .flag-red,
-.windows-flag-small .flag-green,
-.windows-flag-small .flag-blue,
+.windows-flag-small .flag-red {
+    border-radius: 2px 35% 2px 2px;
+    transform: skewX(-2deg);
+}
+.windows-flag-small .flag-green {
+    border-radius: 35% 2px 2px 2px;
+    transform: skewX(2deg);
+}
+.windows-flag-small .flag-blue {
+    border-radius: 2px 2px 2px 35%;
+    transform: skewX(-2deg);
+}
 .windows-flag-small .flag-yellow {
-    border-radius: 1px;
+    border-radius: 2px 2px 35% 2px;
+    transform: skewX(2deg);
 }
 
 .login-tagline {
@@ -1370,13 +1405,13 @@ body {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 1px;
-    transform: rotate(-5deg);
+    transform: perspective(100px) rotateY(-8deg) skewY(-1deg);
 }
 
-.mf-red { background: #FF3C00; border-radius: 1px 3px 1px 1px; }
-.mf-green { background: #00B82B; border-radius: 3px 1px 1px 1px; }
-.mf-blue { background: #009DFF; border-radius: 1px 1px 1px 3px; }
-.mf-yellow { background: #FFB900; border-radius: 1px 1px 3px 1px; }
+.mf-red { background: linear-gradient(135deg, #FF4500 0%, #F65314 100%); border-radius: 2px 30% 2px 2px; transform: skewX(-2deg); }
+.mf-green { background: linear-gradient(135deg, #7CBB00 0%, #5FA600 100%); border-radius: 30% 2px 2px 2px; transform: skewX(2deg); }
+.mf-blue { background: linear-gradient(135deg, #00A1F1 0%, #0082D4 100%); border-radius: 2px 2px 2px 30%; transform: skewX(-2deg); }
+.mf-yellow { background: linear-gradient(135deg, #FFBB00 0%, #F5A700 100%); border-radius: 2px 2px 30% 2px; transform: skewX(2deg); }
 
 .taskbar-buttons {
     flex: 1;
