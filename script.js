@@ -15,56 +15,14 @@ let zIndexCounter = 100;
 let openWindows = new Set();
 
 // ===== WINDOWS XP STARTUP SOUND =====
-// Base64 encoded Windows XP startup sound (short version for web)
-const XP_STARTUP_SOUND = 'data:audio/mp3;base64,//uQxAAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/7kMQAD8AAADSAAAAANIAAANIAAAAVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
-
-// Create audio element for startup sound
-const startupSound = new Audio();
-startupSound.src = 'https://archive.org/download/WindowsXpStartup_201901/Windows%20XP%20Startup.mp3';
-
-// Fallback: use Web Audio API to create a similar chime if external fails
-function playStartupChime() {
-    try {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-        // XP startup is a series of pleasant tones
-        const notes = [
-            { freq: 523.25, start: 0, duration: 0.3 },      // C5
-            { freq: 659.25, start: 0.15, duration: 0.3 },   // E5
-            { freq: 783.99, start: 0.3, duration: 0.4 },    // G5
-            { freq: 1046.50, start: 0.45, duration: 0.6 },  // C6
-        ];
-
-        notes.forEach(note => {
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-
-            oscillator.frequency.value = note.freq;
-            oscillator.type = 'sine';
-
-            gainNode.gain.setValueAtTime(0, audioContext.currentTime + note.start);
-            gainNode.gain.linearRampToValueAtTime(0.3, audioContext.currentTime + note.start + 0.05);
-            gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + note.start + note.duration);
-
-            oscillator.start(audioContext.currentTime + note.start);
-            oscillator.stop(audioContext.currentTime + note.start + note.duration);
-        });
-    } catch (e) {
-        console.log('Audio not supported');
-    }
-}
+// Local audio file for reliable playback
+const startupSound = new Audio('assets/xp-startup.mp3');
 
 // ===== LOGIN SCREEN =====
 userLogin.addEventListener('click', () => {
     // Play Windows XP startup sound
     startupSound.volume = 0.5;
-    startupSound.play().catch(() => {
-        // If external audio fails, play synthesized chime
-        playStartupChime();
-    });
+    startupSound.play().catch(e => console.log('Audio playback failed:', e));
 
     // Fade out login screen
     loginScreen.classList.add('fade-out');
