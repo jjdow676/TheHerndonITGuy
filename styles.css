@@ -48,26 +48,54 @@ body {
     overflow: hidden;
 }
 
+/* Top left branding text */
+.login-branding {
+    position: absolute;
+    top: 25px;
+    left: 35px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 10;
+}
+
+.branding-small {
+    color: #fff;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+}
+
+.branding-large {
+    color: #fff;
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
 .login-content {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 60px;
-    gap: 60px;
+    padding: 60px 80px;
+    gap: 80px;
 }
 
 .login-left {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 25px;
+    align-items: center;
+    gap: 20px;
 }
 
 .windows-logo {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 5px;
 }
 
@@ -133,6 +161,7 @@ body {
     flex-direction: column;
     gap: 10px;
     min-width: 280px;
+    align-self: center;
 }
 
 /* User accounts - XP style card */
@@ -1514,9 +1543,23 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+    .login-branding {
+        top: 15px;
+        left: 15px;
+    }
+
+    .branding-small {
+        font-size: 11px;
+    }
+
+    .branding-large {
+        font-size: 22px;
+    }
+
     .login-content {
         flex-direction: column;
         padding: 30px 20px;
+        padding-top: 60px;
         gap: 30px;
     }
 
