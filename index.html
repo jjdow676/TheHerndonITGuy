@@ -19,11 +19,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <!-- Hide Tawk.to default widget immediately -->
-    <style>
-        iframe[src*="tawk.to"], .tawk-min-container, #tawk-bubble-container,
-        [class*="tawk-"]:not(script) { display: none !important; visibility: hidden !important; }
-    </style>
 </head>
 <body>
     <!-- Windows XP Login Screen -->
@@ -197,9 +192,9 @@
                 <div class="icon-image ios-icon-gray">ℹ️</div>
                 <span class="icon-label">Welcome</span>
             </div>
-            <div class="desktop-icon" id="chat-icon" data-action="open-tawk">
+            <div class="desktop-icon" id="chat-icon" data-window="chat">
                 <div class="icon-image ios-icon-teal">💬</div>
-                <span class="icon-label">Live Chat</span>
+                <span class="icon-label">Quick Contact</span>
             </div>
         </div>
 
@@ -673,6 +668,68 @@ chat with the grandkids - I'm here to help!
             </div>
         </div>
 
+        <!-- Quick Contact Window -->
+        <div class="xp-window hidden" id="window-chat" style="width: 420px; top: 100px; left: 300px;">
+            <div class="window-titlebar">
+                <div class="titlebar-icon">💬</div>
+                <div class="titlebar-title">Quick Contact - Get Help Fast</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span>File</span>
+                <span>Help</span>
+            </div>
+            <div class="window-content quick-contact-content">
+                <div class="quick-contact-header">
+                    <div class="quick-contact-icon">💬</div>
+                    <div class="quick-contact-title">
+                        <h2>Get Help Now</h2>
+                        <p>Choose your preferred way to reach me</p>
+                    </div>
+                </div>
+                <div class="quick-contact-options">
+                    <a href="sms:7034249684" class="contact-option sms-option">
+                        <div class="option-icon">📱</div>
+                        <div class="option-info">
+                            <strong>Text Me</strong>
+                            <span>(703) 424-9684</span>
+                            <small>Fastest response - usually within minutes!</small>
+                        </div>
+                    </a>
+                    <a href="mailto:justin@theherndonitguy.com" class="contact-option email-option">
+                        <div class="option-icon">📧</div>
+                        <div class="option-info">
+                            <strong>Email Me</strong>
+                            <span>justin@theherndonitguy.com</span>
+                            <small>For detailed questions or attachments</small>
+                        </div>
+                    </a>
+                    <a href="tel:7034249684" class="contact-option call-option">
+                        <div class="option-icon">📞</div>
+                        <div class="option-info">
+                            <strong>Call Me</strong>
+                            <span>(703) 424-9684</span>
+                            <small>Leave a voicemail if I miss you</small>
+                        </div>
+                    </a>
+                </div>
+                <div class="quick-contact-note">
+                    <div class="note-icon">💡</div>
+                    <div class="note-text">
+                        <strong>Tip:</strong> Texting is the fastest way to reach me. I typically respond within a few minutes during business hours!
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span>Mon-Sat, 9AM - 7PM</span>
+                <span>Herndon, VA</span>
+            </div>
+        </div>
+
         <!-- Taskbar -->
         <div class="taskbar">
             <button class="start-button" id="start-btn">
@@ -754,25 +811,6 @@ chat with the grandkids - I'm here to help!
             </div>
         </div>
     </div>
-
-    <!-- Tawk.to Live Chat -->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-
-    // Hide default widget as soon as it loads
-    Tawk_API.onLoad = function() {
-        Tawk_API.hideWidget();
-    };
-
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6945d53a6f5eb4197ab253b7/1jcschqom';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
 
     <script src="script.js"></script>
 </body>

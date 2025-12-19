@@ -2471,112 +2471,124 @@ body {
     background: linear-gradient(180deg, #D4D0C4 0%, #ECE9D8 50%, #fff 100%);
 }
 
-/* ===== CUSTOM CHAT WINDOW (XP Style) ===== */
-.chat-content {
+/* ===== QUICK CONTACT WINDOW (XP Style) ===== */
+.quick-contact-content {
+    padding: 20px;
+}
+
+.quick-contact-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #D4D0C8;
+}
+
+.quick-contact-icon {
+    font-size: 48px;
+}
+
+.quick-contact-title h2 {
+    font-size: 20px;
+    color: #003399;
+    margin: 0 0 4px 0;
+}
+
+.quick-contact-title p {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+.quick-contact-options {
     display: flex;
     flex-direction: column;
-    height: 350px;
-    padding: 0;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-    background: #fff;
-    border: 2px inset #ACA899;
-    margin: 8px;
-    margin-bottom: 0;
-}
-
-.chat-message {
+.contact-option {
     display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: linear-gradient(180deg, #fff 0%, #F5F3EF 100%);
+    border: 1px solid #D4D0C8;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
-.chat-message.user {
-    flex-direction: row-reverse;
+.contact-option:hover {
+    background: linear-gradient(180deg, #E8F4FC 0%, #C8E4F8 100%);
+    border-color: #7EB4EA;
 }
 
-.chat-avatar {
-    font-size: 24px;
-    width: 32px;
-    height: 32px;
+.contact-option .option-icon {
+    font-size: 32px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    background: linear-gradient(180deg, #fff 0%, #ECE9D8 100%);
+    border: 1px solid #ACA899;
+    border-radius: 4px;
 }
 
-.chat-bubble-msg {
-    max-width: 75%;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 12px;
-    line-height: 1.4;
-}
-
-.chat-message.bot .chat-bubble-msg {
-    background: #E8F4FD;
-    border: 1px solid #A8D4F5;
-}
-
-.chat-message.user .chat-bubble-msg {
-    background: #DCF8C6;
-    border: 1px solid #B8E986;
-}
-
-.chat-bubble-msg strong {
-    display: block;
-    margin-bottom: 4px;
-    color: #003399;
-    font-size: 11px;
-}
-
-.chat-bubble-msg p {
-    margin: 0;
-    color: #333;
-}
-
-.chat-input-area {
-    display: flex;
-    gap: 8px;
-    padding: 8px;
-    background: var(--xp-window-bg);
-    border-top: 1px solid #ACA899;
-}
-
-.chat-input-area .chat-input {
+.contact-option .option-info {
     flex: 1;
 }
 
-.chat-input-area .xp-button {
-    min-width: 60px;
+.contact-option .option-info strong {
+    display: block;
+    font-size: 14px;
+    color: #003399;
+    margin-bottom: 2px;
 }
 
-/* ===== HIDE DEFAULT TAWK.TO WIDGET ===== */
-/* We use our custom themed button instead */
-/* Target all possible Tawk.to widget elements */
-#tawk-bubble-container,
-.tawk-min-container,
-.tawk-button,
-.tawk-button-circle,
-.tawk-widget,
-[class*="tawk-min"],
-[class*="tawk-bubble"],
-[class*="widget-visible"],
-iframe[title*="chat widget"],
-iframe[title*="Tawk"],
-iframe[src*="tawk.to"],
-div[style*="tawk"],
-/* Target the specific positioned element Tawk uses */
-div[style*="position: fixed"][style*="bottom"][style*="right"][style*="z-index"]:not(.chat-widget):not(.chat-bubble) {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
+.contact-option .option-info span {
+    display: block;
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 4px;
+}
+
+.contact-option .option-info small {
+    font-size: 10px;
+    color: #666;
+}
+
+.sms-option:hover .option-icon {
+    background: linear-gradient(180deg, #D4EDDA 0%, #C3E6CB 100%);
+}
+
+.email-option:hover .option-icon {
+    background: linear-gradient(180deg, #CCE5FF 0%, #B8DAFF 100%);
+}
+
+.call-option:hover .option-icon {
+    background: linear-gradient(180deg, #FFF3CD 0%, #FFE69C 100%);
+}
+
+.quick-contact-note {
+    background: linear-gradient(180deg, #FFFFD5 0%, #FFFFB0 100%);
+    border: 1px solid #E6D98A;
+    border-radius: 4px;
+    padding: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.quick-contact-note .note-icon {
+    font-size: 20px;
+}
+
+.quick-contact-note .note-text {
+    font-size: 11px;
+    line-height: 1.4;
 }

@@ -625,32 +625,16 @@ if (isMobile) {
     });
 }
 
-// ===== LIVE CHAT - Opens Tawk.to =====
+// ===== QUICK CONTACT - SMS on mobile, window on desktop =====
 const chatIcon = document.getElementById('chat-icon');
 
-if (chatIcon) {
-    // Single click on mobile, double click on desktop
-    const openTawkChat = () => {
-        if (isMobile) playTapSound();
-
-        // Open Tawk.to chat
-        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
-            Tawk_API.maximize();
-        } else {
-            // If not loaded yet, try again after a moment
-            setTimeout(() => {
-                if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
-                    Tawk_API.maximize();
-                }
-            }, 1000);
-        }
-    };
-
-    // On mobile, single tap opens chat
-    if (isMobile) {
-        chatIcon.addEventListener('click', openTawkChat);
-    } else {
-        // On desktop, double-click opens chat
-        chatIcon.addEventListener('dblclick', openTawkChat);
-    }
+if (chatIcon && isMobile) {
+    // On mobile, single tap opens SMS directly
+    chatIcon.addEventListener('click', (e) => {
+        playTapSound();
+        // Prevent the default window opening behavior
+        e.stopPropagation();
+        window.location.href = 'sms:7034249684';
+    });
 }
+// Desktop uses the normal data-window="chat" behavior which opens the Quick Contact window
