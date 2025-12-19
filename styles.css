@@ -2055,7 +2055,6 @@ body {
         overscroll-behavior-x: none;
         position: relative;
         touch-action: pan-y;
-        padding-bottom: 20px;
     }
 
     .window-statusbar {
@@ -2087,7 +2086,6 @@ body {
     .pricing-content,
     .notepad-content {
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        padding-bottom: 30px;
     }
 
     .welcome-features {
