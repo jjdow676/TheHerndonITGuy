@@ -2465,17 +2465,26 @@ body {
 
 /* ===== HIDE DEFAULT TAWK.TO WIDGET ===== */
 /* We use our custom themed button instead */
+/* Target all possible Tawk.to widget elements */
 #tawk-bubble-container,
 .tawk-min-container,
 .tawk-button,
 .tawk-button-circle,
+.tawk-widget,
 [class*="tawk-min"],
 [class*="tawk-bubble"],
+[class*="widget-visible"],
 iframe[title*="chat widget"],
 iframe[title*="Tawk"],
-div[style*="tawk"] {
+iframe[src*="tawk.to"],
+div[style*="tawk"],
+/* Target the specific positioned element Tawk uses */
+div[style*="position: fixed"][style*="bottom"][style*="right"][style*="z-index"]:not(.chat-widget):not(.chat-bubble) {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
 }
