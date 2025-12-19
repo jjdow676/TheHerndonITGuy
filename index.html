@@ -746,28 +746,26 @@ chat with the grandkids - I'm here to help!
         </div>
     </div>
 
-    <!-- Chat Widget -->
+    <!-- Custom Themed Chat Button (triggers Tawk.to) -->
     <div class="chat-widget" id="chat-widget">
         <div class="chat-bubble" id="chat-bubble">
             <span class="chat-icon">💬</span>
             <span class="chat-label">Chat</span>
         </div>
-        <div class="chat-window hidden" id="chat-window">
-            <div class="chat-header">
-                <span class="chat-title">Chat with IT Support</span>
-                <button class="chat-close" id="chat-close">×</button>
-            </div>
-            <div class="chat-messages" id="chat-messages">
-                <div class="chat-message bot">
-                    <span>Hi! 👋 I'm Justin from The Herndon IT Guy. How can I help you today?</span>
-                </div>
-            </div>
-            <div class="chat-input-area">
-                <input type="text" class="chat-input" id="chat-input" placeholder="Type a message...">
-                <button class="chat-send" id="chat-send">Send</button>
-            </div>
-        </div>
     </div>
+
+    <!-- Tawk.to Live Chat -->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6945d53a6f5eb4197ab253b7/1jcschqom';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
 
     <script src="script.js"></script>
 </body>

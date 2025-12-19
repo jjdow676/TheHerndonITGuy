@@ -2462,3 +2462,12 @@ body {
 .chat-send:active {
     background: linear-gradient(180deg, #D4D0C4 0%, #ECE9D8 50%, #fff 100%);
 }
+
+/* ===== HIDE DEFAULT TAWK.TO WIDGET ===== */
+/* We use our custom themed button instead */
+#tawk-bubble-container,
+.tawk-min-container,
+iframe[title*="chat widget"] {
+    display: none !important;
+    visibility: hidden !important;
+}
