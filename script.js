@@ -625,16 +625,73 @@ if (isMobile) {
     });
 }
 
-// ===== QUICK CONTACT - SMS on mobile, window on desktop =====
-const chatIcon = document.getElementById('chat-icon');
+// ===== LIVE CHAT - Email-based chat system =====
+const chatSendBtn = document.getElementById('chat-send');
+const chatInput = document.getElementById('chat-input');
+const chatMessages = document.getElementById('chat-messages');
+const chatNameInput = document.getElementById('chat-name');
+const chatEmailInput = document.getElementById('chat-email');
+const chatStatus = document.getElementById('chat-status');
 
-if (chatIcon && isMobile) {
-    // On mobile, single tap opens SMS directly
-    chatIcon.addEventListener('click', (e) => {
-        playTapSound();
-        // Prevent the default window opening behavior
-        e.stopPropagation();
-        window.location.href = 'sms:7034249684';
+if (chatSendBtn) {
+    chatSendBtn.addEventListener('click', sendChatMessage);
+}
+
+if (chatInput) {
+    chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendChatMessage();
+        }
     });
 }
-// Desktop uses the normal data-window="chat" behavior which opens the Quick Contact window
+
+function sendChatMessage() {
+    const name = chatNameInput?.value.trim() || 'Anonymous';
+    const email = chatEmailInput?.value.trim() || 'No email provided';
+    const message = chatInput?.value.trim();
+
+    if (!message) return;
+
+    // Add user's message to chat
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-message outgoing';
+    userMsg.innerHTML = `
+        <div class="message-avatar">👤</div>
+        <div class="message-bubble">
+            <div class="message-sender">${name}</div>
+            <div class="message-content">${message}</div>
+            <div class="message-time">${timeStr}</div>
+        </div>
+    `;
+    chatMessages.appendChild(userMsg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Clear input
+    chatInput.value = '';
+
+    // Update status
+    if (chatStatus) chatStatus.textContent = 'Sending...';
+
+    // Send via mailto (opens email client with pre-filled message)
+    const subject = encodeURIComponent(`Live Chat from ${name} - TheHerndonITGuy.com`);
+    const body = encodeURIComponent(`New message from Live Chat:\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\n---\nSent from TheHerndonITGuy.com Live Chat`);
+
+    // Open mailto link
+    window.location.href = `mailto:justin@theherndonitguy.com?subject=${subject}&body=${body}`;
+
+    // Add confirmation message
+    setTimeout(() => {
+        const confirmMsg = document.createElement('div');
+        confirmMsg.className = 'chat-message system';
+        confirmMsg.innerHTML = `
+            <div class="message-content">Your email client should open. Send the email and I'll get back to you soon!</div>
+        `;
+        chatMessages.appendChild(confirmMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        if (chatStatus) chatStatus.textContent = 'Message ready to send';
+    }, 500);
+}
