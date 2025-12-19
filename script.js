@@ -416,3 +416,140 @@ if (window.innerWidth <= 768) {
         windowEl.dataset.maximized = 'true';
     });
 }
+
+// ===== iOS MOBILE FEATURES =====
+const isMobile = window.innerWidth <= 768;
+
+// iOS Lock Screen Time
+function updateiOSLockTime() {
+    const lockTime = document.getElementById('ios-lock-time');
+    const lockDate = document.getElementById('ios-lock-date');
+    const statusTime = document.getElementById('ios-status-time');
+
+    if (!lockTime) return;
+
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+
+    // Lock screen shows 24h style time
+    lockTime.textContent = `${hours}:${minutes}`;
+
+    // Date format
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    lockDate.textContent = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+
+    // Status bar shows 12h style
+    if (statusTime) {
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        statusTime.textContent = `${hours}:${minutes} ${ampm}`;
+    }
+}
+
+if (isMobile) {
+    updateiOSLockTime();
+    setInterval(updateiOSLockTime, 1000);
+}
+
+// iOS Slide to Unlock
+const slideThumb = document.getElementById('ios-slide-thumb');
+const slideTrack = document.querySelector('.ios-slide-track');
+
+if (slideThumb && slideTrack && isMobile) {
+    let isSliding = false;
+    let startX = 0;
+    let thumbStartX = 0;
+    const trackWidth = 300 - 54; // track width minus thumb width
+
+    function handleSlideStart(e) {
+        isSliding = true;
+        startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+        thumbStartX = slideThumb.offsetLeft;
+        slideThumb.style.transition = 'none';
+    }
+
+    function handleSlideMove(e) {
+        if (!isSliding) return;
+
+        const currentX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+        const deltaX = currentX - startX;
+        let newLeft = thumbStartX + deltaX;
+
+        // Constrain to track
+        newLeft = Math.max(2, Math.min(newLeft, trackWidth));
+        slideThumb.style.left = newLeft + 'px';
+
+        // Check if unlocked (slid to end)
+        if (newLeft >= trackWidth - 10) {
+            isSliding = false;
+            unlockiOS();
+        }
+    }
+
+    function handleSlideEnd() {
+        if (!isSliding) return;
+        isSliding = false;
+
+        // Snap back if not unlocked
+        slideThumb.style.transition = 'left 0.3s ease';
+        slideThumb.style.left = '2px';
+    }
+
+    function unlockiOS() {
+        // Play startup sound
+        startupSound.volume = 0.5;
+        startupSound.play().catch(e => console.log('Audio playback failed:', e));
+
+        // Fade out login screen
+        loginScreen.classList.add('fade-out');
+
+        setTimeout(() => {
+            loginScreen.classList.add('hidden');
+            loadingScreen.classList.remove('hidden');
+
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                desktop.classList.remove('hidden');
+
+                setTimeout(() => {
+                    openWindow('welcome');
+                }, 300);
+            }, 2500);
+        }, 500);
+    }
+
+    // Touch events
+    slideThumb.addEventListener('touchstart', handleSlideStart, { passive: true });
+    document.addEventListener('touchmove', handleSlideMove, { passive: true });
+    document.addEventListener('touchend', handleSlideEnd);
+
+    // Mouse events (for testing on desktop)
+    slideThumb.addEventListener('mousedown', handleSlideStart);
+    document.addEventListener('mousemove', handleSlideMove);
+    document.addEventListener('mouseup', handleSlideEnd);
+}
+
+// iOS Dock Icons - Open windows on tap
+document.querySelectorAll('.ios-dock-icon').forEach(icon => {
+    icon.addEventListener('click', () => {
+        const windowId = icon.dataset.window;
+        if (windowId) {
+            openWindow(windowId);
+        }
+    });
+});
+
+// On mobile, single tap opens window (no double-click needed)
+if (isMobile) {
+    document.querySelectorAll('.desktop-icon').forEach(icon => {
+        icon.addEventListener('click', () => {
+            const windowId = icon.dataset.window;
+            if (windowId) {
+                openWindow(windowId);
+            }
+        });
+    });
+}

@@ -1533,134 +1533,432 @@ body {
     font-size: 14px;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== RESPONSIVE - iOS 2007 THEME FOR MOBILE ===== */
 @media (max-width: 768px) {
-    .login-branding {
-        top: 15px;
-        left: 15px;
+    /* Hide Windows XP elements on mobile */
+    .login-branding,
+    .login-content,
+    .login-bottom,
+    .taskbar,
+    .start-menu {
+        display: none !important;
     }
 
-    .branding-small {
-        font-size: 11px;
-    }
-
-    .branding-large {
-        font-size: 22px;
-    }
-
-    .login-content {
+    /* ===== iOS LOCK SCREEN ===== */
+    .login-screen {
+        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+        display: flex;
         flex-direction: column;
-        padding: 30px 20px;
-        padding-top: 60px;
-        gap: 30px;
-    }
-
-    .login-left {
+        justify-content: space-between;
         align-items: center;
+        padding: 50px 20px 40px;
     }
 
-    .windows-logo {
+    .ios-lock-screen {
+        display: flex !important;
+        flex-direction: column;
         align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        width: 100%;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
-    .windows-text {
-        align-items: center;
+    .ios-lock-time {
+        font-size: 72px;
+        font-weight: 200;
+        color: #fff;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        margin-top: 20px;
     }
 
-    .login-instruction {
+    .ios-lock-date {
+        font-size: 18px;
+        color: #fff;
+        opacity: 0.9;
+        margin-top: 5px;
+    }
+
+    .ios-lock-branding {
         text-align: center;
+        margin-top: 40px;
     }
 
-    .login-right {
+    .ios-branding-name {
+        font-size: 24px;
+        font-weight: 300;
+        color: #fff;
+        margin-bottom: 5px;
+    }
+
+    .ios-branding-tagline {
+        font-size: 14px;
+        color: rgba(255,255,255,0.7);
+    }
+
+    .ios-slide-unlock {
+        width: 100%;
+        max-width: 300px;
+        margin-top: auto;
+        margin-bottom: 20px;
+    }
+
+    .ios-slide-track {
+        background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 30px;
+        height: 54px;
+        position: relative;
+        display: flex;
         align-items: center;
+        overflow: hidden;
+    }
+
+    .ios-slide-thumb {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(180deg, #fff 0%, #ddd 100%);
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 2px;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        z-index: 2;
+        transition: left 0.1s ease;
+    }
+
+    .ios-slide-arrow {
+        color: #666;
+        font-size: 18px;
+    }
+
+    .ios-slide-text {
+        position: absolute;
         width: 100%;
+        text-align: center;
+        color: rgba(255,255,255,0.6);
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        animation: slideTextShimmer 2s ease-in-out infinite;
     }
 
-    .windows-flag-img {
-        width: 140px;
+    @keyframes slideTextShimmer {
+        0%, 100% { opacity: 0.4; }
+        50% { opacity: 0.8; }
     }
 
-    .loading-flag-img {
-        width: 100px;
+    /* ===== iOS LOADING SCREEN ===== */
+    .loading-screen {
+        background: #000 !important;
     }
 
-    .microsoft {
-        font-size: 12px;
-    }
-
-    .windows-xp {
-        font-size: 32px;
-    }
-
-    .user-account {
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .disabled-account {
+    .loading-logo .windows-flag-img {
         display: none;
     }
 
-    .login-bottom {
-        flex-direction: column;
-        gap: 10px;
-        padding: 12px;
-    }
-
-    .login-bottom-right {
-        order: -1;
-    }
-
-    .login-tagline {
+    .loading-logo .windows-text {
         text-align: center;
     }
 
     .loading-logo .windows-text .microsoft {
-        font-size: 12px;
+        font-size: 14px;
+        color: #fff;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 300;
     }
 
     .loading-logo .windows-text .windows-xp {
         font-size: 28px;
+        font-style: normal;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 300;
     }
 
-    .desktop-icons {
-        position: static;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 15px;
+    .loading-bar {
+        background: #333 !important;
+        border-color: #444 !important;
+    }
+
+    .loading-bar-fill {
+        background: linear-gradient(90deg, #007AFF 0%, #5AC8FA 100%) !important;
+    }
+
+    /* ===== iOS HOME SCREEN (Desktop) ===== */
+    .desktop {
+        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%) !important;
+        padding-top: 24px;
+        padding-bottom: 100px;
+    }
+
+    /* iOS Status Bar */
+    .ios-statusbar {
+        display: flex !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 24px;
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0 10px;
+        z-index: 1000;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .ios-status-left {
+        display: flex;
+        align-items: center;
         gap: 5px;
     }
 
-    .desktop-icon {
-        width: 60px;
+    .ios-carrier {
+        font-size: 12px;
     }
 
+    .ios-signal {
+        font-size: 10px;
+        letter-spacing: -2px;
+    }
+
+    .ios-status-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .ios-status-time {
+        font-weight: 600;
+    }
+
+    .ios-status-right {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 14px;
+    }
+
+    /* iOS App Icons Grid */
+    .desktop-icons {
+        position: static !important;
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px 10px;
+        padding: 40px 20px 20px;
+        justify-items: center;
+    }
+
+    .desktop-icon {
+        width: 70px;
+        padding: 5px;
+        background: none;
+        border-radius: 0;
+    }
+
+    .desktop-icon:hover,
+    .desktop-icon.selected {
+        background: none;
+    }
+
+    .desktop-icon:active {
+        opacity: 0.7;
+    }
+
+    .icon-image {
+        width: 57px;
+        height: 57px;
+        font-size: 32px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.1) 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+        filter: none;
+    }
+
+    .icon-label {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        margin-top: 5px;
+        max-width: 70px;
+    }
+
+    /* iOS Dock */
+    .ios-dock {
+        display: flex !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 90px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.2) 100%);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255,255,255,0.2);
+        padding: 10px 20px;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .ios-dock-icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .ios-dock-icon:active {
+        opacity: 0.7;
+    }
+
+    .ios-dock-icon-inner {
+        width: 57px;
+        height: 57px;
+        font-size: 28px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0.1) 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .ios-dock-label {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 10px;
+        color: #fff;
+        margin-top: 4px;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    }
+
+    /* ===== iOS App Windows ===== */
     .xp-window {
         position: fixed !important;
-        top: 10px !important;
-        left: 5px !important;
-        right: 5px !important;
-        width: auto !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100vh !important;
         transform: none !important;
-        max-height: calc(100vh - 60px);
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        z-index: 1001 !important;
+    }
+
+    .window-titlebar {
+        background: linear-gradient(180deg, #5c8fca 0%, #3b6aa0 50%, #2e5a8a 100%) !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .titlebar-icon {
+        display: none;
+    }
+
+    .titlebar-title {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+    }
+
+    .titlebar-buttons {
+        position: absolute;
+        right: 10px;
+        gap: 0;
+    }
+
+    .titlebar-btn.minimize,
+    .titlebar-btn.maximize {
+        display: none;
+    }
+
+    .titlebar-btn.close {
+        width: auto;
+        height: auto;
+        background: none !important;
+        box-shadow: none !important;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 300;
+        padding: 5px 10px;
+    }
+
+    .titlebar-btn.close::before {
+        content: '×';
+    }
+
+    .titlebar-btn.close:empty::before {
+        content: '×';
+    }
+
+    .window-menubar {
+        display: none;
+    }
+
+    .window-toolbar {
+        display: none;
+    }
+
+    .window-addressbar {
+        display: none;
     }
 
     .window-content {
-        max-height: calc(100vh - 150px);
+        max-height: calc(100vh - 44px) !important;
+        height: calc(100vh - 44px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
+    .window-statusbar {
+        display: none;
+    }
+
+    /* iOS Style Content Areas */
     .explorer-content {
         flex-direction: column;
     }
 
     .explorer-sidebar {
-        width: 100%;
         display: none;
     }
 
     .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .service-folder {
+        border-radius: 10px;
+    }
+
+    .welcome-content,
+    .form-content,
+    .remote-content,
+    .pricing-content,
+    .notepad-content {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
     .welcome-features {
@@ -1679,10 +1977,27 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .start-menu {
-        width: 100%;
-        left: 0;
-        right: 0;
+    /* iOS Style Buttons */
+    .xp-button {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        border-radius: 8px;
+        font-weight: 500;
+    }
+
+    .xp-button.primary {
+        background: linear-gradient(180deg, #007AFF 0%, #0062CC 100%);
+        border: none;
+        color: #fff;
+    }
+
+    /* iOS Style Inputs */
+    .xp-input,
+    .xp-select,
+    .xp-textarea {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        border-radius: 8px;
+        padding: 10px 12px;
+        font-size: 16px;
     }
 }
 
@@ -1713,4 +2028,11 @@ body {
 
 .login-screen.fade-out {
     animation: loginFade 0.5s ease-out forwards;
+}
+
+/* ===== iOS ELEMENTS - Hidden on Desktop ===== */
+.ios-lock-screen,
+.ios-statusbar,
+.ios-dock {
+    display: none;
 }
