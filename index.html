@@ -133,42 +133,52 @@
         <!-- iOS Status Bar (hidden on desktop) -->
         <div class="ios-statusbar">
             <div class="ios-status-left">
-                <span class="ios-carrier">AT&T</span>
-                <span class="ios-signal">▂▄▆█</span>
+                <span class="ios-signal-bars">
+                    <span class="bar bar1"></span>
+                    <span class="bar bar2"></span>
+                    <span class="bar bar3"></span>
+                    <span class="bar bar4"></span>
+                    <span class="bar bar5"></span>
+                </span>
+                <span class="ios-carrier">HITG</span>
             </div>
             <div class="ios-status-center">
                 <span class="ios-status-time" id="ios-status-time">9:41 AM</span>
             </div>
             <div class="ios-status-right">
-                <span class="ios-wifi">📶</span>
-                <span class="ios-battery">🔋</span>
+                <span class="ios-battery-icon">
+                    <span class="battery-body">
+                        <span class="battery-fill"></span>
+                    </span>
+                    <span class="battery-cap"></span>
+                </span>
             </div>
         </div>
 
         <!-- Desktop Icons -->
         <div class="desktop-icons">
             <div class="desktop-icon" data-window="services">
-                <div class="icon-image">🛠️</div>
+                <div class="icon-image ios-icon-orange">🛠️</div>
                 <span class="icon-label">My Services</span>
             </div>
             <div class="desktop-icon" data-window="about">
-                <div class="icon-image">📁</div>
+                <div class="icon-image ios-icon-blue">📁</div>
                 <span class="icon-label">About Me</span>
             </div>
             <div class="desktop-icon" data-window="contact">
-                <div class="icon-image">📧</div>
+                <div class="icon-image ios-icon-green">📧</div>
                 <span class="icon-label">Contact</span>
             </div>
             <div class="desktop-icon" data-window="remote">
-                <div class="icon-image">🌐</div>
+                <div class="icon-image ios-icon-purple">🌐</div>
                 <span class="icon-label">Remote Support</span>
             </div>
             <div class="desktop-icon" data-window="pricing">
-                <div class="icon-image">💰</div>
+                <div class="icon-image ios-icon-yellow">💰</div>
                 <span class="icon-label">Pricing</span>
             </div>
             <div class="desktop-icon" data-window="welcome">
-                <div class="icon-image">ℹ️</div>
+                <div class="icon-image ios-icon-gray">ℹ️</div>
                 <span class="icon-label">Welcome</span>
             </div>
         </div>
@@ -176,19 +186,19 @@
         <!-- iOS Dock (hidden on desktop) -->
         <div class="ios-dock">
             <div class="ios-dock-icon" data-window="contact">
-                <div class="ios-dock-icon-inner">📧</div>
+                <div class="ios-dock-icon-inner ios-icon-green">📧</div>
                 <span class="ios-dock-label">Contact</span>
             </div>
             <div class="ios-dock-icon" data-window="remote">
-                <div class="ios-dock-icon-inner">🌐</div>
+                <div class="ios-dock-icon-inner ios-icon-purple">🌐</div>
                 <span class="ios-dock-label">Remote</span>
             </div>
             <div class="ios-dock-icon" data-window="services">
-                <div class="ios-dock-icon-inner">🛠️</div>
+                <div class="ios-dock-icon-inner ios-icon-orange">🛠️</div>
                 <span class="ios-dock-label">Services</span>
             </div>
             <div class="ios-dock-icon" data-window="pricing">
-                <div class="ios-dock-icon-inner">💰</div>
+                <div class="ios-dock-icon-inner ios-icon-yellow">💰</div>
                 <span class="ios-dock-label">Pricing</span>
             </div>
         </div>

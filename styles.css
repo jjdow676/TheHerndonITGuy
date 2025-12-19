@@ -1546,7 +1546,7 @@ body {
 
     /* ===== iOS LOCK SCREEN ===== */
     .login-screen {
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+        background: #000;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -1639,16 +1639,28 @@ body {
         position: absolute;
         width: 100%;
         text-align: center;
-        color: rgba(255,255,255,0.6);
+        color: rgba(255,255,255,0.4);
         font-size: 20px;
         font-weight: 300;
         letter-spacing: 1px;
+        background: linear-gradient(
+            90deg,
+            rgba(255,255,255,0.3) 0%,
+            rgba(255,255,255,0.3) 40%,
+            rgba(255,255,255,1) 50%,
+            rgba(255,255,255,0.3) 60%,
+            rgba(255,255,255,0.3) 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
         animation: slideTextShimmer 2s ease-in-out infinite;
     }
 
     @keyframes slideTextShimmer {
-        0%, 100% { opacity: 0.4; }
-        50% { opacity: 0.8; }
+        0% { background-position: 100% 0; }
+        100% { background-position: -100% 0; }
     }
 
     /* ===== iOS LOADING SCREEN ===== */
@@ -1689,7 +1701,7 @@ body {
 
     /* ===== iOS HOME SCREEN (Desktop) ===== */
     .desktop {
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%) !important;
+        background: #000 !important;
         padding-top: 24px;
         padding-bottom: 100px;
     }
@@ -1719,13 +1731,28 @@ body {
         gap: 5px;
     }
 
-    .ios-carrier {
-        font-size: 12px;
+    .ios-signal-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 1px;
+        height: 10px;
     }
 
-    .ios-signal {
-        font-size: 10px;
-        letter-spacing: -2px;
+    .ios-signal-bars .bar {
+        width: 3px;
+        background: #fff;
+        border-radius: 1px;
+    }
+
+    .ios-signal-bars .bar1 { height: 3px; }
+    .ios-signal-bars .bar2 { height: 5px; }
+    .ios-signal-bars .bar3 { height: 7px; }
+    .ios-signal-bars .bar4 { height: 9px; }
+    .ios-signal-bars .bar5 { height: 11px; }
+
+    .ios-carrier {
+        font-size: 12px;
+        margin-left: 3px;
     }
 
     .ios-status-center {
@@ -1742,7 +1769,36 @@ body {
         display: flex;
         align-items: center;
         gap: 5px;
-        font-size: 14px;
+    }
+
+    .ios-battery-icon {
+        display: flex;
+        align-items: center;
+    }
+
+    .battery-body {
+        width: 22px;
+        height: 10px;
+        border: 1px solid #fff;
+        border-radius: 2px;
+        padding: 1px;
+        display: flex;
+        align-items: center;
+    }
+
+    .battery-fill {
+        width: 100%;
+        height: 100%;
+        background: #4CD964;
+        border-radius: 1px;
+    }
+
+    .battery-cap {
+        width: 2px;
+        height: 5px;
+        background: #fff;
+        border-radius: 0 1px 1px 0;
+        margin-left: 1px;
     }
 
     /* iOS App Icons Grid */
@@ -1775,13 +1831,47 @@ body {
         width: 57px;
         height: 57px;
         font-size: 32px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.1) 100%);
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+        box-shadow: 0 3px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
         filter: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* 2007 iPhone glossy reflection overlay */
+    .icon-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.1) 100%);
+        border-radius: 12px 12px 0 0;
+        pointer-events: none;
+    }
+
+    /* Distinct icon colors - 2007 iPhone style */
+    .ios-icon-orange {
+        background: linear-gradient(180deg, #FF9500 0%, #FF5E00 100%);
+    }
+    .ios-icon-blue {
+        background: linear-gradient(180deg, #5AC8FA 0%, #007AFF 100%);
+    }
+    .ios-icon-green {
+        background: linear-gradient(180deg, #4CD964 0%, #34C759 100%);
+    }
+    .ios-icon-purple {
+        background: linear-gradient(180deg, #C86EDF 0%, #9B59B6 100%);
+    }
+    .ios-icon-yellow {
+        background: linear-gradient(180deg, #FFCC00 0%, #FF9500 100%);
+    }
+    .ios-icon-gray {
+        background: linear-gradient(180deg, #8E8E93 0%, #636366 100%);
     }
 
     .icon-label {
@@ -1794,7 +1884,7 @@ body {
         max-width: 70px;
     }
 
-    /* iOS Dock */
+    /* iOS Dock - 2007 metallic silver style */
     .ios-dock {
         display: flex !important;
         position: fixed;
@@ -1802,10 +1892,15 @@ body {
         left: 0;
         right: 0;
         height: 90px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.2) 100%);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-top: 1px solid rgba(255,255,255,0.2);
+        background: linear-gradient(180deg,
+            rgba(180,180,190,0.9) 0%,
+            rgba(140,140,150,0.85) 20%,
+            rgba(100,100,110,0.8) 50%,
+            rgba(80,80,90,0.85) 80%,
+            rgba(60,60,70,0.9) 100%
+        );
+        border-top: 1px solid rgba(255,255,255,0.4);
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
         padding: 10px 20px;
         justify-content: space-around;
         align-items: center;
@@ -1827,12 +1922,26 @@ body {
         width: 57px;
         height: 57px;
         font-size: 28px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 50%, rgba(0,0,0,0.1) 100%);
         border-radius: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4);
+        box-shadow: 0 3px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Glossy overlay for dock icons */
+    .ios-dock-icon-inner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.1) 100%);
+        border-radius: 12px 12px 0 0;
+        pointer-events: none;
     }
 
     .ios-dock-label {
