@@ -625,62 +625,32 @@ if (isMobile) {
     });
 }
 
-// ===== CUSTOM CHAT WINDOW - Tawk.to Integration =====
-const chatInput = document.getElementById('chat-input');
-const chatSend = document.getElementById('chat-send');
-const chatMessages = document.getElementById('chat-messages');
+// ===== LIVE CHAT - Opens Tawk.to =====
+const chatIcon = document.getElementById('chat-icon');
 
-// Send message function
-function sendChatMessage() {
-    if (!chatInput) return;
-    const message = chatInput.value.trim();
-    if (!message) return;
+if (chatIcon) {
+    // Single click on mobile, double click on desktop
+    const openTawkChat = () => {
+        if (isMobile) playTapSound();
 
-    // Add user message to chat UI
-    const userMsg = document.createElement('div');
-    userMsg.className = 'chat-message user';
-    userMsg.innerHTML = `
-        <span class="chat-avatar">👤</span>
-        <div class="chat-bubble-msg">
-            <strong>You</strong>
-            <p>${message}</p>
-        </div>
-    `;
-    chatMessages.appendChild(userMsg);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    // Clear input
-    chatInput.value = '';
-
-    // Send to Tawk.to if available
-    if (typeof Tawk_API !== 'undefined' && Tawk_API.sendMessage) {
-        Tawk_API.sendMessage(message);
-    }
-
-    // Show auto-reply after a moment (Tawk.to will handle real responses)
-    setTimeout(() => {
-        const botMsg = document.createElement('div');
-        botMsg.className = 'chat-message bot';
-        botMsg.innerHTML = `
-            <span class="chat-avatar">🖥️</span>
-            <div class="chat-bubble-msg">
-                <strong>Justin</strong>
-                <p>Thanks for your message! I'll respond shortly. For faster help, you can also text me at <strong>(703) 424-9684</strong>.</p>
-            </div>
-        `;
-        chatMessages.appendChild(botMsg);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }, 1000);
-}
-
-if (chatSend) {
-    chatSend.addEventListener('click', sendChatMessage);
-}
-
-if (chatInput) {
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendChatMessage();
+        // Open Tawk.to chat
+        if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+            Tawk_API.maximize();
+        } else {
+            // If not loaded yet, try again after a moment
+            setTimeout(() => {
+                if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+                    Tawk_API.maximize();
+                }
+            }, 1000);
         }
-    });
+    };
+
+    // On mobile, single tap opens chat
+    if (isMobile) {
+        chatIcon.addEventListener('click', openTawkChat);
+    } else {
+        // On desktop, double-click opens chat
+        chatIcon.addEventListener('dblclick', openTawkChat);
+    }
 }
