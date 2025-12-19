@@ -603,4 +603,24 @@ if (isMobile) {
             }
         });
     });
+
+    // Update window titles to iOS-friendly names (remove Windows references)
+    const iosTitles = {
+        'window-services': 'Services',
+        'window-about': 'About',
+        'window-contact': 'Contact',
+        'window-remote': 'Remote Support',
+        'window-pricing': 'Pricing',
+        'window-welcome': 'Welcome'
+    };
+
+    Object.entries(iosTitles).forEach(([windowId, title]) => {
+        const windowEl = document.getElementById(windowId);
+        if (windowEl) {
+            const titleEl = windowEl.querySelector('.titlebar-title');
+            if (titleEl) {
+                titleEl.textContent = title;
+            }
+        }
+    });
 }
