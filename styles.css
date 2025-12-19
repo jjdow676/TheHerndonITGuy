@@ -1540,6 +1540,12 @@ body {
 
 /* ===== RESPONSIVE - iOS 2007 THEME FOR MOBILE ===== */
 @media (max-width: 768px) {
+    /* Mobile body overrides for proper scrolling */
+    body {
+        overflow: auto;
+        overscroll-behavior: none;
+    }
+
     /* Hide Windows XP elements on mobile */
     .login-branding,
     .login-content,
@@ -1974,6 +1980,9 @@ body {
         border-radius: 0 !important;
         box-shadow: none !important;
         z-index: 1001 !important;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
 
     .window-titlebar {
@@ -2038,10 +2047,16 @@ body {
     }
 
     .window-content {
-        max-height: calc(100vh - 44px) !important;
-        height: calc(100vh - 44px);
-        overflow-y: auto;
+        flex: 1;
+        min-height: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+        overscroll-behavior-x: none;
+        position: relative;
+        touch-action: pan-y;
+        padding-bottom: 40px;
     }
 
     .window-statusbar {
@@ -2073,6 +2088,7 @@ body {
     .pricing-content,
     .notepad-content {
         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        padding-bottom: 60px;
     }
 
     .welcome-features {
