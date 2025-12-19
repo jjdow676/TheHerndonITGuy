@@ -480,11 +480,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    padding: 8px;
+    gap: 6px;
+    padding: 10px;
     border-radius: 4px;
     cursor: pointer;
-    width: 75px;
+    width: 90px;
     transition: background 0.1s;
 }
 
@@ -497,17 +497,17 @@ body {
 }
 
 .icon-image {
-    font-size: 32px;
+    font-size: 48px;
     filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
 }
 
 .icon-label {
     color: #fff;
-    font-size: 11px;
+    font-size: 12px;
     text-align: center;
     text-shadow: 1px 1px 2px #000, -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 2px #000;
     word-wrap: break-word;
-    max-width: 70px;
+    max-width: 85px;
 }
 
 /* ===== XP WINDOWS ===== */
@@ -1234,13 +1234,19 @@ body {
     font-size: 28px;
     font-weight: bold;
     color: #228B22;
-    margin-bottom: 12px;
+    margin-bottom: 4px;
 }
 
 .price span {
     font-size: 12px;
     font-weight: normal;
     color: #666;
+}
+
+.price-minimum {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 12px;
 }
 
 .price-features {
@@ -1314,25 +1320,11 @@ body {
     filter: brightness(0.95);
 }
 
-.start-logo {
-    display: flex;
-    align-items: center;
+.start-logo-img {
+    width: 22px;
+    height: auto;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
 }
-
-.mini-flag {
-    width: 20px;
-    height: 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 1px;
-    transform: perspective(100px) rotateY(-8deg) skewY(-1deg);
-}
-
-.mf-red { background: linear-gradient(135deg, #FF4500 0%, #F65314 100%); border-radius: 2px 30% 2px 2px; transform: skewX(-2deg); }
-.mf-green { background: linear-gradient(135deg, #7CBB00 0%, #5FA600 100%); border-radius: 30% 2px 2px 2px; transform: skewX(2deg); }
-.mf-blue { background: linear-gradient(135deg, #00A1F1 0%, #0082D4 100%); border-radius: 2px 2px 2px 30%; transform: skewX(-2deg); }
-.mf-yellow { background: linear-gradient(135deg, #FFBB00 0%, #F5A700 100%); border-radius: 2px 2px 30% 2px; transform: skewX(2deg); }
 
 .taskbar-buttons {
     flex: 1;
