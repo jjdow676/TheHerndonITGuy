@@ -1976,15 +1976,17 @@ body {
         right: 0 !important;
         bottom: 0 !important;
         width: 100% !important;
-        height: 100% !important;
+        height: 100vh !important;
         max-height: 100vh !important;
+        min-height: 100vh !important;
         transform: none !important;
         border-radius: 0 !important;
         box-shadow: none !important;
         z-index: 1001 !important;
         overflow: hidden;
-        display: flex;
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: column !important;
+        background: #fff !important;
     }
 
     .window-titlebar {
@@ -2051,6 +2053,8 @@ body {
     .window-content {
         flex: 1;
         min-height: 0;
+        max-height: none !important;
+        height: auto !important;
         overflow-y: scroll;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
@@ -2058,6 +2062,7 @@ body {
         overscroll-behavior-x: none;
         position: relative;
         touch-action: pan-y;
+        background: #fff !important;
     }
 
     .window-statusbar {
