@@ -2467,7 +2467,15 @@ body {
 /* We use our custom themed button instead */
 #tawk-bubble-container,
 .tawk-min-container,
-iframe[title*="chat widget"] {
+.tawk-button,
+.tawk-button-circle,
+[class*="tawk-min"],
+[class*="tawk-bubble"],
+iframe[title*="chat widget"],
+iframe[title*="Tawk"],
+div[style*="tawk"] {
     display: none !important;
     visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
