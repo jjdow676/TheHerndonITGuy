@@ -2020,10 +2020,7 @@ body {
         padding: 5px 10px;
     }
 
-    .titlebar-btn.close::before {
-        content: '×';
-    }
-
+    /* Only add × if button is empty (no text content) */
     .titlebar-btn.close:empty::before {
         content: '×';
     }

@@ -526,10 +526,7 @@ if (slideThumb && slideTrack && isMobile) {
             setTimeout(() => {
                 loadingScreen.classList.add('hidden');
                 desktop.classList.remove('hidden');
-
-                setTimeout(() => {
-                    openWindow('welcome');
-                }, 300);
+                // Don't auto-open welcome window on mobile - just show home screen
             }, 2500);
         }, 500);
     }
