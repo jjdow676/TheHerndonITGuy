@@ -624,3 +624,63 @@ if (isMobile) {
         }
     });
 }
+
+// ===== CHAT WIDGET =====
+const chatBubble = document.getElementById('chat-bubble');
+const chatWindow = document.getElementById('chat-window');
+const chatClose = document.getElementById('chat-close');
+const chatInput = document.getElementById('chat-input');
+const chatSend = document.getElementById('chat-send');
+const chatMessages = document.getElementById('chat-messages');
+
+if (chatBubble && chatWindow) {
+    // Open chat window
+    chatBubble.addEventListener('click', () => {
+        if (isMobile) playTapSound();
+        chatWindow.classList.remove('hidden');
+        chatBubble.style.display = 'none';
+        chatInput.focus();
+    });
+
+    // Close chat window
+    chatClose.addEventListener('click', () => {
+        if (isMobile) playTapSound();
+        chatWindow.classList.add('hidden');
+        chatBubble.style.display = 'flex';
+    });
+
+    // Send message function
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Add user message to chat
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-message user';
+        userMsg.innerHTML = `<span>${message}</span>`;
+        chatMessages.appendChild(userMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Clear input
+        chatInput.value = '';
+
+        // Show typing indicator then response
+        setTimeout(() => {
+            const botMsg = document.createElement('div');
+            botMsg.className = 'chat-message bot';
+            botMsg.innerHTML = `<span>Thanks for your message! For the fastest response, text me directly at <strong>(703) 424-9684</strong> or email <strong>justin@theherndonitguy.com</strong>. I'll get back to you ASAP!</span>`;
+            chatMessages.appendChild(botMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+    }
+
+    // Send on button click
+    chatSend.addEventListener('click', sendMessage);
+
+    // Send on Enter key
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+}
