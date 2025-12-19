@@ -3,386 +3,621 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The Herndon IT Guy - Your trusted local IT support in Herndon, VA. Computer repair, network setup, tech support, and more.">
-    <title>The Herndon IT Guy | Local Tech Support & IT Services</title>
+    <meta name="description" content="The Herndon IT Guy - Your trusted local & remote IT support in Herndon, VA. Virtual tech support, computer repair, network setup, and more.">
+    <title>The Herndon IT Guy | Local & Remote Tech Support</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">
-                <span class="logo-icon">&#128187;</span>
-                <span class="logo-text">The Herndon <span class="highlight">IT</span> Guy</span>
-            </a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+    <!-- Windows XP Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-top-bar">
+            <div class="login-instruction">To begin, click your user name</div>
+        </div>
+        <div class="login-content">
+            <div class="login-left">
+                <div class="windows-logo">
+                    <div class="windows-flag">
+                        <div class="flag-red"></div>
+                        <div class="flag-green"></div>
+                        <div class="flag-blue"></div>
+                        <div class="flag-yellow"></div>
+                    </div>
+                    <div class="windows-text">
+                        <span class="microsoft">Microsoft</span>
+                        <span class="windows-xp">Windows<span class="xp">XP</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="login-divider"></div>
+            <div class="login-right">
+                <div class="user-account" id="user-login">
+                    <div class="user-avatar">
+                        <div class="avatar-icon">🖥️</div>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name">The Herndon IT Guy</div>
+                        <div class="user-hint">Click to enter</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="login-bottom">
+            <div class="login-options">
+                <span class="turn-off">Turn off computer</span>
+            </div>
+            <div class="login-tagline">After you log on, you can add or change accounts.<br>Just go to Control Panel and click User Accounts.</div>
+        </div>
+    </div>
+
+    <!-- Windows XP Desktop -->
+    <div id="desktop" class="desktop hidden">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-window="services">
+                <div class="icon-image">🛠️</div>
+                <span class="icon-label">My Services</span>
+            </div>
+            <div class="desktop-icon" data-window="about">
+                <div class="icon-image">📁</div>
+                <span class="icon-label">About Me</span>
+            </div>
+            <div class="desktop-icon" data-window="contact">
+                <div class="icon-image">📧</div>
+                <span class="icon-label">Contact</span>
+            </div>
+            <div class="desktop-icon" data-window="remote">
+                <div class="icon-image">🌐</div>
+                <span class="icon-label">Remote Support</span>
+            </div>
+            <div class="desktop-icon" data-window="pricing">
+                <div class="icon-image">💰</div>
+                <span class="icon-label">Pricing</span>
+            </div>
+            <div class="desktop-icon" data-window="welcome">
+                <div class="icon-image">ℹ️</div>
+                <span class="icon-label">Welcome</span>
+            </div>
+        </div>
+
+        <!-- Welcome Window (Auto-opens) -->
+        <div class="xp-window" id="window-welcome" style="width: 600px; top: 80px; left: 50%; transform: translateX(-50%);">
+            <div class="window-titlebar">
+                <div class="titlebar-icon">ℹ️</div>
+                <div class="titlebar-title">Welcome to The Herndon IT Guy</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Help</span>
+            </div>
+            <div class="window-content welcome-content">
+                <div class="welcome-header">
+                    <div class="welcome-icon">🖥️</div>
+                    <div class="welcome-title">
+                        <h1>Welcome!</h1>
+                        <p>Your Local & <span class="highlight">Remote</span> IT Expert</p>
+                    </div>
+                </div>
+                <div class="welcome-body">
+                    <div class="welcome-message">
+                        <div class="xp-infobox">
+                            <div class="infobox-icon">🌐</div>
+                            <div class="infobox-text">
+                                <strong>Virtual Support Available!</strong><br>
+                                Most tech issues can be solved remotely. Get help from the comfort of your home - no waiting, no travel needed!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="welcome-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Same-Day Remote Support</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>On-Site Visits When Needed</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Serving Herndon & All of NoVA</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>No Fix, No Fee Guarantee</span>
+                        </div>
+                    </div>
+                    <div class="welcome-actions">
+                        <button class="xp-button primary" onclick="openWindow('services')">View Services</button>
+                        <button class="xp-button" onclick="openWindow('contact')">Get Help Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span>Ready</span>
+                <span>Herndon, VA</span>
+            </div>
+        </div>
+
+        <!-- Services Window -->
+        <div class="xp-window hidden" id="window-services" style="width: 700px; top: 60px; left: 100px;">
+            <div class="window-titlebar">
+                <div class="titlebar-icon">🛠️</div>
+                <div class="titlebar-title">My Services - Windows Explorer</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-toolbar">
+                <button class="toolbar-btn"><span class="toolbar-icon">←</span> Back</button>
+                <button class="toolbar-btn"><span class="toolbar-icon">→</span> Forward</button>
+                <button class="toolbar-btn"><span class="toolbar-icon">📁</span> Folders</button>
+            </div>
+            <div class="window-addressbar">
+                <span class="address-label">Address</span>
+                <div class="address-input">
+                    <span class="address-icon">📁</span>
+                    C:\The Herndon IT Guy\Services
+                </div>
+            </div>
+            <div class="window-content explorer-content">
+                <div class="explorer-sidebar">
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">
+                            <span class="collapse-icon">▼</span>
+                            Service Tasks
+                        </div>
+                        <div class="sidebar-links">
+                            <a href="#" onclick="openWindow('remote'); return false;">🌐 Schedule Remote Session</a>
+                            <a href="#" onclick="openWindow('contact'); return false;">📞 Request On-Site Visit</a>
+                            <a href="#" onclick="openWindow('pricing'); return false;">💰 View Pricing</a>
+                        </div>
+                    </div>
+                    <div class="sidebar-section">
+                        <div class="sidebar-header">
+                            <span class="collapse-icon">▼</span>
+                            Other Places
+                        </div>
+                        <div class="sidebar-links">
+                            <a href="#" onclick="openWindow('about'); return false;">📁 About Me</a>
+                            <a href="#" onclick="openWindow('contact'); return false;">📧 Contact</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="explorer-main">
+                    <div class="services-grid">
+                        <div class="service-folder">
+                            <div class="folder-icon">💻</div>
+                            <div class="folder-name">Computer Repair</div>
+                            <div class="folder-desc">Virus removal, slow PC fixes, hardware repairs, OS reinstalls</div>
+                            <div class="service-badge remote">🌐 Remote Available</div>
+                        </div>
+                        <div class="service-folder">
+                            <div class="folder-icon">📡</div>
+                            <div class="folder-name">Network Setup</div>
+                            <div class="folder-desc">WiFi installation, router config, network security, coverage extension</div>
+                            <div class="service-badge onsite">🏠 On-Site</div>
+                        </div>
+                        <div class="service-folder">
+                            <div class="folder-icon">🔒</div>
+                            <div class="folder-name">Cybersecurity</div>
+                            <div class="folder-desc">Antivirus setup, password management, security audits, protection</div>
+                            <div class="service-badge remote">🌐 Remote Available</div>
+                        </div>
+                        <div class="service-folder">
+                            <div class="folder-icon">🏠</div>
+                            <div class="folder-name">Smart Home</div>
+                            <div class="folder-desc">Device installation, automation, voice assistants, integration</div>
+                            <div class="service-badge onsite">🏠 On-Site</div>
+                        </div>
+                        <div class="service-folder">
+                            <div class="folder-icon">💾</div>
+                            <div class="folder-name">Data Backup</div>
+                            <div class="folder-desc">Cloud backup, local backup, data migration, recovery planning</div>
+                            <div class="service-badge remote">🌐 Remote Available</div>
+                        </div>
+                        <div class="service-folder">
+                            <div class="folder-icon">🎓</div>
+                            <div class="folder-name">Tech Training</div>
+                            <div class="folder-desc">One-on-one lessons, software tutorials, device help</div>
+                            <div class="service-badge remote">🌐 Remote Available</div>
+                        </div>
+                        <div class="service-folder">
+                            <div class="folder-icon">🖨️</div>
+                            <div class="folder-name">Printer Setup</div>
+                            <div class="folder-desc">Printer installation, wireless config, troubleshooting</div>
+                            <div class="service-badge remote">🌐 Remote Available</div>
+                        </div>
+                        <div class="service-folder">
+                            <div class="folder-icon">📱</div>
+                            <div class="folder-name">Device Setup</div>
+                            <div class="folder-desc">New computer setup, phone help, tablet configuration</div>
+                            <div class="service-badge remote">🌐 Remote Available</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span>8 objects</span>
+                <span>Most services available remotely!</span>
+            </div>
+        </div>
+
+        <!-- About Window -->
+        <div class="xp-window hidden" id="window-about" style="width: 550px; top: 100px; left: 200px;">
+            <div class="window-titlebar">
+                <div class="titlebar-icon">📁</div>
+                <div class="titlebar-title">About Me - Notepad</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span>File</span>
+                <span>Edit</span>
+                <span>Format</span>
+                <span>View</span>
+                <span>Help</span>
+            </div>
+            <div class="window-content notepad-content">
+                <div class="notepad-text">
+═══════════════════════════════════════════
+     THE HERNDON IT GUY - ABOUT ME
+═══════════════════════════════════════════
+
+👋 Hey there! I'm your local Herndon IT Guy.
+
+I've been helping families and small businesses
+with their technology needs for years, and I
+genuinely love what I do.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🏠 LOCAL SERVICE
+   Based right here in Herndon, VA
+   Serving all of Northern Virginia
+
+🌐 REMOTE SUPPORT
+   Most issues solved virtually!
+   Connect from anywhere - quick & easy
+
+💬 PLAIN ENGLISH
+   No confusing tech jargon
+   I explain things clearly
+
+💰 FAIR PRICING
+   Honest quotes, no hidden fees
+   No fix = no fee!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Whether you're a busy parent needing a home
+computer fix, a small business owner setting
+up a secure network, or just want to video
+chat with the grandkids - I'm here to help!
+
+🕐 Hours: Mon-Sat, 9AM - 7PM
+📍 Location: Herndon, VA
+⭐ Rating: 5-Star Service
+
+═══════════════════════════════════════════
+   "Making technology simple since day one"
+═══════════════════════════════════════════
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Window -->
+        <div class="xp-window hidden" id="window-contact" style="width: 500px; top: 80px; left: 250px;">
+            <div class="window-titlebar">
+                <div class="titlebar-icon">📧</div>
+                <div class="titlebar-title">Contact - Get Help</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Help</span>
+            </div>
+            <div class="window-content form-content">
+                <div class="contact-header">
+                    <h2>📞 Get Tech Help</h2>
+                    <p>Fill out the form or use the contact info below</p>
+                </div>
+                <div class="xp-form">
+                    <div class="form-group">
+                        <label>Your Name:</label>
+                        <input type="text" class="xp-input" placeholder="John Smith">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" class="xp-input" placeholder="john@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone:</label>
+                            <input type="tel" class="xp-input" placeholder="(555) 123-4567">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Needed:</label>
+                        <select class="xp-select">
+                            <option>-- Select Service --</option>
+                            <option>🌐 Remote Support Session</option>
+                            <option>💻 Computer Repair</option>
+                            <option>📡 Network Setup</option>
+                            <option>🔒 Cybersecurity</option>
+                            <option>🏠 Smart Home Setup</option>
+                            <option>💾 Data Backup</option>
+                            <option>🎓 Tech Training</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Describe Your Issue:</label>
+                        <textarea class="xp-textarea" rows="4" placeholder="Tell me about your tech problem..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button class="xp-button primary">Send Message</button>
+                        <button class="xp-button">Clear Form</button>
+                    </div>
+                </div>
+                <div class="contact-info-box">
+                    <div class="info-row">
+                        <span class="info-icon">📞</span>
+                        <span><strong>Call/Text:</strong> (555) 123-4567</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon">📧</span>
+                        <span><strong>Email:</strong> help@theherndonitguy.com</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-icon">📍</span>
+                        <span><strong>Area:</strong> Herndon, Reston, Sterling & NoVA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Remote Support Window -->
+        <div class="xp-window hidden" id="window-remote" style="width: 580px; top: 70px; left: 180px;">
+            <div class="window-titlebar">
+                <div class="titlebar-icon">🌐</div>
+                <div class="titlebar-title">Remote Support - Virtual IT Help</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-content remote-content">
+                <div class="remote-header">
+                    <div class="remote-icon">🌐</div>
+                    <div class="remote-title">
+                        <h2>Virtual Tech Support</h2>
+                        <p>Get help without leaving your home!</p>
+                    </div>
+                </div>
+                <div class="remote-hero">
+                    <div class="hero-badge">⚡ FASTEST WAY TO GET HELP</div>
+                    <p>Most tech problems can be solved remotely through a secure screen-sharing session. It's quick, convenient, and just as effective as in-person support!</p>
+                </div>
+                <div class="remote-steps">
+                    <h3>📋 How Remote Support Works:</h3>
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Schedule a Session</strong>
+                            <p>Book online or call - often same-day availability</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Connect Securely</strong>
+                            <p>I'll send you a simple link to join the session</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Problem Solved!</strong>
+                            <p>Watch as I fix the issue and explain what I'm doing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="remote-benefits">
+                    <h3>✨ Benefits of Remote Support:</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit">
+                            <span class="benefit-icon">⏱️</span>
+                            <span>No Waiting - Get help now</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">🏠</span>
+                            <span>Stay Home - No travel needed</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">💰</span>
+                            <span>Save Money - Lower rates</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">🔒</span>
+                            <span>Secure - Encrypted connection</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">👀</span>
+                            <span>Transparent - Watch everything</span>
+                        </div>
+                        <div class="benefit">
+                            <span class="benefit-icon">🌍</span>
+                            <span>Anywhere - Location doesn't matter</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="remote-cta">
+                    <button class="xp-button primary large" onclick="openWindow('contact')">📅 Schedule Remote Session</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Window -->
+        <div class="xp-window hidden" id="window-pricing" style="width: 600px; top: 90px; left: 150px;">
+            <div class="window-titlebar">
+                <div class="titlebar-icon">💰</div>
+                <div class="titlebar-title">Pricing - Service Rates</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-content pricing-content">
+                <div class="pricing-header">
+                    <h2>💰 Simple, Honest Pricing</h2>
+                    <p>No hidden fees. No surprises. No fix, no fee!</p>
+                </div>
+                <div class="pricing-cards">
+                    <div class="pricing-card remote-card">
+                        <div class="card-badge">MOST POPULAR</div>
+                        <div class="card-icon">🌐</div>
+                        <h3>Remote Support</h3>
+                        <div class="price">$60<span>/hour</span></div>
+                        <ul class="price-features">
+                            <li>✓ Same-day availability</li>
+                            <li>✓ Secure screen sharing</li>
+                            <li>✓ Most issues resolved</li>
+                            <li>✓ No travel fees</li>
+                        </ul>
+                        <button class="xp-button primary" onclick="openWindow('contact')">Book Now</button>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="card-icon">🏠</div>
+                        <h3>On-Site Visit</h3>
+                        <div class="price">$85<span>/hour</span></div>
+                        <ul class="price-features">
+                            <li>✓ I come to you</li>
+                            <li>✓ Hardware repairs</li>
+                            <li>✓ Network installation</li>
+                            <li>✓ Herndon & NoVA area</li>
+                        </ul>
+                        <button class="xp-button" onclick="openWindow('contact')">Schedule</button>
+                    </div>
+                </div>
+                <div class="pricing-note">
+                    <div class="note-icon">ℹ️</div>
+                    <div class="note-text">
+                        <strong>Free Phone Consultation!</strong> Not sure what you need? Call me first - I'm happy to troubleshoot over the phone at no charge.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Taskbar -->
+        <div class="taskbar">
+            <button class="start-button" id="start-btn">
+                <div class="start-logo">
+                    <div class="mini-flag">
+                        <div class="mf-red"></div>
+                        <div class="mf-green"></div>
+                        <div class="mf-blue"></div>
+                        <div class="mf-yellow"></div>
+                    </div>
+                </div>
+                <span>start</span>
             </button>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#why-us">Why Us</a></li>
-                <li><a href="#contact" class="btn btn-nav">Get Help Now</a></li>
-            </ul>
+            <div class="taskbar-buttons" id="taskbar-buttons">
+                <!-- Dynamic taskbar buttons will be added here -->
+            </div>
+            <div class="system-tray">
+                <div class="tray-icons">
+                    <span class="tray-icon">🔊</span>
+                    <span class="tray-icon">🛡️</span>
+                    <span class="tray-icon">📶</span>
+                </div>
+                <div class="tray-clock" id="tray-clock">12:00 PM</div>
+            </div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg"></div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">Serving Herndon, VA & Surrounding Areas</div>
-                <h1>Your Local <span class="highlight">Tech Expert</span> Just a Call Away</h1>
-                <p class="hero-subtitle">Fast, friendly, and affordable IT support for homes and small businesses. From computer repairs to network setup, we've got you covered.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary btn-lg">
-                        <span class="btn-icon">&#128222;</span>
-                        Schedule a Visit
-                    </a>
-                    <a href="#services" class="btn btn-secondary btn-lg">
-                        <span class="btn-icon">&#128269;</span>
-                        View Services
-                    </a>
+        <!-- Start Menu -->
+        <div class="start-menu hidden" id="start-menu">
+            <div class="start-menu-header">
+                <div class="user-pic">🖥️</div>
+                <div class="user-name-start">The Herndon IT Guy</div>
+            </div>
+            <div class="start-menu-content">
+                <div class="start-menu-left">
+                    <div class="start-item" onclick="openWindow('welcome')">
+                        <span class="start-icon">ℹ️</span>
+                        <span class="start-label">Welcome</span>
+                    </div>
+                    <div class="start-item" onclick="openWindow('services')">
+                        <span class="start-icon">🛠️</span>
+                        <span class="start-label">My Services</span>
+                    </div>
+                    <div class="start-item" onclick="openWindow('remote')">
+                        <span class="start-icon">🌐</span>
+                        <span class="start-label">Remote Support</span>
+                    </div>
+                    <div class="start-item" onclick="openWindow('pricing')">
+                        <span class="start-icon">💰</span>
+                        <span class="start-label">Pricing</span>
+                    </div>
+                    <div class="start-divider"></div>
+                    <div class="start-item" onclick="openWindow('about')">
+                        <span class="start-icon">📁</span>
+                        <span class="start-label">About Me</span>
+                    </div>
+                    <div class="start-item" onclick="openWindow('contact')">
+                        <span class="start-icon">📧</span>
+                        <span class="start-label">Contact</span>
+                    </div>
                 </div>
-                <div class="hero-trust">
-                    <div class="trust-item">
-                        <span class="trust-icon">&#9989;</span>
-                        <span>Same-Day Service</span>
+                <div class="start-menu-right">
+                    <div class="start-item-right" onclick="openWindow('about')">
+                        <span>My Documents</span>
                     </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">&#9989;</span>
-                        <span>No Fix, No Fee</span>
+                    <div class="start-item-right" onclick="openWindow('services')">
+                        <span>My Computer</span>
                     </div>
-                    <div class="trust-item">
-                        <span class="trust-icon">&#9989;</span>
-                        <span>Local & Trusted</span>
+                    <div class="start-item-right">
+                        <span>Control Panel</span>
+                    </div>
+                    <div class="start-divider-right"></div>
+                    <div class="start-item-right" onclick="openWindow('contact')">
+                        <span>Help and Support</span>
                     </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <div class="hero-card">
-                    <div class="card-icon">&#128295;</div>
-                    <h3>Need Tech Help?</h3>
-                    <p>We come to you! On-site support for all your technology needs.</p>
-                    <div class="card-stats">
-                        <div class="stat">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Happy Clients</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">24hr</span>
-                            <span class="stat-label">Response Time</span>
-                        </div>
-                    </div>
+            <div class="start-menu-footer">
+                <div class="footer-btn" onclick="location.reload()">
+                    <span class="footer-icon">🔴</span>
+                    <span>Log Off</span>
+                </div>
+                <div class="footer-btn">
+                    <span class="footer-icon">⏻</span>
+                    <span>Shut Down</span>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">What We Do</span>
-                <h2>Comprehensive <span class="highlight">IT Services</span></h2>
-                <p>From simple fixes to complex solutions, we handle all your technology needs with expertise and care.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">&#128187;</div>
-                    <h3>Computer Repair</h3>
-                    <p>Slow computer? Blue screen? Virus removal? We diagnose and fix all PC and Mac issues quickly.</p>
-                    <ul class="service-list">
-                        <li>Hardware diagnostics & repair</li>
-                        <li>Virus & malware removal</li>
-                        <li>OS reinstallation</li>
-                        <li>Data recovery</li>
-                    </ul>
-                </div>
-                <div class="service-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <div class="service-icon">&#127760;</div>
-                    <h3>Network Setup</h3>
-                    <p>Get reliable WiFi coverage throughout your home or office with professional network installation.</p>
-                    <ul class="service-list">
-                        <li>WiFi setup & optimization</li>
-                        <li>Router configuration</li>
-                        <li>Network security</li>
-                        <li>Coverage extension</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">&#128274;</div>
-                    <h3>Cybersecurity</h3>
-                    <p>Protect your data and privacy with comprehensive security solutions for peace of mind.</p>
-                    <ul class="service-list">
-                        <li>Antivirus setup</li>
-                        <li>Firewall configuration</li>
-                        <li>Password management</li>
-                        <li>Security audits</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">&#128241;</div>
-                    <h3>Smart Home Setup</h3>
-                    <p>Turn your house into a smart home with expert device installation and configuration.</p>
-                    <ul class="service-list">
-                        <li>Smart device installation</li>
-                        <li>Home automation</li>
-                        <li>Voice assistant setup</li>
-                        <li>Device integration</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">&#128230;</div>
-                    <h3>Data Backup</h3>
-                    <p>Never lose important files again. We set up automatic backups to keep your data safe.</p>
-                    <ul class="service-list">
-                        <li>Cloud backup setup</li>
-                        <li>Local backup solutions</li>
-                        <li>Data migration</li>
-                        <li>Recovery planning</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">&#127979;</div>
-                    <h3>Tech Training</h3>
-                    <p>Learn to use your technology confidently with patient, personalized training sessions.</p>
-                    <ul class="service-list">
-                        <li>One-on-one lessons</li>
-                        <li>Software tutorials</li>
-                        <li>Smartphone help</li>
-                        <li>Email & internet basics</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <span class="section-badge">About Us</span>
-                    <h2>Your Neighbor, Your <span class="highlight">Tech Expert</span></h2>
-                    <p class="lead">Hi, I'm your local Herndon IT Guy! I've been helping families and small businesses with their technology needs for years, and I love what I do.</p>
-                    <p>Living right here in Herndon, I understand the unique needs of our community. Whether you're a busy parent who needs their home computer running smoothly, a small business owner looking to set up a secure network, or a senior who wants to video chat with grandkids, I'm here to help.</p>
-                    <p>I believe in honest, transparent service. You'll always know what I'm doing and why, with no confusing tech jargon or surprise charges.</p>
-                    <div class="about-features">
-                        <div class="about-feature">
-                            <span class="feature-icon">&#127968;</span>
-                            <div>
-                                <strong>Local Service</strong>
-                                <span>Based right here in Herndon</span>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <span class="feature-icon">&#128176;</span>
-                            <div>
-                                <strong>Fair Pricing</strong>
-                                <span>Honest quotes, no hidden fees</span>
-                            </div>
-                        </div>
-                        <div class="about-feature">
-                            <span class="feature-icon">&#128172;</span>
-                            <div>
-                                <strong>Plain English</strong>
-                                <span>No confusing tech talk</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="about-card">
-                        <div class="about-card-header">
-                            <span class="card-emoji">&#128075;</span>
-                            <h4>Let's Talk Tech!</h4>
-                        </div>
-                        <div class="about-card-body">
-                            <div class="info-item">
-                                <span class="info-icon">&#128205;</span>
-                                <span>Herndon, VA</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-icon">&#128337;</span>
-                                <span>Mon-Sat: 9AM - 7PM</span>
-                            </div>
-                            <div class="info-item">
-                                <span class="info-icon">&#127775;</span>
-                                <span>5-Star Rated Service</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section id="why-us" class="why-us">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Why Choose Us</span>
-                <h2>The <span class="highlight">Herndon IT Guy</span> Difference</h2>
-                <p>What sets us apart from big box stores and anonymous tech support hotlines.</p>
-            </div>
-            <div class="why-grid">
-                <div class="why-card">
-                    <div class="why-number">01</div>
-                    <h3>We Come to You</h3>
-                    <p>No need to unplug everything and haul it somewhere. We provide on-site service at your home or business.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-number">02</div>
-                    <h3>Same-Day Service</h3>
-                    <p>Tech emergencies don't wait, and neither do we. Most issues can be addressed the same day you call.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-number">03</div>
-                    <h3>No Fix, No Fee</h3>
-                    <p>If we can't solve your problem, you don't pay. It's that simple. Your satisfaction is guaranteed.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-number">04</div>
-                    <h3>Free Phone Consult</h3>
-                    <p>Not sure if you need a service call? Give us a ring. We're happy to troubleshoot over the phone first.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Get Your Tech <span class="highlight">Working Again?</span></h2>
-                <p>Don't let technology frustrations slow you down. Get friendly, local help today.</p>
-                <a href="#contact" class="btn btn-white btn-lg">Contact Us Now</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Get In Touch</span>
-                <h2>Let's <span class="highlight">Solve</span> Your Tech Problems</h2>
-                <p>Reach out today and let's get your technology working for you, not against you.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">&#128222;</div>
-                        <h3>Call or Text</h3>
-                        <p>Quick questions? Need to schedule? Give us a call or text anytime.</p>
-                        <a href="tel:+15551234567" class="contact-link">(555) 123-4567</a>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">&#128231;</div>
-                        <h3>Email Us</h3>
-                        <p>Prefer email? Send us a message and we'll respond within 24 hours.</p>
-                        <a href="mailto:help@theherndonitguy.com" class="contact-link">help@theherndonitguy.com</a>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">&#128205;</div>
-                        <h3>Service Area</h3>
-                        <p>Proudly serving Herndon and surrounding Northern Virginia areas.</p>
-                        <span class="contact-link">Herndon, Reston, Sterling & more</span>
-                    </div>
-                </div>
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" action="#" method="POST">
-                        <h3>Send Us a Message</h3>
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="John Smith" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="john@email.com" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="service">What do you need help with?</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select a service...</option>
-                                <option value="computer-repair">Computer Repair</option>
-                                <option value="network-setup">Network Setup</option>
-                                <option value="cybersecurity">Cybersecurity</option>
-                                <option value="smart-home">Smart Home Setup</option>
-                                <option value="data-backup">Data Backup</option>
-                                <option value="tech-training">Tech Training</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Tell us more about your issue</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Describe your tech problem or question..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <span class="logo-icon">&#128187;</span>
-                        <span class="logo-text">The Herndon <span class="highlight">IT</span> Guy</span>
-                    </a>
-                    <p>Your trusted local tech support in Herndon, VA. Making technology simple since day one.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#services">Computer Repair</a></li>
-                        <li><a href="#services">Network Setup</a></li>
-                        <li><a href="#services">Cybersecurity</a></li>
-                        <li><a href="#services">Smart Home</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li>Herndon, VA</li>
-                        <li><a href="tel:+15551234567">(555) 123-4567</a></li>
-                        <li><a href="mailto:help@theherndonitguy.com">help@theherndonitguy.com</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 The Herndon IT Guy. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>

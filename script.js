@@ -1,136 +1,363 @@
-// Mobile Menu Toggle
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const navLinks = document.querySelector('.nav-links');
+// ===== WINDOWS XP INTERACTIVE SCRIPT =====
 
-mobileMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    mobileMenuBtn.classList.toggle('active');
+// DOM Elements
+const loginScreen = document.getElementById('login-screen');
+const desktop = document.getElementById('desktop');
+const userLogin = document.getElementById('user-login');
+const startBtn = document.getElementById('start-btn');
+const startMenu = document.getElementById('start-menu');
+const taskbarButtons = document.getElementById('taskbar-buttons');
+const trayClock = document.getElementById('tray-clock');
+
+// Window management
+let activeWindow = null;
+let zIndexCounter = 100;
+let openWindows = new Set();
+
+// ===== LOGIN SCREEN =====
+userLogin.addEventListener('click', () => {
+    // Play startup sound effect (optional - browser may block)
+    // const audio = new Audio('startup.mp3');
+    // audio.play().catch(() => {});
+
+    // Fade out login screen
+    loginScreen.classList.add('fade-out');
+
+    setTimeout(() => {
+        loginScreen.classList.add('hidden');
+        desktop.classList.remove('hidden');
+
+        // Auto-open welcome window after login
+        setTimeout(() => {
+            openWindow('welcome');
+        }, 300);
+    }, 500);
 });
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
-    });
-});
+// ===== WINDOW MANAGEMENT =====
+function openWindow(windowId) {
+    const windowEl = document.getElementById(`window-${windowId}`);
+    if (!windowEl) return;
 
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    // Close start menu if open
+    startMenu.classList.add('hidden');
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
+    // Show window
+    windowEl.classList.remove('hidden');
 
-// Navbar scroll effect
-const navbar = document.querySelector('.navbar');
-let lastScroll = 0;
+    // Set as active
+    setActiveWindow(windowEl);
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 50) {
-        navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
-    } else {
-        navbar.style.boxShadow = 'none';
+    // Add to taskbar if not already there
+    if (!openWindows.has(windowId)) {
+        openWindows.add(windowId);
+        addTaskbarButton(windowId, windowEl);
     }
 
-    lastScroll = currentScroll;
-});
+    // Update taskbar button state
+    updateTaskbarButtons(windowId);
+}
 
-// Form submission handling
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+function closeWindow(windowId) {
+    const windowEl = document.getElementById(`window-${windowId}`);
+    if (!windowEl) return;
 
-        // Get form data
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData);
+    windowEl.classList.add('hidden');
+    openWindows.delete(windowId);
 
-        // Show success message (in production, you'd send this to a server)
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
+    // Remove from taskbar
+    const taskbarBtn = document.querySelector(`[data-window-id="${windowId}"]`);
+    if (taskbarBtn) {
+        taskbarBtn.remove();
+    }
 
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
+    // Set another window as active if available
+    if (openWindows.size > 0) {
+        const lastWindow = Array.from(openWindows).pop();
+        openWindow(lastWindow);
+    } else {
+        activeWindow = null;
+    }
+}
 
-        // Simulate form submission
-        setTimeout(() => {
-            submitBtn.textContent = 'Message Sent!';
-            submitBtn.style.background = '#10b981';
+function minimizeWindow(windowId) {
+    const windowEl = document.getElementById(`window-${windowId}`);
+    if (!windowEl) return;
 
-            // Reset form
-            this.reset();
+    windowEl.classList.add('hidden');
 
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 3000);
-        }, 1000);
+    // Update taskbar
+    const taskbarBtn = document.querySelector(`[data-window-id="${windowId}"]`);
+    if (taskbarBtn) {
+        taskbarBtn.classList.remove('active');
+    }
+}
+
+function setActiveWindow(windowEl) {
+    // Remove active from all windows
+    document.querySelectorAll('.xp-window').forEach(w => {
+        w.classList.remove('active');
+    });
+
+    // Set this window as active
+    windowEl.classList.add('active');
+    windowEl.style.zIndex = ++zIndexCounter;
+    activeWindow = windowEl;
+}
+
+function addTaskbarButton(windowId, windowEl) {
+    const title = windowEl.querySelector('.titlebar-title').textContent;
+    const icon = windowEl.querySelector('.titlebar-icon').textContent;
+
+    const btn = document.createElement('button');
+    btn.className = 'taskbar-btn active';
+    btn.dataset.windowId = windowId;
+    btn.innerHTML = `<span class="taskbar-btn-icon">${icon}</span>${title}`;
+
+    btn.addEventListener('click', () => {
+        const window = document.getElementById(`window-${windowId}`);
+        if (window.classList.contains('hidden')) {
+            openWindow(windowId);
+        } else if (window.classList.contains('active')) {
+            minimizeWindow(windowId);
+        } else {
+            openWindow(windowId);
+        }
+    });
+
+    taskbarButtons.appendChild(btn);
+}
+
+function updateTaskbarButtons(activeWindowId) {
+    document.querySelectorAll('.taskbar-btn').forEach(btn => {
+        if (btn.dataset.windowId === activeWindowId) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
     });
 }
 
-// Intersection Observer for scroll animations
-const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
+// ===== WINDOW CONTROLS (Close, Minimize, Maximize) =====
+document.querySelectorAll('.titlebar-btn.close').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const windowEl = btn.closest('.xp-window');
+        const windowId = windowEl.id.replace('window-', '');
+        closeWindow(windowId);
     });
-}, observerOptions);
-
-// Observe elements for animation
-document.querySelectorAll('.service-card, .why-card, .contact-card, .about-feature').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
 });
 
-// Add active class to nav links based on scroll position
-const sections = document.querySelectorAll('section[id]');
+document.querySelectorAll('.titlebar-btn.minimize').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const windowEl = btn.closest('.xp-window');
+        const windowId = windowEl.id.replace('window-', '');
+        minimizeWindow(windowId);
+    });
+});
 
-window.addEventListener('scroll', () => {
-    const scrollY = window.pageYOffset;
+document.querySelectorAll('.titlebar-btn.maximize').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const windowEl = btn.closest('.xp-window');
 
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+        if (windowEl.dataset.maximized === 'true') {
+            // Restore
+            windowEl.style.top = windowEl.dataset.prevTop;
+            windowEl.style.left = windowEl.dataset.prevLeft;
+            windowEl.style.width = windowEl.dataset.prevWidth;
+            windowEl.style.height = '';
+            windowEl.style.transform = windowEl.dataset.prevTransform || '';
+            windowEl.dataset.maximized = 'false';
+        } else {
+            // Maximize
+            windowEl.dataset.prevTop = windowEl.style.top;
+            windowEl.dataset.prevLeft = windowEl.style.left;
+            windowEl.dataset.prevWidth = windowEl.style.width;
+            windowEl.dataset.prevTransform = windowEl.style.transform;
 
-        if (navLink) {
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLink.style.color = '#2563eb';
+            windowEl.style.top = '0';
+            windowEl.style.left = '0';
+            windowEl.style.width = '100%';
+            windowEl.style.height = 'calc(100vh - 30px)';
+            windowEl.style.transform = 'none';
+            windowEl.dataset.maximized = 'true';
+        }
+    });
+});
+
+// ===== WINDOW DRAGGING =====
+let isDragging = false;
+let dragOffset = { x: 0, y: 0 };
+let draggedWindow = null;
+
+document.querySelectorAll('.window-titlebar').forEach(titlebar => {
+    titlebar.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.titlebar-buttons')) return;
+
+        const windowEl = titlebar.closest('.xp-window');
+
+        // Don't drag if maximized
+        if (windowEl.dataset.maximized === 'true') return;
+
+        isDragging = true;
+        draggedWindow = windowEl;
+
+        const rect = windowEl.getBoundingClientRect();
+        dragOffset.x = e.clientX - rect.left;
+        dragOffset.y = e.clientY - rect.top;
+
+        // Remove transform for proper positioning
+        windowEl.style.transform = 'none';
+
+        setActiveWindow(windowEl);
+
+        e.preventDefault();
+    });
+});
+
+document.addEventListener('mousemove', (e) => {
+    if (!isDragging || !draggedWindow) return;
+
+    let newX = e.clientX - dragOffset.x;
+    let newY = e.clientY - dragOffset.y;
+
+    // Constrain to viewport
+    newX = Math.max(0, Math.min(newX, window.innerWidth - 100));
+    newY = Math.max(0, Math.min(newY, window.innerHeight - 60));
+
+    draggedWindow.style.left = newX + 'px';
+    draggedWindow.style.top = newY + 'px';
+});
+
+document.addEventListener('mouseup', () => {
+    isDragging = false;
+    draggedWindow = null;
+});
+
+// ===== CLICK TO ACTIVATE WINDOW =====
+document.querySelectorAll('.xp-window').forEach(windowEl => {
+    windowEl.addEventListener('mousedown', () => {
+        setActiveWindow(windowEl);
+        const windowId = windowEl.id.replace('window-', '');
+        updateTaskbarButtons(windowId);
+    });
+});
+
+// ===== DESKTOP ICONS =====
+document.querySelectorAll('.desktop-icon').forEach(icon => {
+    // Single click to select
+    icon.addEventListener('click', () => {
+        document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
+        icon.classList.add('selected');
+    });
+
+    // Double click to open
+    icon.addEventListener('dblclick', () => {
+        const windowId = icon.dataset.window;
+        openWindow(windowId);
+    });
+});
+
+// Click on desktop to deselect icons
+desktop.addEventListener('click', (e) => {
+    if (e.target === desktop || e.target.closest('.desktop-icons')) {
+        if (!e.target.closest('.desktop-icon')) {
+            document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
+        }
+    }
+});
+
+// ===== START MENU =====
+startBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    startMenu.classList.toggle('hidden');
+});
+
+// Close start menu when clicking elsewhere
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.start-menu') && !e.target.closest('.start-button')) {
+        startMenu.classList.add('hidden');
+    }
+});
+
+// Start menu items
+document.querySelectorAll('.start-item, .start-item-right').forEach(item => {
+    item.addEventListener('click', () => {
+        startMenu.classList.add('hidden');
+    });
+});
+
+// ===== SYSTEM TRAY CLOCK =====
+function updateClock() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    trayClock.textContent = `${hours}:${minutes} ${ampm}`;
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+// ===== FORM HANDLING =====
+const contactForm = document.querySelector('.xp-form');
+if (contactForm) {
+    const sendBtn = contactForm.querySelector('.xp-button.primary');
+    const clearBtn = contactForm.querySelector('.xp-button:not(.primary)');
+
+    sendBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Simple validation
+        const inputs = contactForm.querySelectorAll('input, textarea, select');
+        let valid = true;
+
+        inputs.forEach(input => {
+            if (input.required && !input.value) {
+                valid = false;
+                input.style.borderColor = '#ff0000';
             } else {
-                navLink.style.color = '';
+                input.style.borderColor = '';
             }
+        });
+
+        if (valid) {
+            // Show success
+            sendBtn.textContent = 'Sending...';
+            sendBtn.disabled = true;
+
+            setTimeout(() => {
+                sendBtn.textContent = 'Message Sent!';
+                sendBtn.style.background = 'linear-gradient(180deg, #90EE90 0%, #228B22 100%)';
+
+                // Reset form
+                inputs.forEach(input => input.value = '');
+
+                setTimeout(() => {
+                    sendBtn.textContent = 'Send Message';
+                    sendBtn.style.background = '';
+                    sendBtn.disabled = false;
+                }, 2000);
+            }, 1000);
         }
     });
-});
 
-// Phone number formatting
+    if (clearBtn) {
+        clearBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactForm.querySelectorAll('input, textarea, select').forEach(input => {
+                input.value = '';
+                input.style.borderColor = '';
+            });
+        });
+    }
+}
+
+// ===== PHONE NUMBER FORMATTING =====
 const phoneInput = document.querySelector('input[type="tel"]');
 if (phoneInput) {
     phoneInput.addEventListener('input', function(e) {
@@ -141,5 +368,38 @@ if (phoneInput) {
             value = `(${value.slice(0,3)}) ${value.slice(3)}`;
         }
         e.target.value = value;
+    });
+}
+
+// ===== KEYBOARD SHORTCUTS =====
+document.addEventListener('keydown', (e) => {
+    // Escape to close active window
+    if (e.key === 'Escape') {
+        if (!startMenu.classList.contains('hidden')) {
+            startMenu.classList.add('hidden');
+        } else if (activeWindow) {
+            const windowId = activeWindow.id.replace('window-', '');
+            closeWindow(windowId);
+        }
+    }
+
+    // Windows key or Ctrl+Escape to toggle start menu
+    if (e.key === 'Meta' || (e.ctrlKey && e.key === 'Escape')) {
+        e.preventDefault();
+        startMenu.classList.toggle('hidden');
+    }
+});
+
+// ===== PREVENT CONTEXT MENU ON DESKTOP =====
+desktop.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    // Could add custom right-click menu here
+});
+
+// ===== WINDOW AUTO-OPEN ON MOBILE =====
+if (window.innerWidth <= 768) {
+    // On mobile, show welcome window fullscreen after login
+    document.querySelectorAll('.xp-window').forEach(windowEl => {
+        windowEl.dataset.maximized = 'true';
     });
 }
