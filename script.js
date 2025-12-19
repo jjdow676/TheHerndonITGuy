@@ -23,10 +23,13 @@ const iosUnlockSound = new Audio('assets/ios-unlock.mp3');
 // iOS tap sound for mobile interactions
 const iosTapSound = new Audio('assets/ios-tap.mp3');
 
-// Preload sounds
+// Preload sounds - force load
 startupSound.preload = 'auto';
 iosUnlockSound.preload = 'auto';
 iosTapSound.preload = 'auto';
+
+// Force load the tap sound into memory
+iosTapSound.load();
 
 // Unlock audio on first user interaction (required for mobile browsers)
 let audioUnlocked = false;
@@ -34,23 +37,20 @@ function unlockAudio() {
     if (audioUnlocked) return;
 
     // Play and immediately pause to unlock audio context
-    const unlockSound = () => {
-        iosUnlockSound.volume = 0;
-        iosUnlockSound.play().then(() => {
-            iosUnlockSound.pause();
-            iosUnlockSound.currentTime = 0;
-            iosUnlockSound.volume = 0.5;
-        }).catch(() => {});
+    iosUnlockSound.volume = 0;
+    iosUnlockSound.play().then(() => {
+        iosUnlockSound.pause();
+        iosUnlockSound.currentTime = 0;
+        iosUnlockSound.volume = 0.5;
+    }).catch(() => {});
 
-        iosTapSound.volume = 0;
-        iosTapSound.play().then(() => {
-            iosTapSound.pause();
-            iosTapSound.currentTime = 0;
-            iosTapSound.volume = 0.3;
-        }).catch(() => {});
-    };
+    iosTapSound.volume = 0;
+    iosTapSound.play().then(() => {
+        iosTapSound.pause();
+        iosTapSound.currentTime = 0;
+        iosTapSound.volume = 0.3;
+    }).catch(() => {});
 
-    unlockSound();
     audioUnlocked = true;
 }
 
@@ -58,12 +58,13 @@ function unlockAudio() {
 document.addEventListener('touchstart', unlockAudio, { once: true });
 document.addEventListener('mousedown', unlockAudio, { once: true });
 
-// Function to play iOS tap sound
+// Function to play iOS tap sound - plays immediately using clone for no delay
 function playTapSound() {
     if (window.innerWidth <= 768) {
-        iosTapSound.currentTime = 0;
-        iosTapSound.volume = 0.3;
-        iosTapSound.play().catch(e => console.log('Tap sound failed:', e));
+        // Clone the audio for instant playback without waiting for previous to finish
+        const tap = iosTapSound.cloneNode();
+        tap.volume = 0.3;
+        tap.play().catch(() => {});
     }
 }
 
