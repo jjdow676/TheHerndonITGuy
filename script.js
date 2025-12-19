@@ -625,13 +625,24 @@ if (isMobile) {
     });
 }
 
-// ===== LIVE CHAT - Email-based chat system =====
+// ===== LIVE CHAT - Email-based on desktop, SMS on mobile =====
+const chatIcon = document.getElementById('chat-icon');
 const chatSendBtn = document.getElementById('chat-send');
 const chatInput = document.getElementById('chat-input');
 const chatMessages = document.getElementById('chat-messages');
 const chatNameInput = document.getElementById('chat-name');
 const chatEmailInput = document.getElementById('chat-email');
 const chatStatus = document.getElementById('chat-status');
+
+// On mobile, chat icon opens SMS directly instead of the chat window
+if (chatIcon && isMobile) {
+    chatIcon.addEventListener('click', (e) => {
+        playTapSound();
+        e.stopPropagation();
+        e.preventDefault();
+        window.location.href = 'sms:7034249684';
+    });
+}
 
 if (chatSendBtn) {
     chatSendBtn.addEventListener('click', sendChatMessage);
