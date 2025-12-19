@@ -647,22 +647,26 @@ if (chatBubble) {
     });
 }
 
-// Set up Tawk.to event handlers when it loads
-var Tawk_API = Tawk_API || {};
-Tawk_API.onLoad = function() {
-    // Hide the default Tawk.to widget - we use our custom button
-    Tawk_API.hideWidget();
+// Set up Tawk.to event handlers after it loads
+function setupTawkEvents() {
+    if (typeof Tawk_API !== 'undefined' && Tawk_API.onChatMaximized !== undefined) {
+        // Hide custom button when Tawk.to chat is open, show when closed
+        Tawk_API.onChatMaximized = function() {
+            if (chatBubble) chatBubble.style.display = 'none';
+        };
+        Tawk_API.onChatMinimized = function() {
+            if (chatBubble) chatBubble.style.display = 'flex';
+            // Re-hide the default widget when chat is minimized
+            if (Tawk_API.hideWidget) Tawk_API.hideWidget();
+        };
+        Tawk_API.onChatHidden = function() {
+            if (chatBubble) chatBubble.style.display = 'flex';
+        };
+    } else {
+        // Tawk.to not ready yet, try again
+        setTimeout(setupTawkEvents, 500);
+    }
+}
 
-    // Hide custom button when Tawk.to chat is open, show when closed
-    Tawk_API.onChatMaximized = function() {
-        if (chatBubble) chatBubble.style.display = 'none';
-    };
-    Tawk_API.onChatMinimized = function() {
-        if (chatBubble) chatBubble.style.display = 'flex';
-        // Re-hide the default widget when chat is minimized
-        Tawk_API.hideWidget();
-    };
-    Tawk_API.onChatHidden = function() {
-        if (chatBubble) chatBubble.style.display = 'flex';
-    };
-};
+// Start checking for Tawk.to
+setTimeout(setupTawkEvents, 1000);
