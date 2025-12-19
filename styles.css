@@ -2488,3 +2488,24 @@ body {
 .chat-send:active {
     background: linear-gradient(180deg, #D4D0C4 0%, #ECE9D8 50%, #fff 100%);
 }
+
+/* ===== FORM RESULT MESSAGES ===== */
+.form-result {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.form-result.success {
+    background: linear-gradient(180deg, #D4EDDA 0%, #C3E6CB 100%);
+    border: 1px solid #82C991;
+    color: #155724;
+}
+
+.form-result.error {
+    background: linear-gradient(180deg, #F8D7DA 0%, #F5C6CB 100%);
+    border: 1px solid #F5C6CB;
+    color: #721C24;
+}

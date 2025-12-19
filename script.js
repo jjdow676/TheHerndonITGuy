@@ -636,3 +636,62 @@ if (smsIcon) {
         window.location.href = 'sms:7034249684';
     });
 }
+
+// ===== PHONE DOCK ICON - Call link for mobile =====
+const phoneDockIcon = document.getElementById('phone-dock-icon');
+
+if (phoneDockIcon) {
+    phoneDockIcon.addEventListener('click', (e) => {
+        playTapSound();
+        e.stopPropagation();
+        e.preventDefault();
+        window.location.href = 'tel:7034249684';
+    });
+}
+
+// ===== CONTACT FORM - Web3Forms submission =====
+const contactForm = document.getElementById('contact-form');
+const formResult = document.getElementById('form-result');
+const submitBtn = document.getElementById('submit-btn');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(contactForm);
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                formResult.classList.remove('hidden');
+                formResult.classList.add('success');
+                formResult.innerHTML = '✓ Message sent! I\'ll get back to you soon.';
+                contactForm.reset();
+            } else {
+                formResult.classList.remove('hidden');
+                formResult.classList.add('error');
+                formResult.innerHTML = '✗ Something went wrong. Please try again or text me directly.';
+            }
+        } catch (error) {
+            formResult.classList.remove('hidden');
+            formResult.classList.add('error');
+            formResult.innerHTML = '✗ Connection error. Please text me at (703) 424-9684.';
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+
+        // Hide result after 5 seconds
+        setTimeout(() => {
+            formResult.classList.add('hidden');
+        }, 5000);
+    });
+}

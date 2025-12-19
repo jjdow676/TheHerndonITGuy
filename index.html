@@ -19,6 +19,59 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tahoma:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Local Business Schema for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "The Herndon IT Guy",
+        "description": "Your trusted local & remote IT support in Herndon, VA. Virtual tech support, computer repair, network setup, and more.",
+        "url": "https://www.theherndonitguy.com",
+        "telephone": "+1-703-424-9684",
+        "email": "justin@theherndonitguy.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Herndon",
+            "addressRegion": "VA",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 38.9696,
+            "longitude": -77.3861
+        },
+        "areaServed": [
+            "Herndon, VA",
+            "Reston, VA",
+            "Sterling, VA",
+            "Ashburn, VA",
+            "Leesburg, VA",
+            "Fairfax, VA",
+            "Northern Virginia"
+        ],
+        "openingHours": "Mo-Sa 09:00-19:00",
+        "priceRange": "$100-$200/hour",
+        "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+        "currenciesAccepted": "USD",
+        "image": "https://www.theherndonitguy.com/assets/logo.svg",
+        "sameAs": [],
+        "serviceType": [
+            "Computer Repair",
+            "Network Setup",
+            "Cybersecurity",
+            "Remote IT Support",
+            "Smart Home Setup",
+            "Data Backup",
+            "Tech Training"
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "reviewCount": "50"
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Windows XP Login Screen -->
@@ -200,13 +253,13 @@
 
         <!-- iOS Dock (hidden on desktop) -->
         <div class="ios-dock">
-            <div class="ios-dock-icon" data-window="contact">
-                <div class="ios-dock-icon-inner ios-icon-green">📧</div>
-                <span class="ios-dock-label">Contact</span>
+            <div class="ios-dock-icon" id="phone-dock-icon">
+                <div class="ios-dock-icon-inner ios-icon-green">📞</div>
+                <span class="ios-dock-label">Phone</span>
             </div>
-            <div class="ios-dock-icon" data-window="remote">
-                <div class="ios-dock-icon-inner ios-icon-purple">🌐</div>
-                <span class="ios-dock-label">Remote</span>
+            <div class="ios-dock-icon" data-window="contact">
+                <div class="ios-dock-icon-inner ios-icon-blue">📧</div>
+                <span class="ios-dock-label">Contact</span>
             </div>
             <div class="ios-dock-icon" data-window="services">
                 <div class="ios-dock-icon-inner ios-icon-orange">🛠️</div>
@@ -477,44 +530,50 @@ chat with the grandkids - I'm here to help!
                     <h2>📞 Get Tech Help</h2>
                     <p>Fill out the form or use the contact info below</p>
                 </div>
-                <div class="xp-form">
+                <form id="contact-form" class="xp-form" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    <input type="hidden" name="subject" value="New Contact from TheHerndonITGuy.com">
+                    <input type="hidden" name="from_name" value="The Herndon IT Guy Website">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                     <div class="form-group">
                         <label>Your Name:</label>
-                        <input type="text" class="xp-input" placeholder="John Smith">
+                        <input type="text" name="name" class="xp-input" placeholder="John Smith" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label>Email:</label>
-                            <input type="email" class="xp-input" placeholder="john@email.com">
+                            <input type="email" name="email" class="xp-input" placeholder="john@email.com" required>
                         </div>
                         <div class="form-group">
                             <label>Phone:</label>
-                            <input type="tel" class="xp-input" placeholder="(555) 123-4567">
+                            <input type="tel" name="phone" class="xp-input" placeholder="(555) 123-4567">
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Service Needed:</label>
-                        <select class="xp-select">
-                            <option>-- Select Service --</option>
-                            <option>🌐 Remote Support Session</option>
-                            <option>💻 Computer Repair</option>
-                            <option>📡 Network Setup</option>
-                            <option>🔒 Cybersecurity</option>
-                            <option>🏠 Smart Home Setup</option>
-                            <option>💾 Data Backup</option>
-                            <option>🎓 Tech Training</option>
-                            <option>Other</option>
+                        <select name="service" class="xp-select" required>
+                            <option value="">-- Select Service --</option>
+                            <option value="Remote Support Session">🌐 Remote Support Session</option>
+                            <option value="Computer Repair">💻 Computer Repair</option>
+                            <option value="Network Setup">📡 Network Setup</option>
+                            <option value="Cybersecurity">🔒 Cybersecurity</option>
+                            <option value="Smart Home Setup">🏠 Smart Home Setup</option>
+                            <option value="Data Backup">💾 Data Backup</option>
+                            <option value="Tech Training">🎓 Tech Training</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Describe Your Issue:</label>
-                        <textarea class="xp-textarea" rows="4" placeholder="Tell me about your tech problem..."></textarea>
+                        <textarea name="message" class="xp-textarea" rows="4" placeholder="Tell me about your tech problem..." required></textarea>
                     </div>
                     <div class="form-actions">
-                        <button class="xp-button primary">Send Message</button>
-                        <button class="xp-button">Clear Form</button>
+                        <button type="submit" class="xp-button primary" id="submit-btn">Send Message</button>
+                        <button type="reset" class="xp-button">Clear Form</button>
                     </div>
-                </div>
+                    <div id="form-result" class="form-result hidden"></div>
+                </form>
                 <div class="contact-info-box">
                     <div class="info-row">
                         <span class="info-icon">💬</span>
