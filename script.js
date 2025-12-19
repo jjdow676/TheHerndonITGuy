@@ -566,7 +566,7 @@ if (slideThumb && slideTrack && isMobile) {
                 loadingScreen.classList.add('hidden');
                 desktop.classList.remove('hidden');
                 // Don't auto-open welcome window on mobile - just show home screen
-            }, 2500);
+            }, 1200); // Shorter loading time for mobile
         }, 500);
     }
 
