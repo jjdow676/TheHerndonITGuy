@@ -2865,7 +2865,7 @@ body {
     right: 0;
     background: #FFFFE1;
     border: 1px solid #000;
-    padding: 4px 8px;
+    padding: 6px 10px;
     font-size: 11px;
     white-space: nowrap;
     display: none;
@@ -2875,8 +2875,39 @@ body {
     text-shadow: none;
 }
 
+.tooltip-date {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.tooltip-weather {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: #333;
+}
+
+.tooltip-weather .weather-icon {
+    font-size: 16px;
+}
+
 .tray-clock:hover .clock-tooltip {
     display: block;
+}
+
+/* Volume icon toggle */
+.volume-icon {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.volume-icon:hover {
+    opacity: 0.8;
+}
+
+.volume-icon.muted {
+    opacity: 0.5;
 }
 
 /* ===== TASKBAR BUTTON BLINK ===== */

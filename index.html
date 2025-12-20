@@ -1054,13 +1054,16 @@ chat with the grandkids - I'm here to help!
             </div>
             <div class="system-tray">
                 <div class="tray-icons">
-                    <span class="tray-icon">🔊</span>
+                    <span class="tray-icon volume-icon" id="volume-icon" title="Click to mute/unmute sounds">🔊</span>
                     <span class="tray-icon">🛡️</span>
                     <span class="tray-icon">📶</span>
                 </div>
                 <div class="tray-clock" id="tray-clock">
                     <span class="clock-time">12:00 PM</span>
-                    <div class="clock-tooltip" id="clock-tooltip">Thursday, December 19, 2024</div>
+                    <div class="clock-tooltip" id="clock-tooltip">
+                        <div class="tooltip-date">Thursday, December 19, 2024</div>
+                        <div class="tooltip-weather" id="tooltip-weather">Loading weather...</div>
+                    </div>
                 </div>
             </div>
         </div>

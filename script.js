@@ -762,8 +762,8 @@ if (contextMenu && window.innerWidth > 768) {
 
 // ===== CLOCK TOOLTIP - Full Date =====
 function updateClockTooltip() {
-    const tooltip = document.getElementById('clock-tooltip');
-    if (!tooltip) return;
+    const tooltipDate = document.querySelector('.tooltip-date');
+    if (!tooltipDate) return;
 
     const now = new Date();
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -775,13 +775,69 @@ function updateClockTooltip() {
     const date = now.getDate();
     const year = now.getFullYear();
 
-    tooltip.textContent = `${dayName}, ${monthName} ${date}, ${year}`;
+    tooltipDate.textContent = `${dayName}, ${monthName} ${date}, ${year}`;
 }
 
 // Update tooltip on page load
 updateClockTooltip();
 
+// ===== WEATHER FOR HERNDON =====
+async function fetchWeather() {
+    const weatherEl = document.getElementById('tooltip-weather');
+    if (!weatherEl) return;
+
+    try {
+        // Using Open-Meteo free API (no API key needed)
+        // Herndon, VA coordinates: 38.9696, -77.3861
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=38.9696&longitude=-77.3861&current=temperature_2m,weather_code&temperature_unit=fahrenheit&timezone=America%2FNew_York');
+        const data = await response.json();
+
+        if (data.current) {
+            const temp = Math.round(data.current.temperature_2m);
+            const weatherCode = data.current.weather_code;
+            const weatherIcon = getWeatherIcon(weatherCode);
+            const weatherDesc = getWeatherDescription(weatherCode);
+
+            weatherEl.innerHTML = `<span class="weather-icon">${weatherIcon}</span> Herndon: ${temp}°F, ${weatherDesc}`;
+        }
+    } catch (error) {
+        weatherEl.textContent = 'Weather unavailable';
+    }
+}
+
+function getWeatherIcon(code) {
+    // WMO Weather interpretation codes
+    if (code === 0) return '☀️'; // Clear sky
+    if (code <= 3) return '⛅'; // Partly cloudy
+    if (code <= 49) return '🌫️'; // Fog
+    if (code <= 59) return '🌧️'; // Drizzle
+    if (code <= 69) return '🌧️'; // Rain
+    if (code <= 79) return '🌨️'; // Snow
+    if (code <= 84) return '🌧️'; // Rain showers
+    if (code <= 86) return '🌨️'; // Snow showers
+    if (code >= 95) return '⛈️'; // Thunderstorm
+    return '☁️';
+}
+
+function getWeatherDescription(code) {
+    if (code === 0) return 'Clear';
+    if (code <= 3) return 'Partly Cloudy';
+    if (code <= 49) return 'Foggy';
+    if (code <= 59) return 'Drizzle';
+    if (code <= 69) return 'Rainy';
+    if (code <= 79) return 'Snowy';
+    if (code <= 84) return 'Showers';
+    if (code <= 86) return 'Snow Showers';
+    if (code >= 95) return 'Thunderstorm';
+    return 'Cloudy';
+}
+
+// Fetch weather on load and every 30 minutes
+fetchWeather();
+setInterval(fetchWeather, 30 * 60 * 1000);
+
 // ===== XP SOUND EFFECTS =====
+let soundsMuted = false;
 const openSound = new Audio('assets/xp-open.mp3');
 const closeSound = new Audio('assets/xp-close.mp3');
 const emailSentSound = new Audio('assets/email-sent.wav');
@@ -794,9 +850,24 @@ openSound.volume = 0.3;
 closeSound.volume = 0.3;
 emailSentSound.volume = 0.4;
 
+// Volume icon mute toggle
+const volumeIcon = document.getElementById('volume-icon');
+if (volumeIcon) {
+    volumeIcon.addEventListener('click', () => {
+        soundsMuted = !soundsMuted;
+        if (soundsMuted) {
+            volumeIcon.textContent = '🔇';
+            volumeIcon.classList.add('muted');
+        } else {
+            volumeIcon.textContent = '🔊';
+            volumeIcon.classList.remove('muted');
+        }
+    });
+}
+
 // Play window open sound
 function playOpenSound() {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 768 && !soundsMuted) {
         openSound.currentTime = 0;
         openSound.play().catch(() => {});
     }
@@ -804,8 +875,10 @@ function playOpenSound() {
 
 // Play email sent sound
 function playEmailSentSound() {
-    emailSentSound.currentTime = 0;
-    emailSentSound.play().catch(() => {});
+    if (!soundsMuted) {
+        emailSentSound.currentTime = 0;
+        emailSentSound.play().catch(() => {});
+    }
 }
 
 // ===== WINDOW CLOSE ANIMATION =====
@@ -813,8 +886,8 @@ function closeWindowAnimated(windowId) {
     const windowEl = document.getElementById(`window-${windowId}`);
     if (!windowEl) return;
 
-    // Play close sound on desktop
-    if (window.innerWidth > 768) {
+    // Play close sound on desktop (if not muted)
+    if (window.innerWidth > 768 && !soundsMuted) {
         closeSound.currentTime = 0;
         closeSound.play().catch(() => {});
     }
