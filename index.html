@@ -13,6 +13,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="The Herndon IT Guy - Your trusted local & remote IT support in Herndon, VA. Virtual tech support, computer repair, network setup, and more.">
     <title>The Herndon IT Guy | Local & Remote Tech Support</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.theherndonitguy.com/">
+    <meta property="og:title" content="The Herndon IT Guy | Local & Remote Tech Support">
+    <meta property="og:description" content="Your trusted local IT expert in Herndon, VA. Remote support available - most issues fixed same-day! Computer repair, network setup, cybersecurity & more.">
+    <meta property="og:image" content="https://www.theherndonitguy.com/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.theherndonitguy.com/">
+    <meta property="twitter:title" content="The Herndon IT Guy | Local & Remote Tech Support">
+    <meta property="twitter:description" content="Your trusted local IT expert in Herndon, VA. Remote support available - most issues fixed same-day!">
+    <meta property="twitter:image" content="https://www.theherndonitguy.com/assets/og-image.png">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="apple-touch-icon" href="assets/logo.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -186,6 +200,11 @@
             <div class="loading-bar-container">
                 <div class="loading-bar">
                     <div class="loading-bar-fill"></div>
+                </div>
+                <div class="xp-loading-dots">
+                    <div class="xp-dot"></div>
+                    <div class="xp-dot"></div>
+                    <div class="xp-dot"></div>
                 </div>
             </div>
             <div class="loading-text">Loading your tech support experience...</div>
@@ -848,6 +867,32 @@ chat with the grandkids - I'm here to help!
             </div>
         </div>
 
+        <!-- Right-Click Context Menu -->
+        <div class="context-menu hidden" id="context-menu">
+            <div class="context-item" onclick="location.reload()">
+                <span class="context-icon">🔄</span>
+                <span>Refresh</span>
+            </div>
+            <div class="context-divider"></div>
+            <div class="context-item" onclick="openWindow('services')">
+                <span class="context-icon">🛠️</span>
+                <span>View Services</span>
+            </div>
+            <div class="context-item" onclick="openWindow('contact')">
+                <span class="context-icon">📧</span>
+                <span>Contact</span>
+            </div>
+            <div class="context-divider"></div>
+            <div class="context-item" onclick="openWindow('about')">
+                <span class="context-icon">📁</span>
+                <span>About</span>
+            </div>
+            <div class="context-item disabled">
+                <span class="context-icon">⚙️</span>
+                <span>Properties</span>
+            </div>
+        </div>
+
         <!-- Clippy Helper (Desktop only) -->
         <div class="clippy-container" id="clippy">
             <div class="clippy-bubble" id="clippy-bubble">
@@ -880,7 +925,10 @@ chat with the grandkids - I'm here to help!
                     <span class="tray-icon">🛡️</span>
                     <span class="tray-icon">📶</span>
                 </div>
-                <div class="tray-clock" id="tray-clock">12:00 PM</div>
+                <div class="tray-clock" id="tray-clock">
+                    <span class="clock-time">12:00 PM</span>
+                    <div class="clock-tooltip" id="clock-tooltip">Thursday, December 19, 2024</div>
+                </div>
             </div>
         </div>
 

@@ -206,14 +206,7 @@ function updateTaskbarButtons(activeWindowId) {
 }
 
 // ===== WINDOW CONTROLS (Close, Minimize, Maximize) =====
-document.querySelectorAll('.titlebar-btn.close').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const windowEl = btn.closest('.xp-window');
-        const windowId = windowEl.id.replace('window-', '');
-        closeWindow(windowId);
-    });
-});
+// Close buttons are handled later with animated close
 
 document.querySelectorAll('.titlebar-btn.minimize').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -404,11 +397,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ===== PREVENT CONTEXT MENU ON DESKTOP =====
-desktop.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    // Could add custom right-click menu here
-});
+// Context menu is handled in the right-click context menu section below
 
 // ===== WINDOW AUTO-OPEN ON MOBILE =====
 if (window.innerWidth <= 768) {
@@ -628,11 +617,13 @@ if (contactForm) {
                 formResult.classList.remove('hidden');
                 formResult.classList.add('error');
                 formResult.innerHTML = '✗ Something went wrong. Please try again or text me directly.';
+                if (window.playErrorSound) playErrorSound();
             }
         } catch (error) {
             formResult.classList.remove('hidden');
             formResult.classList.add('error');
             formResult.innerHTML = '✗ Connection error. Please text me at (703) 424-9684.';
+            if (window.playErrorSound) playErrorSound();
         }
 
         submitBtn.disabled = false;
@@ -722,3 +713,183 @@ if (window.innerWidth > 768 && clippyBubble) {
 // Make functions available globally for onclick handlers
 window.hideClippy = hideClippy;
 window.toggleClippy = toggleClippy;
+
+// ===== RIGHT-CLICK CONTEXT MENU =====
+const contextMenu = document.getElementById('context-menu');
+
+if (contextMenu && window.innerWidth > 768) {
+    // Show context menu on right-click
+    desktop.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+
+        // Position the menu at mouse location
+        const x = e.clientX;
+        const y = e.clientY;
+
+        // Make sure menu doesn't go off screen
+        const menuWidth = 180;
+        const menuHeight = 200;
+        const maxX = window.innerWidth - menuWidth;
+        const maxY = window.innerHeight - menuHeight - 30; // Account for taskbar
+
+        contextMenu.style.left = Math.min(x, maxX) + 'px';
+        contextMenu.style.top = Math.min(y, maxY) + 'px';
+        contextMenu.classList.remove('hidden');
+    });
+
+    // Hide context menu on click elsewhere
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.context-menu')) {
+            contextMenu.classList.add('hidden');
+        }
+    });
+
+    // Hide context menu on scroll or resize
+    window.addEventListener('scroll', () => contextMenu.classList.add('hidden'));
+    window.addEventListener('resize', () => contextMenu.classList.add('hidden'));
+}
+
+// ===== CLOCK TOOLTIP - Full Date =====
+function updateClockTooltip() {
+    const tooltip = document.getElementById('clock-tooltip');
+    if (!tooltip) return;
+
+    const now = new Date();
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+
+    const dayName = days[now.getDay()];
+    const monthName = months[now.getMonth()];
+    const date = now.getDate();
+    const year = now.getFullYear();
+
+    tooltip.textContent = `${dayName}, ${monthName} ${date}, ${year}`;
+}
+
+// Update tooltip on page load
+updateClockTooltip();
+
+// ===== XP SOUND EFFECTS =====
+const clickSound = new Audio('assets/xp-click.mp3');
+const closeSound = new Audio('assets/xp-close.mp3');
+const errorSound = new Audio('assets/xp-error.mp3');
+
+clickSound.preload = 'auto';
+closeSound.preload = 'auto';
+errorSound.preload = 'auto';
+
+clickSound.volume = 0.3;
+closeSound.volume = 0.3;
+errorSound.volume = 0.4;
+
+// Play click sound on desktop icons (desktop only)
+if (window.innerWidth > 768) {
+    document.querySelectorAll('.desktop-icon').forEach(icon => {
+        icon.addEventListener('mousedown', () => {
+            clickSound.currentTime = 0;
+            clickSound.play().catch(() => {});
+        });
+    });
+
+    // Play click on start menu items
+    document.querySelectorAll('.start-item, .start-item-right').forEach(item => {
+        item.addEventListener('mousedown', () => {
+            clickSound.currentTime = 0;
+            clickSound.play().catch(() => {});
+        });
+    });
+}
+
+// Play error sound function (for form errors, etc.)
+function playErrorSound() {
+    if (window.innerWidth > 768) {
+        errorSound.currentTime = 0;
+        errorSound.play().catch(() => {});
+    }
+}
+
+// ===== WINDOW CLOSE ANIMATION =====
+function closeWindowAnimated(windowId) {
+    const windowEl = document.getElementById(`window-${windowId}`);
+    if (!windowEl) return;
+
+    // Play close sound on desktop
+    if (window.innerWidth > 768) {
+        closeSound.currentTime = 0;
+        closeSound.play().catch(() => {});
+    }
+
+    // Add closing animation class
+    windowEl.classList.add('closing');
+
+    // After animation completes, actually close
+    setTimeout(() => {
+        windowEl.classList.remove('closing');
+        closeWindow(windowId);
+    }, 150);
+}
+
+// Set up close button handlers with animated close
+document.querySelectorAll('.titlebar-btn.close').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const windowEl = btn.closest('.xp-window');
+        const windowId = windowEl.id.replace('window-', '');
+        closeWindowAnimated(windowId);
+    });
+});
+
+// ===== MOBILE SWIPE TO CLOSE WINDOWS =====
+if (window.innerWidth <= 768) {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let currentWindow = null;
+
+    document.querySelectorAll('.xp-window').forEach(windowEl => {
+        const titlebar = windowEl.querySelector('.window-titlebar');
+
+        titlebar.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            currentWindow = windowEl;
+        }, { passive: true });
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!currentWindow) return;
+
+        const touchEndX = e.touches[0].clientX;
+        const touchEndY = e.touches[0].clientY;
+        const diffX = touchEndX - touchStartX;
+        const diffY = touchEndY - touchStartY;
+
+        // If swiping down more than sideways
+        if (Math.abs(diffY) > Math.abs(diffX) && diffY > 50) {
+            const windowId = currentWindow.id.replace('window-', '');
+            closeWindow(windowId);
+            playTapSound();
+            currentWindow = null;
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+        currentWindow = null;
+    });
+}
+
+// ===== TASKBAR BUTTON BLINK NOTIFICATION =====
+function blinkTaskbarButton(windowId) {
+    const taskbarBtn = document.querySelector(`[data-window-id="${windowId}"]`);
+    if (taskbarBtn) {
+        taskbarBtn.classList.add('blinking');
+        // Remove blink after animation completes (6 blinks * 0.5s = 3s)
+        setTimeout(() => {
+            taskbarBtn.classList.remove('blinking');
+        }, 3000);
+    }
+}
+
+// Make blink function available globally
+window.blinkTaskbarButton = blinkTaskbarButton;
+window.playErrorSound = playErrorSound;

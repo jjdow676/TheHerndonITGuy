@@ -2288,14 +2288,33 @@ body {
 
 /* ===== ANIMATIONS ===== */
 @keyframes windowOpen {
-    from {
+    0% {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.3);
     }
-    to {
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+    100% {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+@keyframes windowClose {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+}
+
+.xp-window.closing {
+    animation: windowClose 0.15s ease-in forwards;
 }
 
 .xp-window:not(.hidden) {
@@ -2753,4 +2772,115 @@ body {
     .clippy-container {
         display: none;
     }
+}
+
+/* ===== XP LOADING DOTS ===== */
+.xp-loading-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.xp-dot {
+    width: 20px;
+    height: 8px;
+    background: linear-gradient(180deg, #6699FF 0%, #3366CC 50%, #003399 100%);
+    border-radius: 2px;
+    animation: xpDotSlide 1.5s ease-in-out infinite;
+}
+
+.xp-dot:nth-child(1) { animation-delay: 0s; }
+.xp-dot:nth-child(2) { animation-delay: 0.15s; }
+.xp-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes xpDotSlide {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translateX(-20px);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(20px);
+    }
+}
+
+/* ===== RIGHT-CLICK CONTEXT MENU ===== */
+.context-menu {
+    position: fixed;
+    background: #fff;
+    border: 1px solid #ACA899;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    min-width: 180px;
+    z-index: 10000;
+    font-size: 11px;
+    padding: 2px 0;
+}
+
+.context-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 20px 6px 10px;
+    cursor: pointer;
+}
+
+.context-item:hover {
+    background: #0055E5;
+    color: #fff;
+}
+
+.context-item.disabled {
+    color: #888;
+    cursor: default;
+}
+
+.context-item.disabled:hover {
+    background: transparent;
+    color: #888;
+}
+
+.context-icon {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+}
+
+.context-divider {
+    height: 1px;
+    background: #ACA899;
+    margin: 3px 2px;
+}
+
+/* ===== CLOCK TOOLTIP ===== */
+.tray-clock {
+    position: relative;
+}
+
+.clock-tooltip {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background: #FFFFE1;
+    border: 1px solid #000;
+    padding: 4px 8px;
+    font-size: 11px;
+    white-space: nowrap;
+    display: none;
+    margin-bottom: 5px;
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
+}
+
+.tray-clock:hover .clock-tooltip {
+    display: block;
+}
+
+/* ===== TASKBAR BUTTON BLINK ===== */
+@keyframes taskbarBlink {
+    0%, 100% { background: var(--xp-button); }
+    50% { background: linear-gradient(180deg, #FFE082 0%, #FFB74D 50%, #FF9800 100%); }
+}
+
+.taskbar-btn.blinking {
+    animation: taskbarBlink 0.5s ease-in-out 6;
 }
