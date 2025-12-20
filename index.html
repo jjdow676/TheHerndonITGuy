@@ -312,10 +312,29 @@
                 </div>
             </div>
             <div class="window-menubar">
-                <span>File</span>
-                <span>Edit</span>
-                <span>View</span>
-                <span>Help</span>
+                <div class="menu-item">File
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('services')"><span class="menu-icon">📁</span> Open Services</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📧</span> Contact</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-dropdown-item" onclick="closeWindow('welcome')"><span class="menu-icon">❌</span> Close</div>
+                    </div>
+                </div>
+                <div class="menu-item">View
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('services')"><span class="menu-icon">🛠️</span> Services</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('pricing')"><span class="menu-icon">💰</span> Pricing</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('about')"><span class="menu-icon">👤</span> About Me</div>
+                    </div>
+                </div>
+                <div class="menu-item">Help
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('faq')"><span class="menu-icon">❓</span> FAQ</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📞</span> Get Support</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-dropdown-item" onclick="openWindow('about')"><span class="menu-icon">ℹ️</span> About</div>
+                    </div>
+                </div>
             </div>
             <div class="window-content welcome-content">
                 <div class="welcome-header">
@@ -502,11 +521,25 @@
                 </div>
             </div>
             <div class="window-menubar">
-                <span>File</span>
-                <span>Edit</span>
-                <span>Format</span>
-                <span>View</span>
-                <span>Help</span>
+                <div class="menu-item">File
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📧</span> Contact Me</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-dropdown-item" onclick="closeWindow('about')"><span class="menu-icon">❌</span> Close</div>
+                    </div>
+                </div>
+                <div class="menu-item">View
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('services')"><span class="menu-icon">🛠️</span> Services</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('pricing')"><span class="menu-icon">💰</span> Pricing</div>
+                    </div>
+                </div>
+                <div class="menu-item">Help
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('faq')"><span class="menu-icon">❓</span> FAQ</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📞</span> Get Support</div>
+                    </div>
+                </div>
             </div>
             <div class="window-content notepad-content">
                 <div class="notepad-text">
@@ -578,10 +611,26 @@ chat with the grandkids - I'm here to help!
                 </div>
             </div>
             <div class="window-menubar">
-                <span>File</span>
-                <span>Edit</span>
-                <span>View</span>
-                <span>Help</span>
+                <div class="menu-item">File
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('services')"><span class="menu-icon">🛠️</span> View Services</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('pricing')"><span class="menu-icon">💰</span> View Pricing</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-dropdown-item" onclick="closeWindow('contact')"><span class="menu-icon">❌</span> Close</div>
+                    </div>
+                </div>
+                <div class="menu-item">View
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('remote')"><span class="menu-icon">🌐</span> Remote Support</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('about')"><span class="menu-icon">👤</span> About Me</div>
+                    </div>
+                </div>
+                <div class="menu-item">Help
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('faq')"><span class="menu-icon">❓</span> FAQ</div>
+                        <div class="menu-dropdown-item" onclick="window.location.href='tel:7034249684'"><span class="menu-icon">📞</span> Call Now</div>
+                    </div>
+                </div>
             </div>
             <div class="window-content form-content">
                 <div class="contact-header">
@@ -805,10 +854,26 @@ chat with the grandkids - I'm here to help!
                 </div>
             </div>
             <div class="window-menubar">
-                <span>File</span>
-                <span>Edit</span>
-                <span>View</span>
-                <span>Help</span>
+                <div class="menu-item">File
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📧</span> Contact Me</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-dropdown-item" onclick="closeWindow('faq')"><span class="menu-icon">❌</span> Close</div>
+                    </div>
+                </div>
+                <div class="menu-item">View
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('services')"><span class="menu-icon">🛠️</span> Services</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('pricing')"><span class="menu-icon">💰</span> Pricing</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('remote')"><span class="menu-icon">🌐</span> Remote Support</div>
+                    </div>
+                </div>
+                <div class="menu-item">Help
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📞</span> Get Support</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('about')"><span class="menu-icon">👤</span> About Me</div>
+                    </div>
+                </div>
             </div>
             <div class="window-content faq-content">
                 <div class="faq-header">
@@ -922,10 +987,25 @@ chat with the grandkids - I'm here to help!
                 </div>
             </div>
             <div class="window-menubar">
-                <span>File</span>
-                <span>Edit</span>
-                <span>View</span>
-                <span>Help</span>
+                <div class="menu-item">File
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📧</span> Request Quote</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-dropdown-item" onclick="closeWindow('advanced')"><span class="menu-icon">❌</span> Close</div>
+                    </div>
+                </div>
+                <div class="menu-item">View
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('services')"><span class="menu-icon">🛠️</span> All Services</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('pricing')"><span class="menu-icon">💰</span> Standard Pricing</div>
+                    </div>
+                </div>
+                <div class="menu-item">Help
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('faq')"><span class="menu-icon">❓</span> FAQ</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📞</span> Contact</div>
+                    </div>
+                </div>
             </div>
             <div class="window-content advanced-content">
                 <div class="advanced-header">

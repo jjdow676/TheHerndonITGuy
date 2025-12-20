@@ -617,18 +617,87 @@ body {
     background: var(--xp-window-bg);
     padding: 4px 8px;
     display: flex;
-    gap: 15px;
+    gap: 0;
     border-bottom: 1px solid #ACA899;
 }
 
-.window-menubar span {
+.menu-item {
+    position: relative;
     font-size: 11px;
     color: #000;
     cursor: pointer;
+    padding: 2px 8px;
+    border-radius: 2px;
 }
 
-.window-menubar span:hover {
-    color: #0055E5;
+.menu-item:hover {
+    background: #316AC5;
+    color: #fff;
+}
+
+.menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #ACA899;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    min-width: 150px;
+    z-index: 1000;
+}
+
+.menu-item:hover .menu-dropdown {
+    display: block;
+}
+
+.menu-dropdown-item {
+    padding: 6px 20px 6px 10px;
+    font-size: 11px;
+    color: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu-dropdown-item:hover {
+    background: #316AC5;
+    color: #fff;
+}
+
+.menu-dropdown-item.disabled {
+    color: #999;
+    cursor: default;
+}
+
+.menu-dropdown-item.disabled:hover {
+    background: transparent;
+    color: #999;
+}
+
+.menu-divider {
+    height: 1px;
+    background: #ACA899;
+    margin: 3px 0;
+}
+
+.menu-icon {
+    width: 16px;
+    text-align: center;
+}
+
+/* Legacy span support for backward compatibility */
+.window-menubar > span {
+    font-size: 11px;
+    color: #000;
+    cursor: pointer;
+    padding: 2px 8px;
+}
+
+.window-menubar > span:hover {
+    background: #316AC5;
+    color: #fff;
 }
 
 .window-toolbar {
@@ -691,7 +760,6 @@ body {
 
 .window-content {
     background: #fff;
-    max-height: 500px;
     overflow-y: auto;
 }
 
