@@ -896,3 +896,148 @@ function blinkTaskbarButton(windowId) {
 // Make blink function available globally
 window.blinkTaskbarButton = blinkTaskbarButton;
 window.playErrorSound = playErrorSound;
+
+// ===== AVAILABILITY INDICATOR =====
+function updateAvailability() {
+    const indicator = document.getElementById('availability-indicator');
+    const stickyHeader = document.getElementById('sticky-header');
+    if (!indicator) return;
+
+    const now = new Date();
+    const day = now.getDay(); // 0 = Sunday, 6 = Saturday
+    const hour = now.getHours();
+
+    // Available Mon-Sat 9AM-7PM
+    const isAvailable = day >= 1 && day <= 6 && hour >= 9 && hour < 19;
+
+    if (isAvailable) {
+        indicator.classList.remove('offline');
+        indicator.querySelector('.availability-text').textContent = 'Available Now';
+    } else {
+        indicator.classList.add('offline');
+        // Calculate next available time
+        let nextDay = 'Mon';
+        if (day === 0) nextDay = 'Mon';
+        else if (day === 6 && hour >= 19) nextDay = 'Mon';
+        else if (hour >= 19) nextDay = 'Tomorrow';
+        else if (hour < 9) nextDay = 'Today';
+
+        indicator.querySelector('.availability-text').textContent = `Back ${nextDay} 9AM`;
+    }
+}
+
+// Update availability on load and every minute
+updateAvailability();
+setInterval(updateAvailability, 60000);
+
+// ===== XP SCREENSAVER =====
+let idleTime = 0;
+const SCREENSAVER_TIMEOUT = 60; // seconds
+const screensaver = document.getElementById('screensaver');
+
+function resetIdleTimer() {
+    idleTime = 0;
+    if (screensaver && !screensaver.classList.contains('hidden')) {
+        screensaver.classList.add('hidden');
+    }
+}
+
+function checkIdleTime() {
+    if (window.innerWidth <= 768) return; // No screensaver on mobile
+
+    idleTime++;
+    if (idleTime >= SCREENSAVER_TIMEOUT && screensaver) {
+        // Only show if desktop is visible (not on login/loading)
+        if (!desktop.classList.contains('hidden')) {
+            screensaver.classList.remove('hidden');
+        }
+    }
+}
+
+// Reset idle on user activity
+if (window.innerWidth > 768) {
+    document.addEventListener('mousemove', resetIdleTimer);
+    document.addEventListener('keypress', resetIdleTimer);
+    document.addEventListener('click', resetIdleTimer);
+    document.addEventListener('scroll', resetIdleTimer);
+
+    // Check idle every second
+    setInterval(checkIdleTime, 1000);
+
+    // Click/move on screensaver to dismiss
+    if (screensaver) {
+        screensaver.addEventListener('click', resetIdleTimer);
+        screensaver.addEventListener('mousemove', resetIdleTimer);
+    }
+}
+
+// ===== STICKY HEADER =====
+const stickyHeader = document.getElementById('sticky-header');
+let hasScrolledPastThreshold = false;
+
+function handleScroll() {
+    if (window.innerWidth <= 768) return; // No sticky on mobile
+    if (desktop.classList.contains('hidden')) return; // Only on desktop view
+
+    // Show sticky header after scrolling down a bit
+    // Since we don't have a traditional page scroll, we'll show it after a delay
+}
+
+// Show sticky header after user has been on the desktop for 10 seconds
+if (window.innerWidth > 768 && stickyHeader) {
+    setTimeout(() => {
+        if (!desktop.classList.contains('hidden')) {
+            stickyHeader.classList.remove('hidden');
+            stickyHeader.classList.add('visible');
+        }
+    }, 10000);
+}
+
+// ===== DRAGGABLE DESKTOP ICONS =====
+if (window.innerWidth > 768) {
+    let draggedIcon = null;
+    let iconOffsetX = 0;
+    let iconOffsetY = 0;
+
+    document.querySelectorAll('.desktop-icon').forEach(icon => {
+        icon.addEventListener('mousedown', (e) => {
+            // Don't start drag on double-click
+            if (e.detail > 1) return;
+
+            draggedIcon = icon;
+            const rect = icon.getBoundingClientRect();
+            const desktopRect = document.querySelector('.desktop-icons').getBoundingClientRect();
+
+            iconOffsetX = e.clientX - rect.left;
+            iconOffsetY = e.clientY - rect.top;
+
+            // Make icon draggable with absolute positioning
+            if (!icon.style.position || icon.style.position === 'static') {
+                icon.style.position = 'relative';
+            }
+
+            icon.classList.add('dragging');
+        });
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!draggedIcon) return;
+
+        const desktopIcons = document.querySelector('.desktop-icons');
+        const desktopRect = desktopIcons.getBoundingClientRect();
+
+        // Calculate new position relative to initial position
+        const newX = e.clientX - desktopRect.left - iconOffsetX;
+        const newY = e.clientY - desktopRect.top - iconOffsetY;
+
+        draggedIcon.style.left = newX + 'px';
+        draggedIcon.style.top = newY + 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (draggedIcon) {
+            draggedIcon.classList.remove('dragging');
+            draggedIcon = null;
+        }
+    });
+}

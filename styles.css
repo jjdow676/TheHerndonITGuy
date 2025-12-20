@@ -809,6 +809,17 @@ body {
     border: 1px solid #FFE69C;
 }
 
+.service-example {
+    font-size: 10px;
+    color: #0066CC;
+    font-style: italic;
+    margin-bottom: 6px;
+    padding: 3px 6px;
+    background: #E8F4FF;
+    border-radius: 3px;
+    border-left: 2px solid #0078D7;
+}
+
 /* ===== WELCOME CONTENT ===== */
 .welcome-content {
     padding: 20px;
@@ -2854,4 +2865,290 @@ body {
 
 .taskbar-btn.blinking {
     animation: taskbarBlink 0.5s ease-in-out 6 !important;
+}
+
+/* ===== AVAILABILITY INDICATOR ===== */
+.availability-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 8px;
+    background: rgba(0, 128, 0, 0.2);
+    border-radius: 3px;
+    margin-right: 8px;
+    cursor: default;
+}
+
+.availability-dot {
+    width: 8px;
+    height: 8px;
+    background: #00FF00;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 6px #00FF00;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(0.9); }
+}
+
+.availability-text {
+    font-size: 11px;
+    color: #00FF00;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(0, 255, 0, 0.5);
+}
+
+.availability-indicator.offline .availability-dot {
+    background: #888;
+    box-shadow: none;
+    animation: none;
+}
+
+.availability-indicator.offline .availability-text {
+    color: #ccc;
+    text-shadow: none;
+}
+
+.availability-indicator.offline .availability-text::after {
+    content: " (Back Mon 9AM)";
+}
+
+/* ===== COMMON PROBLEMS WINDOW ===== */
+.problems-content {
+    padding: 15px;
+}
+
+.problems-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.problems-header h2 {
+    color: #003399;
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.problems-header p {
+    color: #666;
+    margin: 0;
+    font-size: 12px;
+}
+
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.problem-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+    background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.problem-item:hover {
+    background: linear-gradient(180deg, #E8F4FF 0%, #D0E8FF 100%);
+    border-color: #0078D7;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.problem-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.problem-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.problem-text strong {
+    color: #333;
+    font-size: 12px;
+}
+
+.problem-text span {
+    color: #666;
+    font-size: 11px;
+}
+
+.problems-cta {
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(180deg, #ECE9D8 0%, #D4D0C8 100%);
+    border-radius: 4px;
+    border: 1px solid #ACA899;
+}
+
+.problems-cta p {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    color: #333;
+}
+
+/* ===== XP SCREENSAVER ===== */
+.screensaver {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: none;
+}
+
+.screensaver.hidden {
+    display: none;
+}
+
+.screensaver-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: floatAround 20s ease-in-out infinite;
+}
+
+.screensaver-text {
+    font-size: 48px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #0078D7, #00A8E8, #0078D7);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.screensaver-subtext {
+    color: #666;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+@keyframes floatAround {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(100px, -50px); }
+    50% { transform: translate(-50px, 100px); }
+    75% { transform: translate(-100px, -30px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* ===== STICKY HEADER ===== */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg, #245EDC 0%, #1941A5 100%);
+    padding: 8px 20px;
+    z-index: 9999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.sticky-header.visible {
+    transform: translateY(0);
+}
+
+.sticky-header.hidden {
+    display: none;
+}
+
+.sticky-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sticky-availability {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.sticky-dot {
+    width: 8px;
+    height: 8px;
+    background: #00FF00;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.sticky-divider {
+    color: rgba(255,255,255,0.5);
+}
+
+.sticky-phone {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.sticky-btn {
+    background: linear-gradient(180deg, #5CB85C 0%, #449D44 100%);
+    color: #fff;
+    border: 1px solid #398439;
+    padding: 5px 15px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sticky-btn:hover {
+    background: linear-gradient(180deg, #449D44 0%, #398439 100%);
+}
+
+/* Hide sticky header on mobile */
+@media (max-width: 768px) {
+    .sticky-header {
+        display: none !important;
+    }
+
+    .availability-indicator {
+        display: none;
+    }
+
+    .screensaver {
+        display: none !important;
+    }
+}
+
+/* ===== DRAGGABLE ICONS ===== */
+.desktop-icon.dragging {
+    opacity: 0.7;
+    z-index: 1000;
+    cursor: grabbing !important;
+}
+
+.desktop-icon {
+    cursor: grab;
 }
