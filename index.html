@@ -982,25 +982,77 @@ chat with the grandkids - I'm here to help!
             </div>
         </div>
 
-        <!-- Games Window (Placeholder) -->
-        <div class="xp-window hidden" id="window-games" style="width: 500px; top: 100px; left: 200px;">
+        <!-- Games Window -->
+        <div class="xp-window hidden" id="window-games" style="width: 550px; top: 80px; left: 180px;">
             <div class="window-titlebar">
                 <img src="assets/icon-games.png" alt="" class="titlebar-icon titlebar-icon-img">
-                <div class="titlebar-title">Games</div>
+                <div class="titlebar-title">Games - Windows XP Entertainment</div>
                 <div class="titlebar-buttons">
                     <button class="titlebar-btn minimize">_</button>
                     <button class="titlebar-btn maximize">□</button>
                     <button class="titlebar-btn close">×</button>
                 </div>
             </div>
-            <div class="window-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px; text-align: center; padding: 40px;">
-                <div style="font-size: 64px; margin-bottom: 20px;">🎮</div>
-                <h2 style="margin: 0 0 10px 0; color: #003399;">Coming Soon!</h2>
-                <p style="color: #666; margin: 0;">Games are under construction.<br>Check back later for some fun!</p>
+            <div class="window-content games-content">
+                <div class="games-header">
+                    <h2>🎮 XP Games Collection</h2>
+                    <p>Take a break with these classic-style games!</p>
+                </div>
+                <div class="games-grid">
+                    <div class="game-card" onclick="launchGame('asteroids')">
+                        <div class="game-icon">🚀</div>
+                        <div class="game-info">
+                            <h3>Asteroids</h3>
+                            <p>Blast asteroids and survive in space!</p>
+                        </div>
+                    </div>
+                    <div class="game-card" onclick="launchGame('solitaire')">
+                        <div class="game-icon">🃏</div>
+                        <div class="game-info">
+                            <h3>Solitaire</h3>
+                            <p>The classic card game.</p>
+                        </div>
+                    </div>
+                    <div class="game-card" onclick="launchGame('snake')">
+                        <div class="game-icon">🐍</div>
+                        <div class="game-info">
+                            <h3>Snake</h3>
+                            <p>Grow your snake and beat your high score!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="games-tip">
+                    <span class="tip-icon">💡</span>
+                    <span>Tip: Use arrow keys or WASD to control. Press SPACE to start/shoot!</span>
+                </div>
             </div>
             <div class="window-statusbar">
-                <span>0 games</span>
-                <span>Under construction</span>
+                <span>3 games</span>
+                <span>Click a game to play</span>
+            </div>
+        </div>
+
+        <!-- Game Player Window -->
+        <div class="xp-window hidden" id="window-game-player" style="width: 520px; top: 60px; left: 150px;">
+            <div class="window-titlebar">
+                <img src="assets/icon-games.png" alt="" class="titlebar-icon titlebar-icon-img">
+                <div class="titlebar-title" id="game-player-title">Game</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close" onclick="closeGame()">×</button>
+                </div>
+            </div>
+            <div class="window-toolbar">
+                <button class="toolbar-btn" onclick="restartGame()"><span class="toolbar-icon">🔄</span> Restart</button>
+                <button class="toolbar-btn" onclick="closeGame()"><span class="toolbar-icon">◀</span> Back to Games</button>
+            </div>
+            <div class="window-content game-player-content">
+                <canvas id="game-canvas" width="480" height="360"></canvas>
+            </div>
+            <div class="window-statusbar">
+                <span id="game-status">Playing</span>
+                <span>Use arrow keys to control</span>
             </div>
         </div>
 
@@ -1251,6 +1303,10 @@ chat with the grandkids - I'm here to help!
         </div>
     </div>
 
+    <!-- Game Scripts -->
+    <script src="games/asteroids.js"></script>
+    <script src="games/solitaire.js"></script>
+    <script src="games/snake.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

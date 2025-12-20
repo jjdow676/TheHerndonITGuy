@@ -92,9 +92,9 @@ if (userLogin) {
                 loadingScreen.classList.add('hidden');
                 desktop.classList.remove('hidden');
 
-                // Auto-open welcome window after login (desktop only)
+                // Auto-open welcome window after login (desktop only, no sound)
                 setTimeout(() => {
-                    openWindow('welcome');
+                    openWindow('welcome', true); // true = skip sound
                 }, 300);
             }, 1500); // Loading screen duration
         }, 500);
@@ -102,12 +102,14 @@ if (userLogin) {
 }
 
 // ===== WINDOW MANAGEMENT =====
-function openWindow(windowId) {
+function openWindow(windowId, skipSound = false) {
     const windowEl = document.getElementById(`window-${windowId}`);
     if (!windowEl) return;
 
-    // Play window open sound (desktop only)
-    playOpenSound();
+    // Play window open sound (desktop only, unless skipped)
+    if (!skipSound) {
+        playOpenSound();
+    }
 
     // Close start menu if open
     startMenu.classList.add('hidden');
@@ -964,6 +966,89 @@ function blinkTaskbarButton(windowId) {
 
 // Make blink function available globally
 window.blinkTaskbarButton = blinkTaskbarButton;
+
+// ===== GAME MANAGEMENT =====
+let currentGame = null;
+let currentGameName = '';
+
+function launchGame(gameName) {
+    const canvas = document.getElementById('game-canvas');
+    const titleEl = document.getElementById('game-player-title');
+
+    // Destroy any existing game
+    if (currentGame) {
+        currentGame.destroy();
+        currentGame = null;
+    }
+
+    // Set title
+    const titles = {
+        'asteroids': 'Asteroids',
+        'solitaire': 'Solitaire',
+        'snake': 'Snake'
+    };
+    titleEl.textContent = titles[gameName] || 'Game';
+    currentGameName = gameName;
+
+    // Close games window and open player window
+    closeWindow('games');
+    openWindow('game-player');
+
+    // Initialize game after a brief delay for window to appear
+    setTimeout(() => {
+        switch (gameName) {
+            case 'asteroids':
+                currentGame = new AsteroidsGame(canvas);
+                currentGame.start();
+                break;
+            case 'solitaire':
+                currentGame = new SolitaireGame(canvas);
+                currentGame.start();
+                break;
+            case 'snake':
+                currentGame = new SnakeGame(canvas);
+                currentGame.start();
+                break;
+        }
+    }, 100);
+}
+
+function restartGame() {
+    if (currentGame && currentGameName) {
+        currentGame.destroy();
+        const canvas = document.getElementById('game-canvas');
+
+        switch (currentGameName) {
+            case 'asteroids':
+                currentGame = new AsteroidsGame(canvas);
+                currentGame.start();
+                break;
+            case 'solitaire':
+                currentGame = new SolitaireGame(canvas);
+                currentGame.start();
+                break;
+            case 'snake':
+                currentGame = new SnakeGame(canvas);
+                currentGame.start();
+                break;
+        }
+    }
+}
+
+function closeGame() {
+    if (currentGame) {
+        currentGame.destroy();
+        currentGame = null;
+    }
+    currentGameName = '';
+    closeWindow('game-player');
+    openWindow('games');
+}
+
+// Make game functions available globally
+window.launchGame = launchGame;
+window.restartGame = restartGame;
+window.closeGame = closeGame;
 
 // ===== XP SCREENSAVER =====
 let idleTime = 0;

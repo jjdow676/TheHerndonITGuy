@@ -1475,6 +1475,98 @@ body {
     font-weight: bold;
 }
 
+/* ===== GAMES WINDOW ===== */
+.games-content {
+    padding: 20px;
+}
+
+.games-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.games-header h2 {
+    font-size: 18px;
+    color: #003399;
+    margin-bottom: 4px;
+}
+
+.games-header p {
+    font-size: 12px;
+    color: #666;
+}
+
+.games-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.game-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background: linear-gradient(180deg, #fff 0%, #F5F5F5 100%);
+    border: 1px solid #D4D0C8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.game-card:hover {
+    background: linear-gradient(180deg, #E8F4FF 0%, #D0E4FF 100%);
+    border-color: #0066CC;
+    transform: translateX(3px);
+}
+
+.game-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+}
+
+.game-info h3 {
+    font-size: 14px;
+    color: #003399;
+    margin-bottom: 2px;
+}
+
+.game-info p {
+    font-size: 11px;
+    color: #666;
+}
+
+.games-tip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background: linear-gradient(180deg, #FFFFD5 0%, #FFFFB0 100%);
+    border: 1px solid #E6D98A;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #5C4D00;
+}
+
+.games-tip .tip-icon {
+    font-size: 16px;
+}
+
+/* Game Player Window */
+.game-player-content {
+    padding: 10px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game-canvas {
+    border: 2px solid #333;
+    border-radius: 4px;
+}
+
 /* ===== TASKBAR ===== */
 .taskbar {
     position: fixed;
