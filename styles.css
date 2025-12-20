@@ -477,7 +477,7 @@ body {
     left: 20px;
     display: grid;
     grid-template-columns: repeat(2, 90px);
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(5, auto);
     grid-auto-flow: column;
     gap: 8px 20px;
     z-index: 1;
