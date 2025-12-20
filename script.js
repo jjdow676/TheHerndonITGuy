@@ -897,39 +897,6 @@ function blinkTaskbarButton(windowId) {
 window.blinkTaskbarButton = blinkTaskbarButton;
 window.playErrorSound = playErrorSound;
 
-// ===== AVAILABILITY INDICATOR =====
-function updateAvailability() {
-    const indicator = document.getElementById('availability-indicator');
-    const stickyHeader = document.getElementById('sticky-header');
-    if (!indicator) return;
-
-    const now = new Date();
-    const day = now.getDay(); // 0 = Sunday, 6 = Saturday
-    const hour = now.getHours();
-
-    // Available Mon-Sat 9AM-7PM
-    const isAvailable = day >= 1 && day <= 6 && hour >= 9 && hour < 19;
-
-    if (isAvailable) {
-        indicator.classList.remove('offline');
-        indicator.querySelector('.availability-text').textContent = 'Available Now';
-    } else {
-        indicator.classList.add('offline');
-        // Calculate next available time
-        let nextDay = 'Mon';
-        if (day === 0) nextDay = 'Mon';
-        else if (day === 6 && hour >= 19) nextDay = 'Mon';
-        else if (hour >= 19) nextDay = 'Tomorrow';
-        else if (hour < 9) nextDay = 'Today';
-
-        indicator.querySelector('.availability-text').textContent = `Back ${nextDay} 9AM`;
-    }
-}
-
-// Update availability on load and every minute
-updateAvailability();
-setInterval(updateAvailability, 60000);
-
 // ===== XP SCREENSAVER =====
 let idleTime = 0;
 const SCREENSAVER_TIMEOUT = 60; // seconds

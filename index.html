@@ -263,10 +263,6 @@
                 <div class="icon-image ios-icon-purple">❓</div>
                 <span class="icon-label">FAQ</span>
             </div>
-            <div class="desktop-icon" data-window="problems">
-                <div class="icon-image ios-icon-gray">🗑️</div>
-                <span class="icon-label">Recycle Bin</span>
-            </div>
             <div class="desktop-icon mobile-only" id="sms-icon">
                 <div class="icon-image ios-icon-teal">💬</div>
                 <span class="icon-label">Text</span>
@@ -995,8 +991,14 @@ chat with the grandkids - I'm here to help!
             </div>
         </div>
 
-        <!-- Clippy Helper (Desktop only) -->
-        <div class="clippy-container" id="clippy">
+        <!-- Recycle Bin (Bottom Right) -->
+        <div class="recycle-bin-icon" data-window="problems" onclick="openWindow('problems')">
+            <div class="recycle-bin-img">🗑️</div>
+            <span class="recycle-bin-label">Recycle Bin</span>
+        </div>
+
+        <!-- Clippy Helper (Desktop only - moved to left side) -->
+        <div class="clippy-container clippy-left" id="clippy">
             <div class="clippy-bubble" id="clippy-bubble">
                 <div class="clippy-message" id="clippy-message">
                     👋 Hi there! Need tech help? I can connect you with The Herndon IT Guy!
@@ -1022,10 +1024,6 @@ chat with the grandkids - I'm here to help!
                 <!-- Dynamic taskbar buttons will be added here -->
             </div>
             <div class="system-tray">
-                <div class="availability-indicator" id="availability-indicator">
-                    <span class="availability-dot"></span>
-                    <span class="availability-text">Available Now</span>
-                </div>
                 <div class="tray-icons">
                     <span class="tray-icon">🔊</span>
                     <span class="tray-icon">🛡️</span>
@@ -1116,13 +1114,9 @@ chat with the grandkids - I'm here to help!
     <!-- Sticky Call Header (Desktop) -->
     <div id="sticky-header" class="sticky-header hidden">
         <div class="sticky-content">
-            <span class="sticky-availability">
-                <span class="sticky-dot"></span>
-                Available Now
-            </span>
-            <span class="sticky-divider">|</span>
-            <span class="sticky-phone">📞 (703) 424-9684</span>
-            <button class="sticky-btn" onclick="openWindow('contact')">Get Help</button>
+            <span class="sticky-text-prompt">💬 Need help? Text me!</span>
+            <span class="sticky-phone">(703) 424-9684</span>
+            <button class="sticky-btn" onclick="openWindow('contact')">Or Send a Message</button>
         </div>
     </div>
 
