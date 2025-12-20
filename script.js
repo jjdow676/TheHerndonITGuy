@@ -706,11 +706,11 @@ function toggleClippy() {
     }
 }
 
-// Show Clippy after 8 seconds on desktop
+// Show Clippy after 20 seconds on desktop
 if (window.innerWidth > 768 && clippyBubble) {
     setTimeout(() => {
         showClippy();
-    }, 8000);
+    }, 20000);
 }
 
 // Make functions available globally for onclick handlers
