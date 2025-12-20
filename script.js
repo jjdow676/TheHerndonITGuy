@@ -69,14 +69,11 @@ function playTapSound() {
 }
 
 // ===== LOGIN SCREEN (Desktop only - XP style) =====
-console.log('userLogin element:', userLogin); // Debug
 if (userLogin) {
     userLogin.addEventListener('click', () => {
-        console.log('Click detected on userLogin!'); // Debug
         // Only handle this on desktop - mobile uses slide to unlock
         if (window.innerWidth <= 768) return;
 
-        console.log('Processing desktop login...'); // Debug
         // Play Windows XP startup sound
         startupSound.volume = 0.5;
         startupSound.play().catch(e => console.log('Audio playback failed:', e));
@@ -373,59 +370,6 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 
-// ===== FORM HANDLING =====
-const contactForm = document.querySelector('.xp-form');
-if (contactForm) {
-    const sendBtn = contactForm.querySelector('.xp-button.primary');
-    const clearBtn = contactForm.querySelector('.xp-button:not(.primary)');
-
-    sendBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        // Simple validation
-        const inputs = contactForm.querySelectorAll('input, textarea, select');
-        let valid = true;
-
-        inputs.forEach(input => {
-            if (input.required && !input.value) {
-                valid = false;
-                input.style.borderColor = '#ff0000';
-            } else {
-                input.style.borderColor = '';
-            }
-        });
-
-        if (valid) {
-            // Show success
-            sendBtn.textContent = 'Sending...';
-            sendBtn.disabled = true;
-
-            setTimeout(() => {
-                sendBtn.textContent = 'Message Sent!';
-                sendBtn.style.background = 'linear-gradient(180deg, #90EE90 0%, #228B22 100%)';
-
-                // Reset form
-                inputs.forEach(input => input.value = '');
-
-                setTimeout(() => {
-                    sendBtn.textContent = 'Send Message';
-                    sendBtn.style.background = '';
-                    sendBtn.disabled = false;
-                }, 2000);
-            }, 1000);
-        }
-    });
-
-    if (clearBtn) {
-        clearBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            contactForm.querySelectorAll('input, textarea, select').forEach(input => {
-                input.value = '';
-                input.style.borderColor = '';
-            });
-        });
-    }
-}
 
 // ===== PHONE NUMBER FORMATTING =====
 const phoneInput = document.querySelector('input[type="tel"]');
