@@ -399,10 +399,33 @@
                     <button class="titlebar-btn close">×</button>
                 </div>
             </div>
+            <div class="window-menubar">
+                <div class="menu-item">File
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📧</span> Contact Me</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('remote')"><span class="menu-icon">🌐</span> Remote Support</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-dropdown-item" onclick="closeWindow('services')"><span class="menu-icon">❌</span> Close</div>
+                    </div>
+                </div>
+                <div class="menu-item">View
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('pricing')"><span class="menu-icon">💰</span> Pricing</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('advanced')"><span class="menu-icon">⚙️</span> Advanced Support</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('about')"><span class="menu-icon">👤</span> About Me</div>
+                    </div>
+                </div>
+                <div class="menu-item">Help
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('faq')"><span class="menu-icon">❓</span> FAQ</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📞</span> Get Support</div>
+                    </div>
+                </div>
+            </div>
             <div class="window-toolbar">
-                <button class="toolbar-btn"><span class="toolbar-icon">←</span> Back</button>
-                <button class="toolbar-btn"><span class="toolbar-icon">→</span> Forward</button>
-                <button class="toolbar-btn"><span class="toolbar-icon">📁</span> Folders</button>
+                <button class="toolbar-btn" onclick="openWindow('welcome')"><span class="toolbar-icon">←</span> Back</button>
+                <button class="toolbar-btn disabled"><span class="toolbar-icon">→</span> Forward</button>
+                <button class="toolbar-btn" onclick="openWindow('about')"><span class="toolbar-icon">📁</span> About</button>
             </div>
             <div class="window-addressbar">
                 <span class="address-label">Address</span>
@@ -709,6 +732,27 @@ chat with the grandkids - I'm here to help!
                     <button class="titlebar-btn close">×</button>
                 </div>
             </div>
+            <div class="window-menubar">
+                <div class="menu-item">File
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📅</span> Schedule Session</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-dropdown-item" onclick="closeWindow('remote')"><span class="menu-icon">❌</span> Close</div>
+                    </div>
+                </div>
+                <div class="menu-item">View
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('services')"><span class="menu-icon">🛠️</span> All Services</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('pricing')"><span class="menu-icon">💰</span> Pricing</div>
+                    </div>
+                </div>
+                <div class="menu-item">Help
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('faq')"><span class="menu-icon">❓</span> FAQ</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📞</span> Contact</div>
+                    </div>
+                </div>
+            </div>
             <div class="window-content remote-content">
                 <div class="remote-header">
                     <div class="remote-icon">🌐</div>
@@ -789,6 +833,28 @@ chat with the grandkids - I'm here to help!
                     <button class="titlebar-btn minimize">_</button>
                     <button class="titlebar-btn maximize">□</button>
                     <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <div class="menu-item">File
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📅</span> Book Now</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-dropdown-item" onclick="closeWindow('pricing')"><span class="menu-icon">❌</span> Close</div>
+                    </div>
+                </div>
+                <div class="menu-item">View
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('services')"><span class="menu-icon">🛠️</span> All Services</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('remote')"><span class="menu-icon">🌐</span> Remote Support</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('advanced')"><span class="menu-icon">⚙️</span> Advanced Support</div>
+                    </div>
+                </div>
+                <div class="menu-item">Help
+                    <div class="menu-dropdown">
+                        <div class="menu-dropdown-item" onclick="openWindow('faq')"><span class="menu-icon">❓</span> FAQ</div>
+                        <div class="menu-dropdown-item" onclick="openWindow('contact')"><span class="menu-icon">📞</span> Contact</div>
+                    </div>
                 </div>
             </div>
             <div class="window-content pricing-content">
