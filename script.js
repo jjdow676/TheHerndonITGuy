@@ -644,3 +644,81 @@ if (contactForm) {
         }, 5000);
     });
 }
+
+// ===== FAQ ACCORDION =====
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const item = question.closest('.faq-item');
+        const wasActive = item.classList.contains('active');
+
+        // Close all FAQ items
+        document.querySelectorAll('.faq-item').forEach(faq => {
+            faq.classList.remove('active');
+        });
+
+        // If this one wasn't active, open it
+        if (!wasActive) {
+            item.classList.add('active');
+        }
+    });
+});
+
+// ===== CLIPPY HELPER =====
+const clippyBubble = document.getElementById('clippy-bubble');
+const clippyCharacter = document.getElementById('clippy-character');
+let clippyDismissed = false;
+let clippyShown = false;
+
+// Clippy messages
+const clippyMessages = [
+    "👋 Hi there! Need tech help? I can connect you with The Herndon IT Guy!",
+    "💡 Did you know? Most tech problems can be fixed remotely - no waiting!",
+    "🔧 Computer running slow? Virus issues? I know someone who can help!",
+    "📞 Quick question? The Herndon IT Guy offers free phone consultations!",
+    "⭐ Looking for reliable IT support in Northern Virginia? You're in the right place!"
+];
+
+function showClippy() {
+    if (clippyDismissed || !clippyBubble) return;
+
+    // Pick a random message
+    const message = clippyMessages[Math.floor(Math.random() * clippyMessages.length)];
+    document.getElementById('clippy-message').textContent = message;
+
+    clippyBubble.classList.add('show');
+    clippyShown = true;
+}
+
+function hideClippy() {
+    if (!clippyBubble) return;
+    clippyBubble.classList.remove('show');
+    clippyDismissed = true;
+    clippyShown = false;
+}
+
+function toggleClippy() {
+    if (!clippyBubble) return;
+
+    if (clippyShown) {
+        clippyBubble.classList.remove('show');
+        clippyShown = false;
+    } else {
+        // Pick a new random message
+        const message = clippyMessages[Math.floor(Math.random() * clippyMessages.length)];
+        document.getElementById('clippy-message').textContent = message;
+        clippyBubble.classList.add('show');
+        clippyShown = true;
+        clippyDismissed = false;
+    }
+}
+
+// Show Clippy after 8 seconds on desktop
+if (window.innerWidth > 768 && clippyBubble) {
+    setTimeout(() => {
+        showClippy();
+    }, 8000);
+}
+
+// Make functions available globally for onclick handlers
+window.hideClippy = hideClippy;
+window.toggleClippy = toggleClippy;

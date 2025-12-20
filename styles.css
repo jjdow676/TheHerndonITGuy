@@ -2509,3 +2509,323 @@ body {
     border: 1px solid #F5C6CB;
     color: #721C24;
 }
+
+/* ===== FAQ STYLES ===== */
+.faq-content {
+    padding: 20px;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ACA899;
+}
+
+.faq-header h2 {
+    font-size: 18px;
+    color: #003399;
+    margin: 0 0 5px 0;
+}
+
+.faq-header p {
+    color: #666;
+    margin: 0;
+    font-size: 12px;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.faq-item {
+    background: #fff;
+    border: 1px solid #ACA899;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    cursor: pointer;
+    background: linear-gradient(180deg, #fff 0%, #F5F5F5 100%);
+    font-weight: bold;
+    font-size: 12px;
+    transition: background 0.15s ease;
+}
+
+.faq-question:hover {
+    background: linear-gradient(180deg, #E8F4FF 0%, #D0E8FF 100%);
+}
+
+.faq-item.active .faq-question {
+    background: linear-gradient(180deg, #D0E8FF 0%, #B8DCFF 100%);
+    border-bottom: 1px solid #ACA899;
+}
+
+.faq-icon {
+    font-size: 16px;
+}
+
+.faq-question > span:nth-child(2) {
+    flex: 1;
+}
+
+.faq-toggle {
+    font-size: 18px;
+    font-weight: bold;
+    color: #666;
+    width: 20px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 15px;
+    font-size: 12px;
+    line-height: 1.6;
+    background: #FFFEF8;
+    border-top: 1px solid #E0DDD5;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+.faq-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ACA899;
+}
+
+.faq-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 13px;
+}
+
+/* ===== CLIPPY HELPER STYLES ===== */
+.clippy-container {
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    z-index: 9998;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+}
+
+.clippy-bubble {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    width: 280px;
+    background: #FFFFD5;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    display: none;
+}
+
+.clippy-bubble.show {
+    display: block;
+    animation: clippyBounce 0.3s ease-out;
+}
+
+@keyframes clippyBounce {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.clippy-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    right: 30px;
+    border: 10px solid transparent;
+    border-top-color: #FFFFD5;
+}
+
+.clippy-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    right: 28px;
+    border: 12px solid transparent;
+    border-top-color: #000;
+}
+
+.clippy-message {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.clippy-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.clippy-btn {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 11px;
+    font-family: 'Tahoma', sans-serif;
+    border: 1px solid #7F9DB9;
+    border-radius: 3px;
+    cursor: pointer;
+    background: var(--xp-button);
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.clippy-btn:hover {
+    background: var(--xp-button-hover);
+}
+
+.clippy-btn.primary {
+    background: linear-gradient(180deg, #7EB56A 0%, #5D9E4A 50%, #4A8A3A 100%);
+    border-color: #3A7030;
+    color: #fff;
+    font-weight: bold;
+}
+
+.clippy-btn.primary:hover {
+    background: linear-gradient(180deg, #8EC57A 0%, #6DAE5A 50%, #5A9A4A 100%);
+}
+
+.clippy-close {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    line-height: 1;
+}
+
+.clippy-close:hover {
+    color: #000;
+}
+
+.clippy-character {
+    width: 70px;
+    height: 90px;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.1s ease;
+}
+
+.clippy-character:hover {
+    transform: scale(1.05);
+}
+
+.clippy-character:active {
+    transform: scale(0.95);
+}
+
+.clippy-body {
+    width: 50px;
+    height: 70px;
+    background: linear-gradient(135deg, #C4C4C4 0%, #A0A0A0 50%, #808080 100%);
+    border: 2px solid #606060;
+    border-radius: 8px 8px 5px 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.clippy-body::before {
+    content: '📎';
+    font-size: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.clippy-eyes {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.clippy-eye {
+    width: 10px;
+    height: 14px;
+    background: #fff;
+    border: 2px solid #333;
+    border-radius: 50%;
+    position: relative;
+}
+
+.clippy-eye::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #333;
+    border-radius: 50%;
+    top: 4px;
+    left: 2px;
+    animation: clippyLook 4s ease-in-out infinite;
+}
+
+@keyframes clippyLook {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(2px); }
+    75% { transform: translateX(-2px); }
+}
+
+.clippy-eyebrows {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.clippy-eyebrow {
+    width: 12px;
+    height: 3px;
+    background: #333;
+    border-radius: 2px;
+}
+
+.clippy-eyebrow.left {
+    transform: rotate(-10deg);
+}
+
+.clippy-eyebrow.right {
+    transform: rotate(10deg);
+}
+
+/* Hide Clippy on mobile */
+@media (max-width: 768px) {
+    .clippy-container {
+        display: none;
+    }
+}

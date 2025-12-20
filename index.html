@@ -245,6 +245,10 @@
                 <div class="icon-image ios-icon-gray">ℹ️</div>
                 <span class="icon-label">Welcome</span>
             </div>
+            <div class="desktop-icon" data-window="faq">
+                <div class="icon-image ios-icon-purple">❓</div>
+                <span class="icon-label">FAQ</span>
+            </div>
             <div class="desktop-icon mobile-only" id="sms-icon">
                 <div class="icon-image ios-icon-teal">💬</div>
                 <span class="icon-label">Text</span>
@@ -727,6 +731,149 @@ chat with the grandkids - I'm here to help!
             </div>
         </div>
 
+        <!-- FAQ Window -->
+        <div class="xp-window hidden" id="window-faq" style="width: 620px; top: 70px; left: 120px;">
+            <div class="window-titlebar">
+                <div class="titlebar-icon">❓</div>
+                <div class="titlebar-title">Frequently Asked Questions - Help</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Help</span>
+            </div>
+            <div class="window-content faq-content">
+                <div class="faq-header">
+                    <h2>❓ Frequently Asked Questions</h2>
+                    <p>Got questions? I've got answers!</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">📁</span>
+                            <span>How does remote support work?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            I'll send you a secure link to click. This lets me see your screen (with your permission) so I can diagnose and fix the problem while you watch. It's safe, secure, and you stay in control the entire time. Most issues are resolved in under an hour!
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">📁</span>
+                            <span>What if you can't fix my problem?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <strong>No fix, no fee!</strong> If I can't resolve your issue, you don't pay. It's that simple. I'll always be upfront about what can and can't be fixed before we start any paid work.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">📁</span>
+                            <span>How quickly can you help me?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            For remote support, I often have same-day availability - sometimes within the hour! On-site visits are typically scheduled within 24-48 hours depending on my schedule. Urgent issues get priority.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">📁</span>
+                            <span>What areas do you serve for on-site visits?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            I'm based in Herndon, VA and serve all of Northern Virginia including Reston, Sterling, Ashburn, Leesburg, Fairfax, and surrounding areas. For remote support, I can help anyone, anywhere!
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">📁</span>
+                            <span>Do you work on Macs or just PCs?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            I work on both! Windows PCs, Macs, tablets, phones, smart home devices - you name it. If it has a power button, I can probably help with it.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">📁</span>
+                            <span>Is remote support safe? Will you see my passwords?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Absolutely safe! The connection is encrypted, and you can see everything I do on screen. I never ask for passwords - if we need to enter one, you type it yourself. You can end the session anytime with one click.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">📁</span>
+                            <span>What payment methods do you accept?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            I accept all major credit/debit cards, cash, Venmo, and Zelle. Payment is due after the service is completed and you're satisfied with the work.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span class="faq-icon">📁</span>
+                            <span>Do you offer ongoing support or just one-time fixes?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Both! Many clients call me whenever something comes up. I also offer maintenance packages for small businesses who want regular check-ins. Contact me to discuss what works best for you.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-footer">
+                    <div class="faq-cta">
+                        <span>Still have questions?</span>
+                        <button class="xp-button primary" onclick="openWindow('contact')">Contact Me</button>
+                    </div>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span>8 questions</span>
+                <span>Click a question to expand</span>
+            </div>
+        </div>
+
+        <!-- Clippy Helper (Desktop only) -->
+        <div class="clippy-container" id="clippy">
+            <div class="clippy-bubble" id="clippy-bubble">
+                <div class="clippy-message" id="clippy-message">
+                    👋 Hi there! Need tech help? I can connect you with The Herndon IT Guy!
+                </div>
+                <div class="clippy-actions">
+                    <button class="clippy-btn primary" onclick="openWindow('contact'); hideClippy();">Get Help</button>
+                    <button class="clippy-btn" onclick="hideClippy()">Maybe Later</button>
+                </div>
+                <button class="clippy-close" onclick="hideClippy()">×</button>
+            </div>
+            <div class="clippy-character" id="clippy-character" onclick="toggleClippy()">
+                <div class="clippy-body">
+                    <div class="clippy-eyes">
+                        <div class="clippy-eye left"></div>
+                        <div class="clippy-eye right"></div>
+                    </div>
+                    <div class="clippy-eyebrows">
+                        <div class="clippy-eyebrow left"></div>
+                        <div class="clippy-eyebrow right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Taskbar -->
         <div class="taskbar">
             <button class="start-button" id="start-btn">
@@ -769,6 +916,10 @@ chat with the grandkids - I'm here to help!
                     <div class="start-item" onclick="openWindow('pricing')">
                         <span class="start-icon">💰</span>
                         <span class="start-label">Pricing</span>
+                    </div>
+                    <div class="start-item" onclick="openWindow('faq')">
+                        <span class="start-icon">❓</span>
+                        <span class="start-label">FAQ</span>
                     </div>
                     <div class="start-divider"></div>
                     <div class="start-item" onclick="openWindow('about')">
