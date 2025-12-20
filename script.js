@@ -141,10 +141,16 @@ function closeWindow(windowId) {
         taskbarBtn.remove();
     }
 
-    // Set another window as active if available
+    // Set another window as active if available (without playing sound)
     if (openWindows.size > 0) {
         const lastWindow = Array.from(openWindows).pop();
-        openWindow(lastWindow);
+        // Directly activate without calling openWindow to avoid sound
+        const lastWindowEl = document.getElementById(`window-${lastWindow}`);
+        if (lastWindowEl) {
+            lastWindowEl.classList.remove('hidden');
+            setActiveWindow(lastWindowEl);
+            updateTaskbarButtons(lastWindow);
+        }
     } else {
         activeWindow = null;
     }
