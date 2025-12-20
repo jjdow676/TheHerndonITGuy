@@ -418,7 +418,7 @@ body {
     width: 0%;
     display: flex;
     gap: 3px;
-    animation: loadingProgress 2s ease-in-out forwards;
+    animation: loadingProgress 1.2s ease-in-out forwards;
 }
 
 .loading-bar-fill::before,
@@ -442,7 +442,7 @@ body {
         #0078D7 12px,
         #0078D7 20px
     );
-    animation: loadingProgress 2s ease-out forwards, loadingShine 0.5s linear infinite;
+    animation: loadingProgress 1.2s ease-out forwards, loadingShine 0.5s linear infinite;
 }
 
 @keyframes loadingShine {
@@ -2774,37 +2774,6 @@ body {
     }
 }
 
-/* ===== XP LOADING DOTS ===== */
-.xp-loading-dots {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-top: 15px;
-}
-
-.xp-dot {
-    width: 20px;
-    height: 8px;
-    background: linear-gradient(180deg, #6699FF 0%, #3366CC 50%, #003399 100%);
-    border-radius: 2px;
-    animation: xpDotSlide 1.5s ease-in-out infinite;
-}
-
-.xp-dot:nth-child(1) { animation-delay: 0s; }
-.xp-dot:nth-child(2) { animation-delay: 0.15s; }
-.xp-dot:nth-child(3) { animation-delay: 0.3s; }
-
-@keyframes xpDotSlide {
-    0%, 100% {
-        opacity: 0.3;
-        transform: translateX(-20px);
-    }
-    50% {
-        opacity: 1;
-        transform: translateX(20px);
-    }
-}
-
 /* ===== RIGHT-CLICK CONTEXT MENU ===== */
 .context-menu {
     position: fixed;
@@ -2877,10 +2846,10 @@ body {
 
 /* ===== TASKBAR BUTTON BLINK ===== */
 @keyframes taskbarBlink {
-    0%, 100% { background: var(--xp-button); }
+    0%, 100% { background: linear-gradient(180deg, #3E9FEB 0%, #2373CC 40%, #1D5DA8 100%); }
     50% { background: linear-gradient(180deg, #FFE082 0%, #FFB74D 50%, #FF9800 100%); }
 }
 
 .taskbar-btn.blinking {
-    animation: taskbarBlink 0.5s ease-in-out 6;
+    animation: taskbarBlink 0.5s ease-in-out 6 !important;
 }

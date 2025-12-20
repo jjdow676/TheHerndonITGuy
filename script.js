@@ -96,7 +96,7 @@ if (userLogin) {
                 setTimeout(() => {
                     openWindow('welcome');
                 }, 300);
-            }, 2500); // Loading screen duration
+            }, 1500); // Loading screen duration
         }, 500);
     });
 }
@@ -351,13 +351,16 @@ document.querySelectorAll('.start-item, .start-item-right').forEach(item => {
 
 // ===== SYSTEM TRAY CLOCK =====
 function updateClock() {
+    const clockTime = document.querySelector('.clock-time');
+    if (!clockTime) return;
+
     const now = new Date();
     let hours = now.getHours();
     const minutes = now.getMinutes().toString().padStart(2, '0');
     const ampm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12;
     hours = hours ? hours : 12;
-    trayClock.textContent = `${hours}:${minutes} ${ampm}`;
+    clockTime.textContent = `${hours}:${minutes} ${ampm}`;
 }
 
 updateClock();
