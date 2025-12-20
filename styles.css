@@ -825,6 +825,23 @@ body {
     border: 1px solid #FFE69C;
 }
 
+.service-badge.contact {
+    background: #E3E8F0;
+    color: #1a365d;
+    border: 1px solid #a3bffa;
+}
+
+.service-folder.advanced-folder {
+    cursor: pointer;
+    border: 1px solid #a3bffa;
+    background: linear-gradient(180deg, #fff 0%, #E8F0FF 100%);
+}
+
+.service-folder.advanced-folder:hover {
+    border-color: #0066CC;
+    background: linear-gradient(180deg, #fff 0%, #D0E4FF 100%);
+}
+
 .service-example {
     font-size: 10px;
     color: #0066CC;
@@ -1310,6 +1327,152 @@ body {
 .note-text {
     font-size: 11px;
     line-height: 1.4;
+}
+
+/* ===== ADVANCED SUPPORT WINDOW ===== */
+.advanced-content {
+    padding: 20px;
+}
+
+.advanced-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #D4D0C8;
+}
+
+.advanced-icon {
+    font-size: 48px;
+}
+
+.advanced-title h2 {
+    font-size: 18px;
+    color: #003399;
+    margin-bottom: 4px;
+}
+
+.advanced-title p {
+    font-size: 12px;
+    color: #666;
+}
+
+.advanced-services {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.advanced-service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #D4D0C8;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+}
+
+.advanced-service-item:hover {
+    background: #F5F5F5;
+    border-color: #0066CC;
+}
+
+.advanced-service-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.advanced-service-info h3 {
+    font-size: 13px;
+    color: #003399;
+    margin-bottom: 4px;
+}
+
+.advanced-service-info p {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.advanced-pricing-note {
+    background: linear-gradient(180deg, #E8F4FC 0%, #D0E8F8 100%);
+    border: 1px solid #7FC1E8;
+    border-radius: 4px;
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.pricing-note-icon {
+    font-size: 28px;
+}
+
+.pricing-note-content strong {
+    display: block;
+    font-size: 13px;
+    color: #003399;
+    margin-bottom: 4px;
+}
+
+.pricing-note-content p {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.4;
+}
+
+.advanced-cta {
+    text-align: center;
+}
+
+/* Pricing Advanced Banner */
+.pricing-advanced-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    background: linear-gradient(180deg, #E8F0FF 0%, #D0E4FF 100%);
+    border: 1px solid #7FC1E8;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.pricing-advanced-banner:hover {
+    background: linear-gradient(180deg, #D0E4FF 0%, #B8D4FF 100%);
+    border-color: #0066CC;
+}
+
+.advanced-banner-icon {
+    font-size: 28px;
+}
+
+.advanced-banner-text {
+    flex: 1;
+}
+
+.advanced-banner-text strong {
+    display: block;
+    font-size: 12px;
+    color: #003399;
+    margin-bottom: 2px;
+}
+
+.advanced-banner-text span {
+    font-size: 10px;
+    color: #555;
+}
+
+.advanced-banner-arrow {
+    font-size: 18px;
+    color: #0066CC;
+    font-weight: bold;
 }
 
 /* ===== TASKBAR ===== */

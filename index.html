@@ -269,6 +269,10 @@
                 <img src="assets/icon-faq.png" alt="FAQ" class="icon-image xp-icon">
                 <span class="icon-label">FAQ</span>
             </div>
+            <div class="desktop-icon" data-window="advanced">
+                <img src="assets/icon-advanced.png" alt="Advanced Support" class="icon-image xp-icon">
+                <span class="icon-label">Advanced Support</span>
+            </div>
             <!-- Mobile only -->
             <div class="desktop-icon mobile-only" id="sms-icon">
                 <div class="icon-image ios-icon-teal">💬</div>
@@ -347,6 +351,10 @@
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
                             <span>No Fix, No Fee Guarantee</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Advanced Business & Enterprise Support</span>
                         </div>
                     </div>
                     <div class="welcome-actions">
@@ -466,11 +474,18 @@
                             <div class="service-example">"Just got a new laptop" → I'll set it up!</div>
                             <div class="service-badge remote">🌐 Remote Available</div>
                         </div>
+                        <div class="service-folder advanced-folder" onclick="openWindow('advanced')">
+                            <div class="folder-icon">⚙️</div>
+                            <div class="folder-name">Advanced Support</div>
+                            <div class="folder-desc">Website building, system admin, Salesforce, databases</div>
+                            <div class="service-example">Enterprise-level IT solutions → Contact for pricing</div>
+                            <div class="service-badge contact">💼 Contact for Quote</div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="window-statusbar">
-                <span>8 objects</span>
+                <span>9 objects</span>
                 <span>Most services available remotely!</span>
             </div>
         </div>
@@ -761,6 +776,14 @@ chat with the grandkids - I'm here to help!
                         <button class="xp-button" onclick="openWindow('contact')">Schedule</button>
                     </div>
                 </div>
+                <div class="pricing-advanced-banner" onclick="openWindow('advanced')">
+                    <div class="advanced-banner-icon">⚙️</div>
+                    <div class="advanced-banner-text">
+                        <strong>Advanced & Enterprise Support</strong>
+                        <span>Website building, System Admin, Salesforce, Databases - Contact for quote</span>
+                    </div>
+                    <div class="advanced-banner-arrow">→</div>
+                </div>
                 <div class="pricing-note">
                     <div class="note-icon">ℹ️</div>
                     <div class="note-text">
@@ -884,6 +907,78 @@ chat with the grandkids - I'm here to help!
             <div class="window-statusbar">
                 <span>8 questions</span>
                 <span>Click a question to expand</span>
+            </div>
+        </div>
+
+        <!-- Advanced Support Window -->
+        <div class="xp-window hidden" id="window-advanced" style="width: 620px; top: 70px; left: 160px;">
+            <div class="window-titlebar">
+                <img src="assets/icon-advanced.png" alt="" class="titlebar-icon titlebar-icon-img">
+                <div class="titlebar-title">Advanced Support - Enterprise Services</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-menubar">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Help</span>
+            </div>
+            <div class="window-content advanced-content">
+                <div class="advanced-header">
+                    <div class="advanced-icon">⚙️</div>
+                    <div class="advanced-title">
+                        <h2>Advanced & Enterprise Support</h2>
+                        <p>Professional-grade solutions for businesses and power users</p>
+                    </div>
+                </div>
+                <div class="advanced-services">
+                    <div class="advanced-service-item">
+                        <div class="advanced-service-icon">🌐</div>
+                        <div class="advanced-service-info">
+                            <h3>Website Building</h3>
+                            <p>Custom website development, hosting setup, domain configuration, SEO optimization, and ongoing maintenance.</p>
+                        </div>
+                    </div>
+                    <div class="advanced-service-item">
+                        <div class="advanced-service-icon">🖥️</div>
+                        <div class="advanced-service-info">
+                            <h3>System Administration</h3>
+                            <p>Server setup & management, Active Directory, user management, security policies, and infrastructure maintenance.</p>
+                        </div>
+                    </div>
+                    <div class="advanced-service-item">
+                        <div class="advanced-service-icon">☁️</div>
+                        <div class="advanced-service-info">
+                            <h3>Salesforce Administration</h3>
+                            <p>Salesforce setup, customization, user training, workflow automation, reports, and ongoing CRM support.</p>
+                        </div>
+                    </div>
+                    <div class="advanced-service-item">
+                        <div class="advanced-service-icon">🗄️</div>
+                        <div class="advanced-service-info">
+                            <h3>Database Administration</h3>
+                            <p>Database design, optimization, backup strategies, migration, SQL support, and performance tuning.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="advanced-pricing-note">
+                    <div class="pricing-note-icon">💼</div>
+                    <div class="pricing-note-content">
+                        <strong>Custom Pricing</strong>
+                        <p>These advanced services are priced based on project scope and requirements. Contact me for a free consultation and quote!</p>
+                    </div>
+                </div>
+                <div class="advanced-cta">
+                    <button class="xp-button primary large" onclick="openWindow('contact')">📞 Contact Me for Quote</button>
+                </div>
+            </div>
+            <div class="window-statusbar">
+                <span>4 advanced services</span>
+                <span>Contact for pricing</span>
             </div>
         </div>
 
@@ -1095,6 +1190,10 @@ chat with the grandkids - I'm here to help!
                     <div class="start-item" onclick="openWindow('faq')">
                         <img src="assets/icon-faq.png" alt="" class="start-icon start-icon-img">
                         <span class="start-label">FAQ</span>
+                    </div>
+                    <div class="start-item" onclick="openWindow('advanced')">
+                        <img src="assets/icon-advanced.png" alt="" class="start-icon start-icon-img">
+                        <span class="start-label">Advanced Support</span>
                     </div>
                     <div class="start-divider"></div>
                     <div class="start-item" onclick="openWindow('about')">
