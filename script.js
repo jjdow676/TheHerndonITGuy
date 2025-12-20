@@ -69,35 +69,40 @@ function playTapSound() {
 }
 
 // ===== LOGIN SCREEN (Desktop only - XP style) =====
-userLogin.addEventListener('click', () => {
-    // Only handle this on desktop - mobile uses slide to unlock
-    if (window.innerWidth <= 768) return;
+console.log('userLogin element:', userLogin); // Debug
+if (userLogin) {
+    userLogin.addEventListener('click', () => {
+        console.log('Click detected on userLogin!'); // Debug
+        // Only handle this on desktop - mobile uses slide to unlock
+        if (window.innerWidth <= 768) return;
 
-    // Play Windows XP startup sound
-    startupSound.volume = 0.5;
-    startupSound.play().catch(e => console.log('Audio playback failed:', e));
+        console.log('Processing desktop login...'); // Debug
+        // Play Windows XP startup sound
+        startupSound.volume = 0.5;
+        startupSound.play().catch(e => console.log('Audio playback failed:', e));
 
-    // Fade out login screen
-    loginScreen.classList.add('fade-out');
+        // Fade out login screen
+        loginScreen.classList.add('fade-out');
 
-    setTimeout(() => {
-        loginScreen.classList.add('hidden');
-
-        // Show loading screen
-        loadingScreen.classList.remove('hidden');
-
-        // After loading animation completes, show desktop
         setTimeout(() => {
-            loadingScreen.classList.add('hidden');
-            desktop.classList.remove('hidden');
+            loginScreen.classList.add('hidden');
 
-            // Auto-open welcome window after login (desktop only)
+            // Show loading screen
+            loadingScreen.classList.remove('hidden');
+
+            // After loading animation completes, show desktop
             setTimeout(() => {
-                openWindow('welcome');
-            }, 300);
-        }, 2500); // Loading screen duration
-    }, 500);
-});
+                loadingScreen.classList.add('hidden');
+                desktop.classList.remove('hidden');
+
+                // Auto-open welcome window after login (desktop only)
+                setTimeout(() => {
+                    openWindow('welcome');
+                }, 300);
+            }, 2500); // Loading screen duration
+        }, 500);
+    });
+}
 
 // ===== WINDOW MANAGEMENT =====
 function openWindow(windowId) {
