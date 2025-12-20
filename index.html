@@ -236,19 +236,23 @@
         <!-- Desktop Icons -->
         <div class="desktop-icons">
             <div class="desktop-icon" data-window="services">
-                <div class="icon-image ios-icon-orange">🛠️</div>
+                <img src="assets/icon-services.png" alt="Services" class="icon-image xp-icon">
                 <span class="icon-label">My Services</span>
             </div>
+            <div class="desktop-icon" data-window="games">
+                <img src="assets/icon-games.png" alt="Games" class="icon-image xp-icon">
+                <span class="icon-label">Games</span>
+            </div>
             <div class="desktop-icon" data-window="about">
-                <div class="icon-image ios-icon-blue">📁</div>
+                <img src="assets/icon-about.png" alt="About" class="icon-image xp-icon">
                 <span class="icon-label">About Me</span>
             </div>
             <div class="desktop-icon" data-window="contact">
-                <div class="icon-image ios-icon-green">📧</div>
+                <img src="assets/icon-contact.png" alt="Contact" class="icon-image xp-icon">
                 <span class="icon-label">Contact</span>
             </div>
             <div class="desktop-icon" data-window="remote">
-                <div class="icon-image ios-icon-purple">🌐</div>
+                <img src="assets/icon-remote.png" alt="Remote" class="icon-image xp-icon">
                 <span class="icon-label">Remote Support</span>
             </div>
             <div class="desktop-icon" data-window="pricing">
@@ -256,11 +260,11 @@
                 <span class="icon-label">Pricing</span>
             </div>
             <div class="desktop-icon" data-window="welcome">
-                <div class="icon-image ios-icon-gray">ℹ️</div>
+                <img src="assets/icon-welcome.png" alt="Welcome" class="icon-image xp-icon">
                 <span class="icon-label">Welcome</span>
             </div>
             <div class="desktop-icon" data-window="faq">
-                <div class="icon-image ios-icon-purple">❓</div>
+                <img src="assets/icon-faq.png" alt="FAQ" class="icon-image xp-icon">
                 <span class="icon-label">FAQ</span>
             </div>
             <div class="desktop-icon mobile-only" id="sms-icon">
@@ -292,7 +296,7 @@
         <!-- Welcome Window (Auto-opens on desktop only) -->
         <div class="xp-window hidden" id="window-welcome" style="width: 600px; top: 80px; left: 50%; transform: translateX(-50%);">
             <div class="window-titlebar">
-                <div class="titlebar-icon">ℹ️</div>
+                <img src="assets/icon-welcome.png" alt="" class="titlebar-icon titlebar-icon-img">
                 <div class="titlebar-title">Welcome to The Herndon IT Guy</div>
                 <div class="titlebar-buttons">
                     <button class="titlebar-btn minimize">_</button>
@@ -357,7 +361,7 @@
         <!-- Services Window -->
         <div class="xp-window hidden" id="window-services" style="width: 700px; top: 60px; left: 100px;">
             <div class="window-titlebar">
-                <div class="titlebar-icon">🛠️</div>
+                <img src="assets/icon-services.png" alt="" class="titlebar-icon titlebar-icon-img">
                 <div class="titlebar-title">My Services - Windows Explorer</div>
                 <div class="titlebar-buttons">
                     <button class="titlebar-btn minimize">_</button>
@@ -471,7 +475,7 @@
         <!-- About Window -->
         <div class="xp-window hidden" id="window-about" style="width: 550px; top: 100px; left: 200px;">
             <div class="window-titlebar">
-                <div class="titlebar-icon">📁</div>
+                <img src="assets/icon-about.png" alt="" class="titlebar-icon titlebar-icon-img">
                 <div class="titlebar-title">About Me - Notepad</div>
                 <div class="titlebar-buttons">
                     <button class="titlebar-btn minimize">_</button>
@@ -547,7 +551,7 @@ chat with the grandkids - I'm here to help!
         <!-- Contact Window -->
         <div class="xp-window hidden" id="window-contact" style="width: 500px; top: 80px; left: 250px;">
             <div class="window-titlebar">
-                <div class="titlebar-icon">📧</div>
+                <img src="assets/icon-contact.png" alt="" class="titlebar-icon titlebar-icon-img">
                 <div class="titlebar-title">Contact - Get Help</div>
                 <div class="titlebar-buttons">
                     <button class="titlebar-btn minimize">_</button>
@@ -630,7 +634,7 @@ chat with the grandkids - I'm here to help!
         <!-- Remote Support Window -->
         <div class="xp-window hidden" id="window-remote" style="width: 580px; top: 70px; left: 180px;">
             <div class="window-titlebar">
-                <div class="titlebar-icon">🌐</div>
+                <img src="assets/icon-remote.png" alt="" class="titlebar-icon titlebar-icon-img">
                 <div class="titlebar-title">Remote Support - Virtual IT Help</div>
                 <div class="titlebar-buttons">
                     <button class="titlebar-btn minimize">_</button>
@@ -766,7 +770,7 @@ chat with the grandkids - I'm here to help!
         <!-- FAQ Window -->
         <div class="xp-window hidden" id="window-faq" style="width: 620px; top: 70px; left: 120px;">
             <div class="window-titlebar">
-                <div class="titlebar-icon">❓</div>
+                <img src="assets/icon-faq.png" alt="" class="titlebar-icon titlebar-icon-img">
                 <div class="titlebar-title">Frequently Asked Questions - Help</div>
                 <div class="titlebar-buttons">
                     <button class="titlebar-btn minimize">_</button>
@@ -880,10 +884,32 @@ chat with the grandkids - I'm here to help!
             </div>
         </div>
 
+        <!-- Games Window (Placeholder) -->
+        <div class="xp-window hidden" id="window-games" style="width: 500px; top: 100px; left: 200px;">
+            <div class="window-titlebar">
+                <img src="assets/icon-games.png" alt="" class="titlebar-icon titlebar-icon-img">
+                <div class="titlebar-title">Games</div>
+                <div class="titlebar-buttons">
+                    <button class="titlebar-btn minimize">_</button>
+                    <button class="titlebar-btn maximize">□</button>
+                    <button class="titlebar-btn close">×</button>
+                </div>
+            </div>
+            <div class="window-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px; text-align: center; padding: 40px;">
+                <div style="font-size: 64px; margin-bottom: 20px;">🎮</div>
+                <h2 style="margin: 0 0 10px 0; color: #003399;">Coming Soon!</h2>
+                <p style="color: #666; margin: 0;">Games are under construction.<br>Check back later for some fun!</p>
+            </div>
+            <div class="window-statusbar">
+                <span>0 games</span>
+                <span>Under construction</span>
+            </div>
+        </div>
+
         <!-- Common Problems Window (Recycle Bin) -->
         <div class="xp-window hidden" id="window-problems" style="width: 580px; top: 80px; left: 140px;">
             <div class="window-titlebar">
-                <div class="titlebar-icon">🗑️</div>
+                <img src="assets/icon-recycle-bin.png" alt="" class="titlebar-icon titlebar-icon-img">
                 <div class="titlebar-title">Recycle Bin - Common Problems I Fix</div>
                 <div class="titlebar-buttons">
                     <button class="titlebar-btn minimize">_</button>
@@ -993,7 +1019,7 @@ chat with the grandkids - I'm here to help!
 
         <!-- Recycle Bin (Bottom Right) -->
         <div class="recycle-bin-icon" data-window="problems" onclick="openWindow('problems')">
-            <div class="recycle-bin-img">🗑️</div>
+            <img src="assets/icon-recycle-bin.png" alt="Recycle Bin" class="recycle-bin-img">
             <span class="recycle-bin-label">Recycle Bin</span>
         </div>
 
@@ -1045,15 +1071,15 @@ chat with the grandkids - I'm here to help!
             <div class="start-menu-content">
                 <div class="start-menu-left">
                     <div class="start-item" onclick="openWindow('welcome')">
-                        <span class="start-icon">ℹ️</span>
+                        <img src="assets/icon-welcome.png" alt="" class="start-icon start-icon-img">
                         <span class="start-label">Welcome</span>
                     </div>
                     <div class="start-item" onclick="openWindow('services')">
-                        <span class="start-icon">🛠️</span>
+                        <img src="assets/icon-services.png" alt="" class="start-icon start-icon-img">
                         <span class="start-label">My Services</span>
                     </div>
                     <div class="start-item" onclick="openWindow('remote')">
-                        <span class="start-icon">🌐</span>
+                        <img src="assets/icon-remote.png" alt="" class="start-icon start-icon-img">
                         <span class="start-label">Remote Support</span>
                     </div>
                     <div class="start-item" onclick="openWindow('pricing')">
@@ -1061,16 +1087,16 @@ chat with the grandkids - I'm here to help!
                         <span class="start-label">Pricing</span>
                     </div>
                     <div class="start-item" onclick="openWindow('faq')">
-                        <span class="start-icon">❓</span>
+                        <img src="assets/icon-faq.png" alt="" class="start-icon start-icon-img">
                         <span class="start-label">FAQ</span>
                     </div>
                     <div class="start-divider"></div>
                     <div class="start-item" onclick="openWindow('about')">
-                        <span class="start-icon">📁</span>
+                        <img src="assets/icon-about.png" alt="" class="start-icon start-icon-img">
                         <span class="start-label">About Me</span>
                     </div>
                     <div class="start-item" onclick="openWindow('contact')">
-                        <span class="start-icon">📧</span>
+                        <img src="assets/icon-contact.png" alt="" class="start-icon start-icon-img">
                         <span class="start-label">Contact</span>
                     </div>
                 </div>

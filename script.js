@@ -106,6 +106,9 @@ function openWindow(windowId) {
     const windowEl = document.getElementById(`window-${windowId}`);
     if (!windowEl) return;
 
+    // Play window open sound (desktop only)
+    playOpenSound();
+
     // Close start menu if open
     startMenu.classList.add('hidden');
 
@@ -615,18 +618,17 @@ if (contactForm) {
                 formResult.classList.remove('hidden');
                 formResult.classList.add('success');
                 formResult.innerHTML = '✓ Message sent! I\'ll get back to you soon.';
+                playEmailSentSound();
                 contactForm.reset();
             } else {
                 formResult.classList.remove('hidden');
                 formResult.classList.add('error');
                 formResult.innerHTML = '✗ Something went wrong. Please try again or text me directly.';
-                if (window.playErrorSound) playErrorSound();
             }
         } catch (error) {
             formResult.classList.remove('hidden');
             formResult.classList.add('error');
             formResult.innerHTML = '✗ Connection error. Please text me at (703) 424-9684.';
-            if (window.playErrorSound) playErrorSound();
         }
 
         submitBtn.disabled = false;
@@ -774,42 +776,30 @@ function updateClockTooltip() {
 updateClockTooltip();
 
 // ===== XP SOUND EFFECTS =====
-const clickSound = new Audio('assets/xp-click.mp3');
+const openSound = new Audio('assets/xp-open.mp3');
 const closeSound = new Audio('assets/xp-close.mp3');
-const errorSound = new Audio('assets/xp-error.mp3');
+const emailSentSound = new Audio('assets/email-sent.wav');
 
-clickSound.preload = 'auto';
+openSound.preload = 'auto';
 closeSound.preload = 'auto';
-errorSound.preload = 'auto';
+emailSentSound.preload = 'auto';
 
-clickSound.volume = 0.3;
+openSound.volume = 0.3;
 closeSound.volume = 0.3;
-errorSound.volume = 0.4;
+emailSentSound.volume = 0.4;
 
-// Play click sound on desktop icons (desktop only)
-if (window.innerWidth > 768) {
-    document.querySelectorAll('.desktop-icon').forEach(icon => {
-        icon.addEventListener('mousedown', () => {
-            clickSound.currentTime = 0;
-            clickSound.play().catch(() => {});
-        });
-    });
-
-    // Play click on start menu items
-    document.querySelectorAll('.start-item, .start-item-right').forEach(item => {
-        item.addEventListener('mousedown', () => {
-            clickSound.currentTime = 0;
-            clickSound.play().catch(() => {});
-        });
-    });
+// Play window open sound
+function playOpenSound() {
+    if (window.innerWidth > 768) {
+        openSound.currentTime = 0;
+        openSound.play().catch(() => {});
+    }
 }
 
-// Play error sound function (for form errors, etc.)
-function playErrorSound() {
-    if (window.innerWidth > 768) {
-        errorSound.currentTime = 0;
-        errorSound.play().catch(() => {});
-    }
+// Play email sent sound
+function playEmailSentSound() {
+    emailSentSound.currentTime = 0;
+    emailSentSound.play().catch(() => {});
 }
 
 // ===== WINDOW CLOSE ANIMATION =====
@@ -895,7 +885,6 @@ function blinkTaskbarButton(windowId) {
 
 // Make blink function available globally
 window.blinkTaskbarButton = blinkTaskbarButton;
-window.playErrorSound = playErrorSound;
 
 // ===== XP SCREENSAVER =====
 let idleTime = 0;
@@ -960,51 +949,3 @@ if (window.innerWidth > 768 && stickyHeader) {
     }, 10000);
 }
 
-// ===== DRAGGABLE DESKTOP ICONS =====
-if (window.innerWidth > 768) {
-    let draggedIcon = null;
-    let iconOffsetX = 0;
-    let iconOffsetY = 0;
-
-    document.querySelectorAll('.desktop-icon').forEach(icon => {
-        icon.addEventListener('mousedown', (e) => {
-            // Don't start drag on double-click
-            if (e.detail > 1) return;
-
-            draggedIcon = icon;
-            const rect = icon.getBoundingClientRect();
-            const desktopRect = document.querySelector('.desktop-icons').getBoundingClientRect();
-
-            iconOffsetX = e.clientX - rect.left;
-            iconOffsetY = e.clientY - rect.top;
-
-            // Make icon draggable with absolute positioning
-            if (!icon.style.position || icon.style.position === 'static') {
-                icon.style.position = 'relative';
-            }
-
-            icon.classList.add('dragging');
-        });
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!draggedIcon) return;
-
-        const desktopIcons = document.querySelector('.desktop-icons');
-        const desktopRect = desktopIcons.getBoundingClientRect();
-
-        // Calculate new position relative to initial position
-        const newX = e.clientX - desktopRect.left - iconOffsetX;
-        const newY = e.clientY - desktopRect.top - iconOffsetY;
-
-        draggedIcon.style.left = newX + 'px';
-        draggedIcon.style.top = newY + 'px';
-    });
-
-    document.addEventListener('mouseup', () => {
-        if (draggedIcon) {
-            draggedIcon.classList.remove('dragging');
-            draggedIcon = null;
-        }
-    });
-}
