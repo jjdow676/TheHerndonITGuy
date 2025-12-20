@@ -2290,11 +2290,11 @@ body {
 @keyframes windowOpen {
     0% {
         opacity: 0;
-        transform: scale(0.3);
+        transform: scale(0.5);
     }
-    50% {
+    70% {
         opacity: 1;
-        transform: scale(1.02);
+        transform: scale(1.03);
     }
     100% {
         opacity: 1;
@@ -2309,16 +2309,16 @@ body {
     }
     100% {
         opacity: 0;
-        transform: scale(0.3);
+        transform: scale(0.5);
     }
 }
 
 .xp-window.closing {
-    animation: windowClose 0.15s ease-in forwards;
+    animation: windowClose 0.2s ease-in forwards;
 }
 
 .xp-window:not(.hidden) {
-    animation: windowOpen 0.15s ease-out;
+    animation: windowOpen 0.3s ease-out;
 }
 
 @keyframes loginFade {

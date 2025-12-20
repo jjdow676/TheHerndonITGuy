@@ -830,7 +830,7 @@ function closeWindowAnimated(windowId) {
     setTimeout(() => {
         windowEl.classList.remove('closing');
         closeWindow(windowId);
-    }, 150);
+    }, 200);
 }
 
 // Set up close button handlers with animated close
