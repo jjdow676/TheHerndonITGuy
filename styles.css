@@ -2724,103 +2724,28 @@ body {
 }
 
 .clippy-character {
-    width: 70px;
-    height: 90px;
     cursor: pointer;
-    position: relative;
     transition: transform 0.1s ease;
 }
 
 .clippy-character:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .clippy-character:active {
     transform: scale(0.95);
 }
 
-.clippy-body {
-    width: 50px;
-    height: 70px;
-    background: linear-gradient(135deg, #C4C4C4 0%, #A0A0A0 50%, #808080 100%);
-    border: 2px solid #606060;
-    border-radius: 8px 8px 5px 5px;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+.clippy-emoji {
+    font-size: 48px;
+    display: block;
+    filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+    animation: clippyBob 2s ease-in-out infinite;
 }
 
-.clippy-body::before {
-    content: '📎';
-    font-size: 32px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.clippy-eyes {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.clippy-eye {
-    width: 10px;
-    height: 14px;
-    background: #fff;
-    border: 2px solid #333;
-    border-radius: 50%;
-    position: relative;
-}
-
-.clippy-eye::after {
-    content: '';
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background: #333;
-    border-radius: 50%;
-    top: 4px;
-    left: 2px;
-    animation: clippyLook 4s ease-in-out infinite;
-}
-
-@keyframes clippyLook {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(2px); }
-    75% { transform: translateX(-2px); }
-}
-
-.clippy-eyebrows {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.clippy-eyebrow {
-    width: 12px;
-    height: 3px;
-    background: #333;
-    border-radius: 2px;
-}
-
-.clippy-eyebrow.left {
-    transform: rotate(-10deg);
-}
-
-.clippy-eyebrow.right {
-    transform: rotate(10deg);
+@keyframes clippyBob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(5deg); }
 }
 
 /* Hide Clippy on mobile */
